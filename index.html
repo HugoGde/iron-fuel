@@ -3214,6 +3214,20 @@
           <label>Nom</label>
           <input type="text" id="favInputName" placeholder="Ex: Shake whey" autocomplete="off">
         </div>
+        <div class="input-field" style="flex:1 1 100%;margin-bottom:var(--space-8)">
+          <label>Catégorie</label>
+          <select id="favInputCategory" style="width:100%;background:var(--surface-1);border:0.5px solid var(--border-subtle);border-radius:14px;padding:var(--space-12);font-family:'Inter',sans-serif;font-size:var(--fs-body);color:var(--text);outline:none;-webkit-appearance:none;min-height:var(--tap-min)">
+            <option value="mealprep">🍱 Meal Prep</option>
+            <option value="protein">🥩 Protéine</option>
+            <option value="starch">🍚 Féculent</option>
+            <option value="fruit">🍎 Fruit</option>
+            <option value="vegetable">🥦 Légume</option>
+            <option value="dairy">🥛 Produit laitier</option>
+            <option value="drink">🥤 Boisson</option>
+            <option value="snack">🍫 Snack</option>
+            <option value="other">📦 Autre</option>
+          </select>
+        </div>
         <div class="input-field">
           <label>Kcal</label>
           <input type="number" id="favInputCal" placeholder="0" inputmode="numeric">
@@ -3227,7 +3241,7 @@
     </div>
   </div>
 
-  <div class="meals-list" id="mealsListFull"></div>
+  <div id="mealsListFull"></div>
   <div class="empty-state" id="favEmptyFull">Crée un repas ci-dessus ou sauvegarde-en un avec ★</div>
 </div>
 
@@ -3613,6 +3627,20 @@
     <div class="modal-field">
       <label>Nom</label>
       <input type="text" id="editFavName" autocomplete="off">
+    </div>
+    <div class="modal-field">
+      <label>Catégorie</label>
+      <select id="editFavCategory" style="width:100%;background:var(--surface-1);border:0.5px solid var(--border-subtle);border-radius:14px;padding:var(--space-12);font-family:'Inter',sans-serif;font-size:var(--fs-body);color:var(--text);outline:none;-webkit-appearance:none;min-height:var(--tap-min)">
+        <option value="mealprep">🍱 Meal Prep</option>
+        <option value="protein">🥩 Protéine</option>
+        <option value="starch">🍚 Féculent</option>
+        <option value="fruit">🍎 Fruit</option>
+        <option value="vegetable">🥦 Légume</option>
+        <option value="dairy">🥛 Produit laitier</option>
+        <option value="drink">🥤 Boisson</option>
+        <option value="snack">🍫 Snack</option>
+        <option value="other">📦 Autre</option>
+      </select>
     </div>
     <div class="modal-field">
       <label>Calories</label>
@@ -4011,21 +4039,56 @@ function renderFavsFull() {
   const empty = document.getElementById('favEmptyFull');
   if (data.favorites.length === 0) { list.innerHTML = ''; empty.style.display = 'block'; return; }
   empty.style.display = 'none';
-  list.innerHTML = data.favorites.map((f, i) => `
-    <div class="meal-item">
-      <div class="meal-info">
-        <div class="meal-macros">
-          <span class="m-cal">${f.cal} kcal</span>
-          <span class="m-prot">${f.prot}g prot</span>
-        </div>
-        <div class="meal-name">${esc(f.name) || '—'}</div>
+
+  const categoryOrder = ['mealprep', 'protein', 'starch', 'fruit', 'vegetable', 'dairy', 'drink', 'snack', 'other'];
+  const categoryLabels = {
+    mealprep: '🍱 Meal Prep',
+    protein: '🥩 Protéine',
+    starch: '🍚 Féculent',
+    fruit: '🍎 Fruit',
+    vegetable: '🥦 Légume',
+    dairy: '🥛 Produit laitier',
+    drink: '🥤 Boisson',
+    snack: '🍫 Snack',
+    other: '📦 Autre'
+  };
+
+  // Group favorites by category
+  const groups = {};
+  data.favorites.forEach((f, i) => {
+    const cat = f.category || 'other';
+    if (!groups[cat]) groups[cat] = [];
+    groups[cat].push({ fav: f, index: i });
+  });
+
+  let html = '';
+  for (const cat of categoryOrder) {
+    if (!groups[cat] || groups[cat].length === 0) continue;
+    html += `<div style="padding:0 var(--pad)">
+      <div style="font-family:'Inter',sans-serif;font-size:var(--fs-subhead);font-weight:600;color:var(--text-2);text-transform:uppercase;letter-spacing:0.5px;margin:16px 0 10px;display:flex;align-items:center;gap:6px">
+        ${categoryLabels[cat] || cat}
+        <span style="font-size:var(--fs-caption);color:var(--text-4);font-weight:400">${groups[cat].length}</span>
       </div>
-      <div class="meal-actions">
-        <button class="meal-btn meal-btn-edit" onclick="openEditFavModal(${i})">✎</button>
-        <button class="meal-btn meal-btn-add" onclick="addFromFav(${i})">+</button>
+      <div class="meals-list">
+        ${groups[cat].map(({ fav: f, index: i }) => `
+          <div class="meal-item">
+            <div class="meal-info">
+              <div class="meal-macros">
+                <span class="m-cal">${f.cal} kcal</span>
+                <span class="m-prot">${f.prot}g prot</span>
+              </div>
+              <div class="meal-name">${esc(f.name) || '—'}</div>
+            </div>
+            <div class="meal-actions">
+              <button class="meal-btn meal-btn-edit" onclick="openEditFavModal(${i})">✎</button>
+              <button class="meal-btn meal-btn-add" onclick="addFromFav(${i})">+</button>
+            </div>
+          </div>
+        `).join('')}
       </div>
-    </div>
-  `).join('');
+    </div>`;
+  }
+  list.innerHTML = html;
 }
 
 function addFromFav(index) {
@@ -4044,12 +4107,14 @@ function createFav() {
   const nameInput = document.getElementById('favInputName');
   const calInput = document.getElementById('favInputCal');
   const protInput = document.getElementById('favInputProt');
+  const catInput = document.getElementById('favInputCategory');
   const name = nameInput.value.trim();
   const cal = parseInt(calInput.value) || 0;
   const prot = parseInt(protInput.value) || 0;
+  const category = catInput.value || 'other';
   if (!name || cal <= 0) return;
   const data = loadData();
-  data.favorites.push({ name, cal, prot });
+  data.favorites.push({ name, cal, prot, category });
   saveData(data);
   nameInput.value = ''; calInput.value = ''; protInput.value = '';
   nameInput.focus();
@@ -4069,6 +4134,7 @@ function openEditFavModal(index) {
   document.getElementById('editFavName').value = fav.name || '';
   document.getElementById('editFavCal').value = fav.cal;
   document.getElementById('editFavProt').value = fav.prot;
+  document.getElementById('editFavCategory').value = fav.category || 'other';
   document.getElementById('editFavModal').classList.add('open');
 }
 
@@ -4087,6 +4153,7 @@ function editFavSave() {
   fav.name = document.getElementById('editFavName').value.trim();
   fav.cal = cal;
   fav.prot = parseInt(document.getElementById('editFavProt').value) || 0;
+  fav.category = document.getElementById('editFavCategory').value || 'other';
   saveData(data);
   closeEditFavModal();
   showToast('Modifié !');
