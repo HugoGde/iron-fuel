@@ -3691,10 +3691,25 @@ async function loadFromSupabase() {
   return false;
 }
 
+async function loadMuscuFromSupabase() {
+  try {
+    const res = await fetch(SUPABASE_TABLE + '?id=eq.muscu&select=data', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    });
+    const rows = await res.json();
+    if (rows.length > 0 && rows[0].data) {
+      const merged = { ...{ exercises: [], workouts: {} }, ...rows[0].data };
+      localStorage.setItem('ironfuel_muscu', JSON.stringify(merged));
+      return true;
+    }
+  } catch {}
+  return false;
+}
+
 // On app start: load from Supabase if available, then render
 (async function initSupabase() {
-  const loaded = await loadFromSupabase();
-  if (loaded) render();
+  const [loadedNutrition, loadedMuscu] = await Promise.all([loadFromSupabase(), loadMuscuFromSupabase()]);
+  if (loadedNutrition || loadedMuscu) render();
 })();
 
 function getDayKey(date) {
@@ -6403,7 +6418,38 @@ function loadMuscu() {
   } catch { return { ...MUSCU_DEFAULTS, exercises: [], workouts: {} }; }
 }
 
-function saveMuscu(data) { localStorage.setItem(MUSCU_KEY, JSON.stringify(data)); }
+function saveMuscu(data) {
+  localStorage.setItem(MUSCU_KEY, JSON.stringify(data));
+  syncMuscuToSupabase(data);
+}
+
+let _syncMuscuTimer = null;
+function syncMuscuToSupabase(data) {
+  clearTimeout(_syncMuscuTimer);
+  _syncMuscuTimer = setTimeout(() => {
+    const body = JSON.stringify({ id: 'muscu', data: data, updated_at: new Date().toISOString() });
+    fetch(SUPABASE_TABLE + '?id=eq.muscu', {
+      method: 'GET',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    })
+    .then(r => r.json())
+    .then(rows => {
+      const method = rows.length > 0 ? 'PATCH' : 'POST';
+      const url = rows.length > 0 ? SUPABASE_TABLE + '?id=eq.muscu' : SUPABASE_TABLE;
+      return fetch(url, {
+        method: method,
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Authorization': 'Bearer ' + SUPABASE_KEY,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
+        body: body
+      });
+    })
+    .catch(() => {});
+  }, 1000);
+}
 
 let workoutViewDay = null;
 let currentWorkoutExIndex = null; // for add set modal
