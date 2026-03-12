@@ -48,7 +48,7 @@
     min-height: 100dvh;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+    padding-bottom: calc(95px + env(safe-area-inset-bottom, 0px));
   }
 
   body::before {
@@ -63,14 +63,14 @@
 
   /* ─── HEADER ─── */
   header {
-    padding: calc(12px + env(safe-area-inset-top, 0px)) var(--pad) 0;
+    padding: calc(16px + env(safe-area-inset-top, 0px)) var(--pad) 0;
     text-align: center;
   }
 
   .logo {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.2rem;
-    letter-spacing: 6px;
+    font-size: 3rem;
+    letter-spacing: 8px;
     color: var(--gold);
     text-shadow: 0 0 30px var(--gold-glow), 0 2px 0 rgba(0,0,0,0.4);
     line-height: 1;
@@ -78,17 +78,17 @@
 
   .logo-sub {
     font-family: 'Space Mono', monospace;
-    font-size: 0.55rem;
+    font-size: 0.7rem;
     letter-spacing: 6px;
     color: var(--text-3);
     text-transform: uppercase;
-    margin-top: 2px;
+    margin-top: 4px;
   }
 
   .divider {
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
-    margin: 12px 0;
+    margin: 18px 0;
   }
 
   .date-display {
@@ -98,27 +98,32 @@
   /* ─── BOTTOM NAV ─── */
   .bottom-nav {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: var(--surface-1);
-    border-top: 1px solid var(--border-subtle);
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    background: rgba(22, 22, 26, 0.85);
+    backdrop-filter: blur(20px) saturate(1.4);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    border: 1px solid var(--border-subtle);
+    border-radius: 18px;
     display: flex;
-    padding-bottom: env(safe-area-inset-bottom, 0px);
+    padding-bottom: 0;
+    margin-bottom: env(safe-area-inset-bottom, 0px);
     z-index: 100;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
   }
 
   .nav-item {
     flex: 1;
     text-align: center;
-    padding: 12px 4px 10px;
+    padding: 14px 4px 12px;
     cursor: pointer;
     transition: color 0.2s;
     color: var(--text-4);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
+    gap: 5px;
     position: relative;
   }
 
@@ -134,11 +139,11 @@
     border-radius: 0 0 2px 2px;
     box-shadow: 0 0 8px var(--gold-glow);
   }
-  .nav-icon { font-size: 1.5rem; line-height: 1; }
+  .nav-icon { font-size: 1.8rem; line-height: 1; }
 
   .nav-label {
     font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
+    font-size: 0.75rem;
     letter-spacing: 1px;
     text-transform: uppercase;
   }
@@ -148,22 +153,22 @@
 
   /* ─── DUAL RINGS ─── */
   .hero-section {
-    padding: 0 var(--pad) 12px;
+    padding: 8px var(--pad) 18px;
     display: flex;
     justify-content: center;
-    gap: 16px;
+    gap: 24px;
     align-items: flex-start;
   }
 
   .hero-ring {
-    width: 120px;
+    width: 160px;
     text-align: center;
   }
 
   .ring-wrap {
-    width: 110px;
-    height: 110px;
-    margin: 0 auto 6px;
+    width: 145px;
+    height: 145px;
+    margin: 0 auto 8px;
     position: relative;
     display: flex;
     align-items: center;
@@ -211,25 +216,25 @@
 
   .ring-value {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.7rem;
+    font-size: 2.2rem;
     line-height: 1;
     letter-spacing: 2px;
   }
 
   .ring-label {
     font-family: 'Space Mono', monospace;
-    font-size: 0.55rem;
+    font-size: 0.7rem;
     letter-spacing: 3px;
     color: var(--text-3);
     text-transform: uppercase;
-    margin-top: 2px;
+    margin-top: 3px;
   }
 
   .ring-sub {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.85rem;
+    font-size: 1.05rem;
     color: var(--text-3);
-    margin-top: 4px;
+    margin-top: 6px;
     cursor: pointer;
     transition: color 0.2s;
   }
@@ -238,9 +243,9 @@
 
   .prot-remain {
     font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
+    font-size: 0.8rem;
     color: var(--gold);
-    margin-top: 4px;
+    margin-top: 5px;
     letter-spacing: 0.5px;
     text-align: center;
   }
@@ -249,32 +254,32 @@
   .stats-row {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 6px;
-    padding: 0 var(--pad) 14px;
+    gap: 8px;
+    padding: 0 var(--pad) 18px;
   }
 
   .stat-card {
     background: var(--surface-2);
     border: 1px solid var(--border-subtle);
-    border-radius: 10px;
-    padding: 10px 6px;
+    border-radius: 12px;
+    padding: 14px 8px;
     text-align: center;
   }
 
   .stat-value {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     line-height: 1;
     letter-spacing: 1px;
   }
 
   .stat-label {
     font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
+    font-size: 0.75rem;
     letter-spacing: 1.5px;
     color: var(--text-4);
     text-transform: uppercase;
-    margin-top: 4px;
+    margin-top: 5px;
   }
 
   /* ─── INPUT SECTION ─── */
@@ -290,16 +295,16 @@
 
   .input-group-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.9rem;
+    font-size: 1.15rem;
     letter-spacing: 3px;
     color: var(--text-2);
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     display: flex;
     align-items: center;
     gap: 8px;
   }
 
-  .input-group-title .icon { font-size: 1rem; }
+  .input-group-title .icon { font-size: 1.2rem; }
 
   .input-row {
     display: flex;
@@ -318,11 +323,11 @@
   .input-field label {
     display: block;
     font-family: 'Space Mono', monospace;
-    font-size: 0.55rem;
+    font-size: 0.7rem;
     letter-spacing: 2px;
     color: var(--text-3);
     text-transform: uppercase;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
   }
 
   .input-field input, .input-field input[type="text"] {
@@ -330,9 +335,9 @@
     background: var(--surface-1);
     border: 1px solid var(--border-subtle);
     border-radius: 8px;
-    padding: 10px;
+    padding: 12px;
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     letter-spacing: 2px;
     color: var(--text);
     outline: none;
@@ -342,7 +347,7 @@
 
   .input-field input[type="text"] {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1rem;
+    font-size: 1.15rem;
     letter-spacing: 0.5px;
   }
 
@@ -351,19 +356,19 @@
     box-shadow: 0 0 0 2px var(--gold-soft);
   }
 
-  .input-field input::placeholder { color: var(--text-4); font-size: 0.9rem; }
+  .input-field input::placeholder { color: var(--text-4); font-size: 1rem; }
 
   .btn {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1rem;
+    font-size: 1.2rem;
     letter-spacing: 3px;
     border: none;
-    border-radius: 8px;
-    padding: 10px 16px;
+    border-radius: 10px;
+    padding: 12px 18px;
     cursor: pointer;
     transition: all 0.15s;
     white-space: nowrap;
-    min-height: 42px;
+    min-height: 48px;
   }
 
   .btn:active { transform: scale(0.96); }
@@ -387,10 +392,10 @@
 
   .section-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.9rem;
+    font-size: 1.15rem;
     letter-spacing: 3px;
     color: var(--text-2);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -425,7 +430,7 @@
 
   .fav-name {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     font-weight: 700;
     color: var(--text);
     white-space: nowrap;
@@ -435,9 +440,9 @@
 
   .fav-detail {
     font-family: 'Space Mono', monospace;
-    font-size: 0.55rem;
+    font-size: 0.7rem;
     color: var(--text-3);
-    margin-top: 2px;
+    margin-top: 3px;
   }
 
   .fav-add {
@@ -484,7 +489,7 @@
 
   .meal-name {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 700;
     color: var(--text);
     white-space: nowrap;
@@ -494,9 +499,9 @@
 
   .meal-macros {
     font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
+    font-size: 0.75rem;
     color: var(--text-3);
-    margin-top: 3px;
+    margin-top: 4px;
     display: flex;
     gap: 10px;
   }
@@ -552,10 +557,10 @@
 
   .empty-state {
     text-align: center;
-    padding: 16px;
+    padding: 20px;
     color: var(--text-4);
     font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
+    font-size: 0.8rem;
     letter-spacing: 2px;
   }
 
@@ -592,18 +597,18 @@
 
   .entry-name {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.95rem;
+    font-size: 1.15rem;
     font-weight: 700;
     color: var(--text);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 160px;
+    max-width: 180px;
   }
 
   .entry-cal {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     letter-spacing: 1px;
     flex-shrink: 0;
   }
@@ -613,7 +618,7 @@
 
   .entry-prot {
     font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
+    font-size: 0.75rem;
     color: var(--gold-dim);
     flex-shrink: 0;
   }
@@ -627,7 +632,7 @@
 
   .entry-time {
     font-family: 'Space Mono', monospace;
-    font-size: 0.55rem;
+    font-size: 0.7rem;
     color: var(--text-4);
     margin-right: 4px;
   }
@@ -636,7 +641,7 @@
     background: none;
     border: none;
     color: var(--text-4);
-    font-size: 0.95rem;
+    font-size: 1.15rem;
     cursor: pointer;
     padding: 8px;
     border-radius: 6px;
@@ -674,14 +679,14 @@
 
   .summary-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     letter-spacing: 3px;
     color: var(--gold);
   }
 
   .summary-period {
     font-family: 'Space Mono', monospace;
-    font-size: 0.55rem;
+    font-size: 0.7rem;
     color: var(--text-4);
   }
 
@@ -695,18 +700,18 @@
 
   .summary-stat-value {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     letter-spacing: 1px;
     line-height: 1;
   }
 
   .summary-stat-label {
     font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     letter-spacing: 1px;
     color: var(--text-4);
     text-transform: uppercase;
-    margin-top: 3px;
+    margin-top: 4px;
   }
 
   .history-day {
@@ -758,7 +763,7 @@
 
   .history-entry-name {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     font-weight: 600;
     color: var(--text);
   }
@@ -769,13 +774,13 @@
 
   .history-entry-detail {
     font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     color: var(--text-3);
   }
 
   .history-entry-empty {
     font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     color: var(--text-4);
     text-align: center;
     padding: 6px 0;
@@ -791,20 +796,20 @@
 
   .history-day-name {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1rem;
+    font-size: 1.2rem;
     letter-spacing: 2px;
     color: var(--text);
   }
 
   .history-day-date {
     font-family: 'Space Mono', monospace;
-    font-size: 0.55rem;
+    font-size: 0.7rem;
     color: var(--text-4);
   }
 
   .history-day-status {
     font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     letter-spacing: 0.5px;
     text-transform: uppercase;
     margin-left: auto;
@@ -819,14 +824,14 @@
 
   .history-stat {
     font-family: 'Space Mono', monospace;
-    font-size: 0.55rem;
+    font-size: 0.7rem;
     color: var(--text-3);
     text-align: center;
   }
 
   .history-stat span {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     letter-spacing: 1px;
     display: block;
   }
@@ -866,7 +871,7 @@
 
   .fat-since {
     font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     color: var(--text-4);
   }
 
@@ -887,14 +892,14 @@
 
   .fat-kg-unit {
     font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
+    font-size: 0.75rem;
     color: var(--text-3);
     letter-spacing: 1px;
   }
 
   .fat-kcal-total {
     font-family: 'Space Mono', monospace;
-    font-size: 0.55rem;
+    font-size: 0.7rem;
     color: var(--text-4);
     margin-left: auto;
   }
@@ -955,7 +960,7 @@
 
   .fat-gauge-label {
     font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     color: var(--text-4);
     text-align: center;
     position: absolute;
@@ -984,7 +989,7 @@
 
   .fat-next-label {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.85rem;
+    font-size: 1.05rem;
     color: var(--text-3);
   }
 
@@ -995,7 +1000,7 @@
 
   .fat-next-kcal {
     font-family: 'Space Mono', monospace;
-    font-size: 0.55rem;
+    font-size: 0.7rem;
     color: var(--text-4);
   }
 
@@ -1022,7 +1027,7 @@
 
   .fat-stat-label {
     font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     color: var(--text-4);
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -1071,7 +1076,7 @@
 
   .chart-toggle-btn {
     font-family: 'Space Mono', monospace;
-    font-size: 0.55rem;
+    font-size: 0.7rem;
     letter-spacing: 1px;
     text-transform: uppercase;
     padding: 6px 12px;
@@ -1113,7 +1118,7 @@
 
   .chart-y-label {
     font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     color: var(--text-4);
     text-align: right;
     padding-right: 4px;
@@ -1168,7 +1173,7 @@
     right: 0;
     top: -8px;
     font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     color: var(--gold-dim);
     background: var(--surface-2);
     padding: 0 3px;
@@ -1176,7 +1181,7 @@
 
   .chart-day-label {
     font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     color: var(--text-4);
     margin-top: 4px;
     text-transform: uppercase;
@@ -1206,7 +1211,7 @@
 
   .chart-legend-label {
     font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     color: var(--text-3);
     text-transform: uppercase;
   }
@@ -1260,7 +1265,7 @@
   .modal-field label {
     display: block;
     font-family: 'Space Mono', monospace;
-    font-size: 0.55rem;
+    font-size: 0.7rem;
     letter-spacing: 2px;
     color: var(--text-3);
     text-transform: uppercase;
@@ -1296,7 +1301,7 @@
 
   .modal-field .hint {
     font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     color: var(--text-4);
     margin-top: 4px;
     text-align: center;
@@ -1346,7 +1351,7 @@
     background: var(--gold);
     color: var(--bg);
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     letter-spacing: 2px;
     padding: 8px 20px;
     border-radius: 8px;
@@ -1396,7 +1401,7 @@
 
   .tdee-hint {
     font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     color: var(--text-4);
   }
 
@@ -1417,13 +1422,13 @@
 
   .tdee-unit {
     font-family: 'Space Mono', monospace;
-    font-size: 0.55rem;
+    font-size: 0.7rem;
     color: var(--text-3);
   }
 
   .tdee-detail {
     font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     color: var(--text-4);
     line-height: 1.6;
   }
@@ -1454,7 +1459,7 @@
 
   .evo-label {
     font-family: 'Space Mono', monospace;
-    font-size: 0.55rem;
+    font-size: 0.7rem;
     color: var(--text-4);
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -1471,7 +1476,7 @@
 
   .evo-delta {
     font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     margin-top: 4px;
     letter-spacing: 0.5px;
   }
@@ -1495,7 +1500,7 @@
 
   .weekly-note-header {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     letter-spacing: 2px;
     color: var(--gold);
     margin-bottom: 8px;
@@ -1503,7 +1508,7 @@
 
   .weekly-note-text {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.95rem;
+    font-size: 1.15rem;
     color: var(--text-2);
     line-height: 1.5;
   }
@@ -1583,7 +1588,7 @@
   }
 
   .coach-signal-icon {
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     margin-bottom: 3px;
   }
 
@@ -1636,7 +1641,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.85rem;
+    font-size: 1.05rem;
   }
 
   .coach-reco.priority-high .coach-reco-icon { background: var(--red-soft); }
@@ -1664,7 +1669,7 @@
 
   .coach-reco-text {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     color: var(--text-2);
     line-height: 1.4;
   }
@@ -1688,7 +1693,7 @@
 
   .coach-insufficient-text {
     font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     color: var(--text-4);
     line-height: 1.6;
   }
@@ -1718,7 +1723,7 @@
 
   .body-toggle {
     font-family: 'Space Mono', monospace;
-    font-size: 0.55rem;
+    font-size: 0.7rem;
     padding: 5px 10px;
     border-radius: 4px;
     border: 1px solid var(--border-subtle);
@@ -1755,7 +1760,7 @@
 
   .measure-form-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     letter-spacing: 3px;
     color: var(--text-3);
     margin-bottom: 4px;
@@ -1763,7 +1768,7 @@
 
   .measure-form-hint {
     font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     color: var(--gold);
     margin-bottom: 10px;
   }
@@ -1779,14 +1784,14 @@
   }
 
   .measure-form-grid .modal-field input {
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     padding: 8px;
   }
 
   /* Measure history — card-based */
   .measure-history-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     letter-spacing: 2px;
     color: var(--text-3);
     margin-bottom: 8px;
@@ -1797,7 +1802,7 @@
 
   .measure-history-count {
     font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     color: var(--text-4);
     letter-spacing: 0;
   }
@@ -1825,7 +1830,7 @@
 
   .mh-card-date {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.95rem;
+    font-size: 1.15rem;
     letter-spacing: 2px;
     color: var(--text-2);
   }
@@ -1840,7 +1845,7 @@
 
   .mh-card-bf {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     letter-spacing: 1px;
   }
 
@@ -1922,7 +1927,7 @@
     border-radius: 10px;
     color: var(--text-3);
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.85rem;
+    font-size: 1.05rem;
     cursor: pointer;
     transition: all 0.2s;
     letter-spacing: 1px;
@@ -1958,7 +1963,7 @@
 
   .corps-empty-guide .guide-text {
     font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     color: var(--text-3);
     line-height: 1.8;
     margin-bottom: 14px;
@@ -1993,7 +1998,7 @@
 
   .corps-empty-guide .guide-step-text {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.85rem;
+    font-size: 1.05rem;
     color: var(--text-2);
     line-height: 1.4;
     padding-top: 1px;
@@ -2052,7 +2057,7 @@
 
   .week-budget-label {
     font-family: 'Space Mono', monospace;
-    font-size: 0.55rem;
+    font-size: 0.7rem;
     color: var(--text-3);
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -2060,7 +2065,7 @@
 
   .week-budget-adapted {
     font-family: 'Space Mono', monospace;
-    font-size: 0.55rem;
+    font-size: 0.7rem;
     letter-spacing: 0.5px;
   }
 
@@ -2080,7 +2085,7 @@
 
   .week-budget-detail {
     font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     color: var(--text-4);
     display: flex;
     justify-content: space-between;
@@ -2120,7 +2125,7 @@
 
   .streak-label {
     font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     color: var(--text-4);
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -2128,7 +2133,7 @@
 
   .streak-best {
     font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     color: var(--text-4);
     text-align: right;
   }
@@ -2137,35 +2142,12 @@
     color: var(--gold);
   }
 
-  /* ─── COPY YESTERDAY ─── */
-  .copy-yesterday {
-    padding: 0 var(--pad) 6px;
-  }
-
-  .copy-yesterday-btn {
-    width: 100%;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.85rem;
-    padding: 8px;
-    background: var(--surface-2);
-    border: 1px dashed var(--border);
-    border-radius: 8px;
-    color: var(--text-3);
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .copy-yesterday-btn:active {
-    background: var(--surface-3);
-    border-color: var(--gold);
-    color: var(--gold);
-  }
-
   /* ─── DAY NAV (swipe) ─── */
   .day-nav {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 4px;
     gap: 12px;
     padding: 0 var(--pad) 10px;
   }
@@ -2190,7 +2172,7 @@
 
   .day-nav-label {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     letter-spacing: 2px;
     color: var(--text-2);
     min-width: 120px;
@@ -2199,7 +2181,7 @@
 
   .day-nav-today {
     font-family: 'Space Mono', monospace;
-    font-size: 0.55rem;
+    font-size: 0.7rem;
     color: var(--gold);
     background: var(--gold-soft);
     border: 1px solid rgba(232, 184, 32, 0.2);
@@ -2220,7 +2202,7 @@
 
   .badges-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     letter-spacing: 2px;
     color: var(--text-3);
     margin-bottom: 8px;
@@ -2296,13 +2278,13 @@
 
   .undo-toast-text {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.85rem;
+    font-size: 1.05rem;
     color: var(--text-2);
   }
 
   .undo-toast-btn {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     letter-spacing: 2px;
     color: var(--gold);
     background: none;
@@ -2331,14 +2313,14 @@
     display: flex;
     justify-content: center;
     gap: 0;
-    padding: 0 var(--pad) 10px;
+    padding: 0 var(--pad) 16px;
   }
 
   .mode-btn {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     letter-spacing: 3px;
-    padding: 8px 24px;
+    padding: 10px 28px;
     background: var(--surface-2);
     border: 1px solid var(--border-subtle);
     color: var(--text-4);
@@ -2366,7 +2348,7 @@
 
   .workout-type-btn {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.85rem;
+    font-size: 1.05rem;
     letter-spacing: 2px;
     padding: 8px 14px;
     background: var(--surface-2);
@@ -2416,7 +2398,7 @@
     background: none;
     border: none;
     color: var(--text-4);
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     cursor: pointer;
     padding: 6px;
     border-radius: 4px;
@@ -2438,7 +2420,7 @@
 
   .workout-set-num {
     font-family: 'Space Mono', monospace;
-    font-size: 0.55rem;
+    font-size: 0.7rem;
     color: var(--text-4);
     min-width: 20px;
   }
@@ -2452,13 +2434,13 @@
 
   .workout-set-unit {
     font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     color: var(--text-3);
   }
 
   .workout-set-x {
     font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
+    font-size: 0.75rem;
     color: var(--text-4);
   }
 
@@ -2486,7 +2468,7 @@
   .workout-add-set-btn {
     width: 100%;
     font-family: 'Space Mono', monospace;
-    font-size: 0.55rem;
+    font-size: 0.7rem;
     color: var(--text-4);
     background: var(--surface-3);
     border: 1px dashed var(--border);
@@ -2509,7 +2491,7 @@
   .workout-add-exercise-btn {
     width: 100%;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     color: var(--gold);
     background: var(--gold-soft);
     border: 1px dashed var(--gold-dim);
@@ -2528,7 +2510,7 @@
     padding: 30px var(--pad);
     color: var(--text-4);
     font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
+    font-size: 0.75rem;
   }
 
   /* ─── LAST SESSION BANNER ─── */
@@ -2555,14 +2537,14 @@
 
   .last-session-title {
     font-family: 'Space Mono', monospace;
-    font-size: 0.55rem;
+    font-size: 0.7rem;
     color: var(--text-3);
     letter-spacing: 0.5px;
   }
 
   .last-session-date {
     font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     color: var(--gold);
     opacity: 0.8;
   }
@@ -2581,7 +2563,7 @@
   .last-session-summary {
     padding: 0 14px 10px;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.85rem;
+    font-size: 1.05rem;
     color: var(--text-3);
     line-height: 1.5;
   }
@@ -2589,7 +2571,7 @@
   .last-session-summary-tag {
     display: inline-block;
     font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     color: var(--text-3);
     background: var(--surface-3);
     border-radius: 4px;
@@ -2614,7 +2596,7 @@
 
   .last-session-ex-name {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     letter-spacing: 1.5px;
     color: var(--text-2);
     margin-bottom: 4px;
@@ -2628,7 +2610,7 @@
 
   .last-session-set-tag {
     font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     color: var(--text-3);
     background: var(--surface-3);
     border-radius: 4px;
@@ -2678,7 +2660,7 @@
   .history-filter-btn {
     flex: 1;
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.85rem;
+    font-size: 1.05rem;
     letter-spacing: 2px;
     padding: 10px 0;
     text-align: center;
@@ -2748,19 +2730,19 @@
 
   .hist-date {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     color: var(--text-2);
     font-weight: 600;
   }
 
   .hist-meta {
     font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     color: var(--text-4);
   }
 
   .hist-chevron {
-    font-size: 0.55rem;
+    font-size: 0.7rem;
     color: var(--text-4);
     transition: transform 0.25s;
   }
@@ -2770,7 +2752,7 @@
   .hist-summary {
     padding: 6px 14px 10px;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.85rem;
+    font-size: 1.05rem;
     color: var(--text-3);
     line-height: 1.3;
   }
@@ -2796,7 +2778,7 @@
 
   .hist-ex-name {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     letter-spacing: 1.5px;
     color: var(--text-2);
     margin-bottom: 2px;
@@ -2804,7 +2786,7 @@
 
   .hist-ex-notes {
     font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     color: var(--text-4);
     font-style: italic;
     margin-bottom: 4px;
@@ -2819,7 +2801,7 @@
 
   .hist-set-tag {
     font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     color: var(--text-3);
     background: var(--surface-3);
     border-radius: 4px;
@@ -2840,7 +2822,7 @@
   .prog-filter-btn {
     flex: 1;
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.85rem;
+    font-size: 1.05rem;
     letter-spacing: 2px;
     padding: 10px 0;
     text-align: center;
@@ -2924,7 +2906,7 @@
 
   .prog-ex-trend {
     font-family: 'Space Mono', monospace;
-    font-size: 0.55rem;
+    font-size: 0.7rem;
     padding: 3px 8px;
     border-radius: 4px;
     font-weight: 700;
@@ -2981,7 +2963,7 @@
 
   .prog-ex-stat {
     font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     color: var(--text-4);
   }
 
@@ -2992,7 +2974,7 @@
 
   .prog-ex-pr {
     font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     color: var(--gold);
   }
 
@@ -3007,7 +2989,7 @@
 
   .prog-coach-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     letter-spacing: 2px;
     color: var(--gold);
     margin-bottom: 8px;
@@ -3018,7 +3000,7 @@
 
   .prog-coach-body {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     color: var(--text-2);
     line-height: 1.5;
   }
@@ -3050,7 +3032,7 @@
     padding: 40px var(--pad);
     color: var(--text-4);
     font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
+    font-size: 0.75rem;
     line-height: 1.6;
   }
 
@@ -3130,9 +3112,6 @@
       <div class="stat-label">Net</div>
     </div>
   </div>
-
-  <!-- Copy yesterday -->
-  <div class="copy-yesterday" id="copyYesterdayWrap"></div>
 
   <!-- Food input -->
   <div class="input-section">
@@ -3858,22 +3837,6 @@ function render() {
 
   const ringProt = document.getElementById('ringProt');
   ringProt.style.strokeDashoffset = circumference * (1 - Math.min(protPct, 1));
-
-  // Copy yesterday button
-  const cyWrap = document.getElementById('copyYesterdayWrap');
-  const yesterdayKey = (() => {
-    const d = new Date(key + 'T12:00:00');
-    d.setDate(d.getDate() - 1);
-    return d.toISOString().slice(0,10);
-  })();
-  const hasYesterday = data.days[yesterdayKey] && data.days[yesterdayKey].entries.length > 0;
-  const hasEntriesToday = day.entries.length > 0;
-  if (hasYesterday && !hasEntriesToday) {
-    const yStats = computeDayStats(data, yesterdayKey);
-    cyWrap.innerHTML = `<button class="copy-yesterday-btn" onclick="copyYesterday()">Recopier hier (${yStats.cal} kcal · ${yStats.prot}g prot)</button>`;
-  } else {
-    cyWrap.innerHTML = '';
-  }
 
   // Section title
   const sectionTitle = document.querySelector('.section-title span');
