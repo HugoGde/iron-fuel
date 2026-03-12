@@ -363,7 +363,7 @@
     width: 100%;
     background: var(--surface-1);
     border: 0.5px solid var(--border-subtle);
-    border-radius: 10px;
+    border-radius: 14px;
     padding: var(--space-12);
     font-family: 'Bebas Neue', sans-serif;
     font-size: var(--fs-title-2);
@@ -393,7 +393,7 @@
     font-size: var(--fs-callout);
     letter-spacing: 1.5px;
     border: none;
-    border-radius: 10px;
+    border-radius: 14px;
     padding: var(--space-12) var(--space-16);
     cursor: pointer;
     transition: all 0.15s;
@@ -789,30 +789,35 @@
 
   .history-entry-item {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 6px 0;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px 0;
   }
 
   .history-entry-item + .history-entry-item {
-    border-top: 1px solid rgba(84, 84, 88, 0.5);
+    border-top: 1px solid rgba(84, 84, 88, 0.3);
   }
 
   .history-entry-name {
+    font-family: 'Inter', sans-serif;
+    font-size: var(--fs-subhead);
+    font-weight: 400;
+    color: var(--text-3);
+  }
+
+  .history-entry-item.sport .history-entry-name {
+    color: var(--text-3);
+  }
+
+  .history-entry-detail {
     font-family: 'Inter', sans-serif;
     font-size: var(--fs-headline);
     font-weight: 600;
     color: var(--text);
   }
 
-  .history-entry-item.sport .history-entry-name {
+  .history-entry-item.sport .history-entry-detail {
     color: var(--red);
-  }
-
-  .history-entry-detail {
-    font-family: 'Inter', sans-serif;
-    font-size: var(--fs-caption);
-    color: var(--text-3);
   }
 
   .history-entry-empty {
@@ -856,7 +861,7 @@
   .history-day-stats {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    gap: 4px;
+    gap: 6px;
   }
 
   .history-stat {
@@ -1314,7 +1319,7 @@
     width: 100%;
     background: var(--surface-1);
     border: 0.5px solid var(--border-subtle);
-    border-radius: 10px;
+    border-radius: 14px;
     padding: var(--space-12);
     min-height: var(--tap-min);
     font-family: 'Bebas Neue', sans-serif;
@@ -1663,7 +1668,7 @@
     gap: 10px;
     padding: 10px;
     background: var(--surface-3);
-    border-radius: 10px;
+    border-radius: 14px;
     border-left: 3px solid var(--text-4);
   }
 
@@ -1963,7 +1968,7 @@
     padding: 10px;
     background: var(--surface-2);
     border: 1px dashed var(--border-subtle);
-    border-radius: 10px;
+    border-radius: 14px;
     color: var(--text-3);
     font-family: 'Inter', sans-serif;
     font-size: var(--fs-body);
@@ -2083,7 +2088,7 @@
   .week-budget-card {
     background: var(--surface-2);
     border: 0.5px solid var(--border-subtle);
-    border-radius: 10px;
+    border-radius: 14px;
     padding: 10px 12px;
   }
 
@@ -2138,7 +2143,7 @@
   .streak-card {
     background: var(--surface-2);
     border: 0.5px solid var(--border-subtle);
-    border-radius: 10px;
+    border-radius: 14px;
     padding: 8px 12px;
     display: flex;
     align-items: center;
@@ -2297,7 +2302,7 @@
     transform: translateX(-50%) translateY(20px);
     background: var(--surface-1);
     border: 1px solid var(--border);
-    border-radius: 10px;
+    border-radius: 14px;
     padding: 10px 16px;
     display: flex;
     align-items: center;
@@ -2381,8 +2386,8 @@
   /* ─── MUSCU: SÉANCE ─── */
   .workout-type-selector {
     display: flex;
-    gap: 6px;
-    padding: 0 var(--pad) 12px;
+    gap: 8px;
+    padding: 0 var(--pad) 16px;
     justify-content: center;
   }
 
@@ -2525,7 +2530,7 @@
   }
 
   .workout-add-exercise {
-    margin: 0 var(--pad) 12px;
+    margin: 0 var(--pad) 16px;
   }
 
   .workout-add-exercise-btn {
@@ -2535,7 +2540,7 @@
     color: var(--gold);
     background: var(--gold-soft);
     border: 1px dashed var(--gold-dim);
-    border-radius: 10px;
+    border-radius: 14px;
     padding: 12px;
     cursor: pointer;
     transition: all 0.2s;
@@ -2555,7 +2560,7 @@
 
   /* ─── LAST SESSION BANNER ─── */
   .last-session-banner {
-    margin: 0 var(--pad) 10px;
+    margin: 0 var(--pad) 14px;
     background: var(--surface-2);
     border: 0.5px solid var(--border-subtle);
     border-radius: 14px;
@@ -2611,12 +2616,13 @@
   .last-session-summary-tag {
     display: inline-block;
     font-family: 'Inter', sans-serif;
-    font-size: var(--fs-caption);
-    color: var(--text-3);
+    font-size: var(--fs-footnote);
+    font-weight: 500;
+    color: var(--text-2);
     background: var(--surface-3);
-    border-radius: 4px;
-    padding: 3px 7px;
-    margin: 2px 3px 2px 0;
+    border-radius: 6px;
+    padding: 4px 8px;
+    margin: 3px 4px 3px 0;
   }
 
   .last-session-detail {
@@ -2650,20 +2656,21 @@
 
   .last-session-set-tag {
     font-family: 'Inter', sans-serif;
-    font-size: var(--fs-caption);
-    color: var(--text-3);
+    font-size: var(--fs-footnote);
+    font-weight: 500;
+    color: var(--text-2);
     background: var(--surface-3);
-    border-radius: 4px;
-    padding: 3px 6px;
+    border-radius: 6px;
+    padding: 4px 8px;
   }
 
   /* ─── MUSCU: EXERCISE LIB (used in modals) ─── */
   .exercise-lib-item {
     background: var(--surface-2);
     border: 0.5px solid var(--border-subtle);
-    border-radius: 10px;
-    padding: 12px 14px;
-    margin-bottom: 6px;
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
     cursor: pointer;
     transition: all 0.15s;
   }
@@ -2690,9 +2697,9 @@
   .history-type-filter {
     display: flex;
     gap: 0;
-    margin: 0 var(--pad) 12px;
+    margin: 0 var(--pad) 16px;
     background: var(--surface-2);
-    border-radius: 10px;
+    border-radius: 14px;
     border: 0.5px solid var(--border-subtle);
     overflow: hidden;
   }
@@ -2812,7 +2819,7 @@
   }
 
   .hist-exercise {
-    padding: 8px 14px;
+    padding: 10px 16px;
     border-top: 1px solid rgba(84, 84, 88, 0.3);
   }
 
@@ -2835,26 +2842,27 @@
 
   .hist-sets {
     display: flex;
-    gap: 6px;
+    gap: 8px;
     flex-wrap: wrap;
   }
 
   .hist-set-tag {
     font-family: 'Inter', sans-serif;
-    font-size: var(--fs-caption);
-    color: var(--text-3);
+    font-size: var(--fs-footnote);
+    font-weight: 500;
+    color: var(--text-2);
     background: var(--surface-3);
-    border-radius: 4px;
-    padding: 3px 6px;
+    border-radius: 6px;
+    padding: 4px 8px;
   }
 
   /* ─── MUSCU: PROGRESSION ─── */
   .prog-filter {
     display: flex;
     gap: 0;
-    margin: 0 var(--pad) 12px;
+    margin: 0 var(--pad) 16px;
     background: var(--surface-2);
-    border-radius: 10px;
+    border-radius: 14px;
     border: 0.5px solid var(--border-subtle);
     overflow: hidden;
   }
@@ -3020,11 +3028,11 @@
 
   /* Coach message */
   .prog-coach {
-    margin: 8px var(--pad) 16px;
+    margin: 12px var(--pad) 20px;
     background: linear-gradient(135deg, rgba(255, 214, 10, 0.08) 0%, rgba(255, 214, 10, 0.03) 100%);
     border: 1px solid var(--gold-dim);
     border-radius: 14px;
-    padding: 16px;
+    padding: 18px;
   }
 
   .prog-coach-title {
@@ -3462,7 +3470,7 @@
     <div class="modal-handle"></div>
     <h3>Ajouter un exercice</h3>
     <!-- Inline create form (hidden by default) -->
-    <div id="inlineCreateExForm" style="display:none;margin-bottom:12px;padding:12px;background:var(--surface-3);border-radius:10px;border:1px solid var(--border-subtle)">
+    <div id="inlineCreateExForm" style="display:none;margin-bottom:12px;padding:12px;background:var(--surface-3);border-radius:14px;border:1px solid var(--border-subtle)">
       <div class="modal-field" style="margin-bottom:8px">
         <label>Nom</label>
         <input type="text" id="inlineNewExName" placeholder="Ex: Développé couché" autocomplete="off">
@@ -3500,7 +3508,7 @@
     </div>
     <div class="modal-field">
       <label>Catégorie</label>
-      <select id="editExCategory" style="width:100%;background:var(--surface-1);border:1px solid var(--border-subtle);border-radius:10px;padding:12px;font-family:'Inter',sans-serif;font-size:1.1rem;color:var(--text);outline:none;-webkit-appearance:none">
+      <select id="editExCategory" style="width:100%;background:var(--surface-1);border:1px solid var(--border-subtle);border-radius:14px;padding:12px;font-family:'Inter',sans-serif;font-size:1.1rem;color:var(--text);outline:none;-webkit-appearance:none">
         <option value="push">Push</option>
         <option value="pull">Pull</option>
         <option value="legs">Legs</option>
@@ -3509,7 +3517,7 @@
     </div>
     <div class="modal-field">
       <label>Notes d'exécution</label>
-      <textarea id="editExNotes" rows="4" placeholder="Ex: Garder les coudes à 45°, descendre jusqu'à la poitrine..." style="width:100%;background:var(--surface-1);border:1px solid var(--border-subtle);border-radius:10px;padding:12px;font-family:'Inter',sans-serif;font-size:1rem;color:var(--text);outline:none;resize:vertical;-webkit-appearance:none;transition:border-color 0.2s,box-shadow 0.2s" onfocus="this.style.borderColor='var(--gold)';this.style.boxShadow='0 0 0 2px var(--gold-soft)'" onblur="this.style.borderColor='var(--border-subtle)';this.style.boxShadow='none'"></textarea>
+      <textarea id="editExNotes" rows="4" placeholder="Ex: Garder les coudes à 45°, descendre jusqu'à la poitrine..." style="width:100%;background:var(--surface-1);border:1px solid var(--border-subtle);border-radius:14px;padding:12px;font-family:'Inter',sans-serif;font-size:1rem;color:var(--text);outline:none;resize:vertical;-webkit-appearance:none;transition:border-color 0.2s,box-shadow 0.2s" onfocus="this.style.borderColor='var(--gold)';this.style.boxShadow='0 0 0 2px var(--gold-soft)'" onblur="this.style.borderColor='var(--border-subtle)';this.style.boxShadow='none'"></textarea>
     </div>
     <div class="modal-buttons">
       <button class="btn btn-danger" onclick="deleteExercise()">Suppr.</button>
@@ -4799,9 +4807,9 @@ function renderHistory() {
       const expectedLoss = periodDeficit / CAL_PER_KG;
       // Plateau: weight barely moved but significant deficit
       if (weightChange < 0.5 && expectedLoss > 0.5) {
-        html += `<div style="background:var(--surface-2);border-radius:10px;padding:12px;margin:0 var(--pad) 10px;border:1px solid rgba(232,184,32,0.3)">
-          <div style="font-family:'Inter',sans-serif;font-size:0.7rem;letter-spacing:1px;color:var(--gold);text-transform:uppercase;margin-bottom:6px">⚠ PLATEAU DÉTECTÉ</div>
-          <div style="font-family:'Inter',sans-serif;font-size:0.8125rem;color:var(--text-3);line-height:1.6">
+        html += `<div style="background:var(--surface-2);border-radius:14px;padding:16px;margin:0 var(--pad) 14px;border:1px solid rgba(255,214,10,0.3)">
+          <div style="font-family:'Inter',sans-serif;font-size:var(--fs-caption);letter-spacing:0.5px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;font-weight:600">⚠ PLATEAU DÉTECTÉ</div>
+          <div style="font-family:'Inter',sans-serif;font-size:var(--fs-subhead);color:var(--text-3);line-height:1.6">
             Ton poids stagne (${weightChange.toFixed(1)} kg de variation) malgré un déficit de ${Math.round(periodDeficit)} kcal sur ${spanDays} jours.<br>
             ${wLast <= wFirst ? 'C\'est probablement de la <strong style="color:var(--green)">recomposition</strong> — tu perds du gras et prends du muscle. Vérifie ton tour de taille.' : 'Ton maintien a peut-être baissé (adaptation métabolique). Recalcule via le TDEE dans l\'onglet Corps.'}
           </div>
@@ -4844,13 +4852,13 @@ function renderHistory() {
       entriesHtml = entries.map(e => {
         if (e.type === 'food') {
           return `<div class="history-entry-item">
-            <span class="history-entry-name">${esc(e.name) || 'Repas'}</span>
             <span class="history-entry-detail">${e.cal} kcal · ${e.prot || 0}g prot</span>
+            <span class="history-entry-name">${esc(e.name) || 'Repas'}</span>
           </div>`;
         } else {
           return `<div class="history-entry-item sport">
+            <span class="history-entry-detail">-${e.cal} kcal brûlées</span>
             <span class="history-entry-name">Sport</span>
-            <span class="history-entry-detail">${e.cal} kcal brûlées</span>
           </div>`;
         }
       }).join('');
@@ -4912,20 +4920,20 @@ function renderHistory() {
       const mAvg = Math.round(mDef / keys.length);
       const mKg = mDef / CAL_PER_KG;
 
-      html += `<div class="history-month-group" style="margin:10px var(--pad)">
-        <div style="background:var(--surface-2);border-radius:10px;padding:10px 12px;cursor:pointer;border:1px solid var(--surface-3)" onclick="const el=document.getElementById('month_${mk}');const btn=this.querySelector('.month-chevron');el.style.display=el.style.display==='none'?'':'none';btn.style.transform=el.style.display==='none'?'':'rotate(180deg)'">
+      html += `<div class="history-month-group" style="margin:14px var(--pad)">
+        <div style="background:var(--surface-2);border-radius:14px;padding:14px 16px;cursor:pointer;border:1px solid var(--surface-3)" onclick="const el=document.getElementById('month_${mk}');const btn=this.querySelector('.month-chevron');el.style.display=el.style.display==='none'?'':'none';btn.style.transform=el.style.display==='none'?'':'rotate(180deg)'">
           <div style="display:flex;align-items:center;justify-content:space-between">
-            <span style="font-family:'Inter',sans-serif;font-size:0.75rem;letter-spacing:1px;color:var(--text-2);text-transform:uppercase">${monthLabel}</span>
-            <span class="month-chevron" style="color:var(--text-4);font-size:0.7rem;transition:transform 0.2s">▾</span>
+            <span style="font-family:'Inter',sans-serif;font-size:var(--fs-subhead);font-weight:600;color:var(--text);text-transform:uppercase">${monthLabel}</span>
+            <span class="month-chevron" style="color:var(--text-4);font-size:var(--fs-footnote);transition:transform 0.2s">▾</span>
           </div>
-          <div style="display:flex;gap:12px;margin-top:6px;font-family:'Inter',sans-serif;font-size:0.75rem;color:var(--text-3)">
+          <div style="display:flex;gap:14px;margin-top:8px;font-family:'Inter',sans-serif;font-size:var(--fs-footnote);color:var(--text-3)">
             <span>${keys.length}j</span>
             <span style="color:var(--${mAvg >= 0 ? 'green' : 'red'})">déf. moy ${mAvg >= 0 ? '-' : '+'}${Math.abs(mAvg)}</span>
             <span style="color:var(--green)">-${Math.abs(mKg).toFixed(1)} kg gras</span>
             <span style="color:var(--gold)">${Math.round(mProt / keys.length)}g prot/j</span>
           </div>
         </div>
-        <div id="month_${mk}" style="display:none;margin-top:6px">
+        <div id="month_${mk}" style="display:none;margin-top:10px">
           ${keys.map(buildDayHtml).join('')}
         </div>
       </div>`;
@@ -5908,9 +5916,9 @@ function renderStats() {
     const muscleUp = (last.chest && first.chest && last.chest >= first.chest) || (last.arm && first.arm && last.arm >= first.arm);
     let recompHtml = '';
     if (fatDown && muscleUp) {
-      recompHtml = `<div class="evo-card full-width" style="border:1px solid var(--green);background:rgba(46,204,113,0.05)">
-        <div class="evo-label" style="color:var(--green)">RECOMP EN COURS</div>
-        <div style="font-family:'Inter',sans-serif;font-size:0.75rem;color:var(--text-3)">Tes zones gras baissent et tes zones muscle augmentent</div>
+      recompHtml = `<div class="evo-card full-width" style="border:1px solid var(--green);background:rgba(48,209,88,0.06)">
+        <div class="evo-label" style="color:var(--green);font-weight:600">RECOMP EN COURS</div>
+        <div style="font-family:'Inter',sans-serif;font-size:var(--fs-subhead);color:var(--text-3)">Tes zones gras baissent et tes zones muscle augmentent</div>
       </div>`;
     }
 
@@ -5926,7 +5934,7 @@ function renderStats() {
         ${deltaHtml(last.neck, first.neck, prev?.neck, 'cm', false)}
       </div>
 
-      <div style="grid-column:1/-1;font-family:'Inter',sans-serif;font-size:0.6rem;letter-spacing:1px;color:var(--red);text-transform:uppercase;margin:6px 0 2px;opacity:0.7">▼ ZONES GRAS — doivent baisser</div>
+      <div style="grid-column:1/-1;font-family:'Inter',sans-serif;font-size:var(--fs-caption);letter-spacing:0.5px;color:var(--red);text-transform:uppercase;margin:10px 0 4px;opacity:0.8;font-weight:500">▼ ZONES GRAS — doivent baisser</div>
 
       <div class="evo-card">
         <div class="evo-label">Taille</div>
@@ -5939,7 +5947,7 @@ function renderStats() {
         ${deltaHtml(last.hips, first.hips, prev?.hips, 'cm', false)}
       </div>
 
-      <div style="grid-column:1/-1;font-family:'Inter',sans-serif;font-size:0.6rem;letter-spacing:1px;color:var(--green);text-transform:uppercase;margin:6px 0 2px;opacity:0.7">▲ ZONES MUSCLE — doivent monter</div>
+      <div style="grid-column:1/-1;font-family:'Inter',sans-serif;font-size:var(--fs-caption);letter-spacing:0.5px;color:var(--green);text-transform:uppercase;margin:10px 0 4px;opacity:0.8;font-weight:500">▲ ZONES MUSCLE — doivent monter</div>
 
       <div class="evo-card">
         <div class="evo-label">Poitrine</div>
@@ -6995,7 +7003,7 @@ function renderHistorique() {
           <span class="hist-date">${dateStr}</span>
         </div>
         <div class="hist-header-right">
-          <span class="hist-meta">${totalSets} séries · ${totalVolume >= 1000 ? (totalVolume/1000).toFixed(1) + 't' : totalVolume + 'kg'}</span>
+          <span class="hist-meta" style="font-weight:600;color:var(--text-2)">${totalSets} séries · ${totalVolume >= 1000 ? (totalVolume/1000).toFixed(1) + 't' : totalVolume + 'kg'}</span>
           <span class="hist-chevron">▼</span>
         </div>
       </div>
@@ -7168,9 +7176,9 @@ function renderProgression() {
       </div>
       <div class="prog-chart">${barsHtml}</div>
       <div class="prog-ex-stats">
-        <span class="prog-ex-stat">Max: <strong>${sessions[sessions.length - 1].maxWeight} kg</strong></span>
+        <span class="prog-ex-stat" style="font-size:var(--fs-subhead)">Max: <strong style="font-size:var(--fs-headline)">${sessions[sessions.length - 1].maxWeight} kg</strong></span>
         <span class="prog-ex-stat">${sessions.length} séances · ${progressSign}${totalProgress} kg</span>
-        <span class="prog-ex-pr">PR: ${pr ? pr.weight + ' kg' : '—'}</span>
+        <span class="prog-ex-pr" style="font-weight:600">PR: ${pr ? pr.weight + ' kg' : '—'}</span>
       </div>
     </div>`;
   }).join('');
