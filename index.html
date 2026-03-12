@@ -3789,19 +3789,36 @@ async function loadMuscuFromSupabase() {
 (async function initSupabase() {
   const [loadedNutrition, loadedMuscu] = await Promise.all([loadFromSupabase(), loadMuscuFromSupabase()]);
   _supabaseReady = true;
-  // Flush any saves that happened while loading
-  if (_pendingSyncNutrition) { syncToSupabase(_pendingSyncNutrition); _pendingSyncNutrition = null; }
-  if (_pendingSyncMuscu) { syncMuscuToSupabase(_pendingSyncMuscu); _pendingSyncMuscu = null; }
+  // Discard stale pending data — load already merged remote+local into localStorage.
+  // Re-sync the merged state instead to avoid overwriting remote with pre-merge data.
+  _pendingSyncNutrition = null;
+  _pendingSyncMuscu = null;
+  if (loadedNutrition) syncToSupabase(loadData());
+  if (loadedMuscu) syncMuscuToSupabase(loadMuscu());
   if (loadedNutrition || loadedMuscu) render();
 })();
 
-function getDayKey(date) {
-  const d = new Date(date);
-  if (d.getHours() < 1) d.setDate(d.getDate() - 1);
-  return d.toISOString().slice(0, 10);
+// Bangkok = UTC+7. Day rolls over at 6 AM Bangkok time.
+function getBangkokNow() {
+  const now = new Date();
+  // Convert to Bangkok time by using UTC + 7 hours offset
+  const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+  return new Date(utc + 7 * 3600000);
 }
 
-function getToday() { return getDayKey(new Date()); }
+function getDayKey(date) {
+  let d;
+  if (date === undefined || date === null) {
+    d = getBangkokNow();
+  } else {
+    d = new Date(date);
+  }
+  // Before 6 AM Bangkok → still counts as previous day
+  if (d.getHours() < 6) d.setDate(d.getDate() - 1);
+  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+}
+
+function getToday() { return getDayKey(null); }
 
 // Current viewed day (for navigation)
 let viewingDay = null; // null = today
@@ -3893,8 +3910,8 @@ document.querySelectorAll('.nav-item').forEach(item => {
 
 // ─── DATE ───
 function updateDate() {
-  const today = new Date();
-  if (today.getHours() < 1) today.setDate(today.getDate() - 1);
+  const today = getBangkokNow();
+  if (today.getHours() < 6) today.setDate(today.getDate() - 1);
   const days = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
   const months = ['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Août','Sep','Oct','Nov','Déc'];
   document.getElementById('dateDisplay').textContent =
@@ -4187,7 +4204,7 @@ function toggleFav(entryIndex) {
     data.favorites.splice(existIdx, 1);
     showToast('Retiré des favoris');
   } else {
-    data.favorites.push({ name: entry.name, cal: entry.cal, prot: entry.prot });
+    data.favorites.push({ name: entry.name, cal: entry.cal, prot: entry.prot, category: 'other' });
     showToast('Sauvegardé !');
   }
   saveData(data);
@@ -4240,7 +4257,7 @@ function renderStreak(data) {
 
   const emoji = streak >= 7 ? '🔥' : streak >= 3 ? '⚡' : '💪';
   wrap.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;gap:8px;padding:10px var(--pad);font-family:'Inter',sans-serif;font-size:0.8rem;color:var(--text-3);letter-spacing:0.5px">
-    <span>${emoji} <strong style="color:var(--text-1)">${streak}</strong> jour${streak > 1 ? 's' : ''} sous objectif d'affilée</span>
+    <span>${emoji} <strong style="color:var(--text)">${streak}</strong> jour${streak > 1 ? 's' : ''} sous objectif d'affilée</span>
     <span style="opacity:0.5">·</span>
     <span>Record : <strong style="color:var(--gold)">${best}</strong></span>
   </div>`;
@@ -4358,12 +4375,17 @@ function addSport() {
 
 // ─── EDIT MODAL ───
 let editingIndex = -1;
+let editingDayKey = null; // track which day's entry we're editing
 
-function openEditModal(index) {
-  const { data, day } = getTodayData();
-  const entry = day.entries[index];
+function openEditModal(index, dayKey) {
+  const data = loadData();
+  const key = dayKey || getViewingDay();
+  const dayData = data.days[key];
+  if (!dayData) return;
+  const entry = dayData.entries[index];
   if (!entry) return;
   editingIndex = index;
+  editingDayKey = key;
 
   const isFood = entry.type === 'food';
   document.getElementById('editModalTitle').textContent = isFood ? 'Modifier le repas' : 'Modifier le sport';
@@ -4383,11 +4405,14 @@ function openEditModal(index) {
 function closeEditModal() {
   document.getElementById('editModal').classList.remove('open');
   editingIndex = -1;
+  editingDayKey = null;
 }
 
 function editSave() {
-  if (editingIndex < 0) return;
-  const { data, key, day } = getTodayData();
+  if (editingIndex < 0 || !editingDayKey) return;
+  const data = loadData();
+  const day = data.days[editingDayKey];
+  if (!day) return;
   const entry = day.entries[editingIndex];
   if (!entry) return;
 
@@ -4400,24 +4425,28 @@ function editSave() {
     entry.prot = parseInt(document.getElementById('editProt').value) || 0;
   }
 
-  data.days[key] = day;
+  data.days[editingDayKey] = day;
   saveData(data);
   closeEditModal();
   showToast('Modifié !');
   render();
+  renderHistory();
 }
 
 function editDelete() {
-  if (editingIndex < 0) return;
+  if (editingIndex < 0 || !editingDayKey) return;
   const beforeData = JSON.parse(JSON.stringify(loadData())); // deep copy for undo
-  const { data, key, day } = getTodayData();
+  const data = loadData();
+  const day = data.days[editingDayKey];
+  if (!day) return;
   const deleted = day.entries[editingIndex];
   day.entries.splice(editingIndex, 1);
-  data.days[key] = day;
+  data.days[editingDayKey] = day;
   saveData(data);
   closeEditModal();
   showUndo(deleted.type === 'food' ? (deleted.name || 'Repas') + ' supprimé' : 'Sport supprimé', beforeData);
   render();
+  renderHistory();
 }
 
 document.getElementById('editModal').addEventListener('click', (e) => {
@@ -4489,7 +4518,7 @@ function computeDayStats(data, key) {
   if (!day) return { cal: 0, prot: 0, burned: 0, deficit: maint };
   let cal = 0, prot = 0, burned = 0;
   for (const e of day.entries) {
-    if (e.type === 'food') { cal += e.cal; prot += e.prot; }
+    if (e.type === 'food') { cal += e.cal; prot += (e.prot || 0); }
     else { burned += e.cal; }
   }
   return { cal, prot, burned, deficit: maint - (cal - burned) };
@@ -4518,11 +4547,15 @@ function renderFatTracker() {
 
   if (dayKeys.length === 0) { container.innerHTML = ''; return; }
 
-  // Cumulative deficit
+  // Cumulative deficit (skip empty days — no entries means no tracking, not 0 cal eaten)
   let totalDeficit = 0;
+  let trackedDays = 0;
   for (const key of dayKeys) {
+    const dayData = data.days[key];
+    if (!dayData || !dayData.entries || dayData.entries.length === 0) continue;
     const s = computeDayStats(data, key);
     totalDeficit += s.deficit;
+    trackedDays++;
   }
 
   const CAL_PER_KG = 7700;
@@ -4532,7 +4565,8 @@ function renderFatTracker() {
   const kcalToNext = Math.round((nextKg * CAL_PER_KG) - totalDeficit);
 
   // Average daily deficit
-  const avgDeficit = Math.round(totalDeficit / dayKeys.length);
+  if (trackedDays === 0) { container.innerHTML = ''; return; }
+  const avgDeficit = Math.round(totalDeficit / trackedDays);
   const daysToNext = avgDeficit > 0 ? Math.ceil(kcalToNext / avgDeficit) : null;
   const weeklyRate = Math.abs(avgDeficit * 7 / CAL_PER_KG);
 
@@ -4780,7 +4814,7 @@ function renderHistory() {
   renderStreak(loadData());
   const data = loadData();
   const container = document.getElementById('historyList');
-  const dayKeys = Object.keys(data.days).sort().reverse();
+  const dayKeys = Object.keys(data.days).filter(k => data.days[k] && data.days[k].entries && data.days[k].entries.length > 0).sort().reverse();
 
   if (dayKeys.length === 0) {
     container.innerHTML = '<div class="empty-state">Pas encore d\'historique</div>';
@@ -4916,14 +4950,14 @@ function renderHistory() {
     const entries = dayData ? dayData.entries || [] : [];
     let entriesHtml = '';
     if (entries.length > 0) {
-      entriesHtml = entries.map(e => {
+      entriesHtml = entries.map((e, idx) => {
         if (e.type === 'food') {
-          return `<div class="history-entry-item">
+          return `<div class="history-entry-item" onclick="event.stopPropagation();openEditModal(${idx},'${key}')" style="cursor:pointer">
             <span class="history-entry-detail">${e.cal} kcal · ${e.prot || 0}g prot</span>
             <span class="history-entry-name">${esc(e.name) || 'Repas'}</span>
           </div>`;
         } else {
-          return `<div class="history-entry-item sport">
+          return `<div class="history-entry-item sport" onclick="event.stopPropagation();openEditModal(${idx},'${key}')" style="cursor:pointer">
             <span class="history-entry-detail">-${e.cal} kcal brûlées</span>
             <span class="history-entry-name">Sport</span>
           </div>`;
@@ -5071,6 +5105,11 @@ function saveMeasurement() {
   };
 
   if (existing >= 0) {
+    // Merge: keep existing non-null values if new ones are null
+    const prev = data.measurements[existing];
+    for (const field of ['weight','neck','waist','hips','chest','arm','thigh']) {
+      if (entry[field] === null && prev[field] !== null) entry[field] = prev[field];
+    }
     data.measurements[existing] = entry;
   } else {
     data.measurements.push(entry);
@@ -5916,7 +5955,7 @@ function renderStats() {
   }
 
   // Measurement hint (Monday/Friday)
-  const today = new Date();
+  const today = getBangkokNow();
   const dow = today.getDay();
   const hintEl = document.getElementById('measureHint');
   if (dow === 1 || dow === 5) {
@@ -6959,10 +6998,11 @@ function openAddSet(exIdx) {
 function confirmAddSet() {
   const reps = parseInt(document.getElementById('addSetReps').value);
   const weight = parseFloat(document.getElementById('addSetWeight').value);
-  if (!reps || !weight) { showToast('Remplis reps et poids'); return; }
+  if (!reps || (isNaN(weight))) { showToast('Remplis reps et poids'); return; }
 
   const muscu = loadMuscu();
   const key = getWorkoutDay();
+  if (!muscu.workouts[key] || !muscu.workouts[key].exercises[currentWorkoutExIndex]) return;
   muscu.workouts[key].exercises[currentWorkoutExIndex].sets.push({ reps, weight });
   saveMuscu(muscu);
   renderWorkout();
@@ -6983,6 +7023,7 @@ function confirmAddSet() {
 function deleteSet(exIdx, setIdx) {
   const muscu = loadMuscu();
   const key = getWorkoutDay();
+  if (!muscu.workouts[key] || !muscu.workouts[key].exercises[exIdx]) return;
   muscu.workouts[key].exercises[exIdx].sets.splice(setIdx, 1);
   saveMuscu(muscu);
   renderWorkout();
