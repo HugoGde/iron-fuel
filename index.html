@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" href="/icon-192.png">
 <title>IRON FUEL</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     /* Colors — brand */
@@ -68,7 +68,7 @@
   html { height: 100%; }
 
   body {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-body);
     background: var(--bg);
     color: var(--text);
@@ -104,7 +104,7 @@
   }
 
   .logo-sub {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     letter-spacing: 6px;
     color: var(--text-3);
@@ -131,28 +131,28 @@
     background: rgba(22, 22, 26, 0.85);
     backdrop-filter: blur(20px) saturate(1.4);
     -webkit-backdrop-filter: blur(20px) saturate(1.4);
-    border: 1px solid var(--border-subtle);
-    border-radius: 18px;
+    border: 0.5px solid var(--border-subtle);
+    border-radius: 20px;
     display: flex;
     padding-bottom: 0;
     margin-bottom: env(safe-area-inset-bottom, 0px);
     z-index: 100;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4);
   }
 
   .nav-item {
     flex: 1;
     text-align: center;
-    padding: 10px var(--space-4) 8px;
+    padding: 8px var(--space-4) 6px;
     cursor: pointer;
     transition: color 0.2s;
     color: var(--text-4);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3px;
+    gap: 2px;
     position: relative;
-    min-height: var(--tap-min);
+    min-height: 49px;
   }
 
   .nav-item.active { color: var(--gold); }
@@ -167,12 +167,13 @@
     border-radius: 0 0 2px 2px;
     box-shadow: 0 0 8px var(--gold-glow);
   }
-  .nav-icon { font-size: 24px; line-height: 1; }
+  .nav-icon { font-size: 25px; line-height: 1; }
 
   .nav-label {
-    font-family: 'Space Mono', monospace;
-    font-size: var(--fs-caption-2);
-    letter-spacing: 1px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
   }
 
@@ -250,7 +251,7 @@
   }
 
   .ring-label {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     letter-spacing: 3px;
     color: var(--text-3);
@@ -259,7 +260,7 @@
   }
 
   .ring-sub {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-subhead);
     color: var(--text-3);
     margin-top: var(--space-8);
@@ -270,7 +271,7 @@
   .ring-sub:active { color: var(--gold); }
 
   .prot-remain {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-footnote);
     color: var(--gold);
     margin-top: var(--space-4);
@@ -288,7 +289,7 @@
 
   .stat-card {
     background: var(--surface-2);
-    border: 1px solid var(--border-subtle);
+    border: 0.5px solid var(--border-subtle);
     border-radius: 12px;
     padding: var(--space-12) var(--space-8);
     text-align: center;
@@ -302,7 +303,7 @@
   }
 
   .stat-label {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     letter-spacing: 1.5px;
     color: var(--text-4);
@@ -315,7 +316,7 @@
 
   .input-group {
     background: var(--surface-2);
-    border: 1px solid var(--border-subtle);
+    border: 0.5px solid var(--border-subtle);
     border-radius: 12px;
     padding: var(--space-16);
     margin-bottom: var(--space-8);
@@ -350,7 +351,7 @@
 
   .input-field label {
     display: block;
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     letter-spacing: 2px;
     color: var(--text-3);
@@ -361,7 +362,7 @@
   .input-field input, .input-field input[type="text"] {
     width: 100%;
     background: var(--surface-1);
-    border: 1px solid var(--border-subtle);
+    border: 0.5px solid var(--border-subtle);
     border-radius: 10px;
     padding: var(--space-12);
     font-family: 'Bebas Neue', sans-serif;
@@ -375,7 +376,7 @@
   }
 
   .input-field input[type="text"] {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-body);
     letter-spacing: 0.5px;
   }
@@ -433,12 +434,12 @@
   .fav-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 6px;
+    gap: var(--space-8);
   }
 
   .fav-item {
     background: var(--surface-2);
-    border: 1px solid var(--border-subtle);
+    border: 0.5px solid var(--border-subtle);
     border-radius: 12px;
     padding: var(--space-12) var(--space-16);
     min-height: var(--tap-min);
@@ -459,7 +460,7 @@
   .fav-info { min-width: 0; flex: 1; }
 
   .fav-name {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-headline);
     font-weight: 700;
     color: var(--text);
@@ -469,7 +470,7 @@
   }
 
   .fav-detail {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-footnote);
     color: var(--text-3);
     margin-top: var(--space-4);
@@ -495,13 +496,13 @@
   .meals-list {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    padding: 0 var(--pad) 12px;
+    gap: var(--space-8);
+    padding: 0 var(--pad) var(--space-16);
   }
 
   .meal-item {
     background: var(--surface-2);
-    border: 1px solid var(--border-subtle);
+    border: 0.5px solid var(--border-subtle);
     border-radius: 12px;
     padding: var(--space-12) var(--space-16);
     display: flex;
@@ -519,7 +520,7 @@
   }
 
   .meal-name {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-headline);
     font-weight: 700;
     color: var(--text);
@@ -529,7 +530,7 @@
   }
 
   .meal-macros {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-footnote);
     color: var(--text-3);
     margin-top: var(--space-4);
@@ -590,23 +591,23 @@
     text-align: center;
     padding: var(--space-24);
     color: var(--text-4);
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-footnote);
     letter-spacing: 2px;
   }
 
   /* ─── ENTRIES LIST ─── */
-  .entries-section { padding: 0 var(--pad) 16px; }
+  .entries-section { padding: 0 var(--pad) var(--space-24); }
 
   .entry-list {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: var(--space-8);
   }
 
   .entry-item {
     background: var(--surface-2);
-    border: 1px solid var(--border-subtle);
+    border: 0.5px solid var(--border-subtle);
     border-radius: 12px;
     padding: var(--space-12) var(--space-16);
     display: flex;
@@ -628,7 +629,7 @@
   .entry-info { display: flex; align-items: baseline; gap: 8px; min-width: 0; flex: 1; }
 
   .entry-name {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-headline);
     font-weight: 700;
     color: var(--text);
@@ -649,7 +650,7 @@
   .entry-cal.sport { color: var(--red); }
 
   .entry-prot {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-footnote);
     color: var(--gold-dim);
     flex-shrink: 0;
@@ -663,7 +664,7 @@
   }
 
   .entry-time {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-4);
     margin-right: var(--space-4);
@@ -691,7 +692,7 @@
   .entry-btn.del-btn:active { color: var(--red); }
 
   /* ─── HISTORY ─── */
-  .history-section { padding: 0 var(--pad) 20px; }
+  .history-section { padding: 0 var(--pad) var(--space-32); }
 
   .summary-card {
     background: var(--surface-2);
@@ -717,7 +718,7 @@
   }
 
   .summary-period {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-4);
   }
@@ -738,7 +739,7 @@
   }
 
   .summary-stat-label {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     letter-spacing: 1px;
     color: var(--text-4);
@@ -748,7 +749,7 @@
 
   .history-day {
     background: var(--surface-2);
-    border: 1px solid var(--border-subtle);
+    border: 0.5px solid var(--border-subtle);
     border-radius: 10px;
     padding: 12px;
     margin-bottom: 6px;
@@ -794,7 +795,7 @@
   }
 
   .history-entry-name {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-headline);
     font-weight: 600;
     color: var(--text);
@@ -805,13 +806,13 @@
   }
 
   .history-entry-detail {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-3);
   }
 
   .history-entry-empty {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-4);
     text-align: center;
@@ -834,13 +835,13 @@
   }
 
   .history-day-date {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-4);
   }
 
   .history-day-status {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     letter-spacing: 0.5px;
     text-transform: uppercase;
@@ -855,7 +856,7 @@
   }
 
   .history-stat {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-3);
     text-align: center;
@@ -876,13 +877,13 @@
 
   /* ─── FAT LOSS TRACKER ─── */
   .fat-tracker {
-    padding: 0 var(--pad) 14px;
+    padding: 0 var(--pad) var(--space-24);
   }
 
   .fat-card {
     background: var(--surface-2);
     border: 1px solid rgba(46, 204, 113, 0.3);
-    border-radius: 14px;
+    border-radius: 12px;
     padding: 18px;
     box-shadow: 0 0 24px var(--green-soft);
   }
@@ -902,7 +903,7 @@
   }
 
   .fat-since {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-4);
   }
@@ -923,14 +924,14 @@
   }
 
   .fat-kg-unit {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-footnote);
     color: var(--text-3);
     letter-spacing: 1px;
   }
 
   .fat-kcal-total {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-4);
     margin-left: auto;
@@ -991,7 +992,7 @@
   }
 
   .fat-gauge-label {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-4);
     text-align: center;
@@ -1020,7 +1021,7 @@
   }
 
   .fat-next-label {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-body);
     color: var(--text-3);
   }
@@ -1031,7 +1032,7 @@
   }
 
   .fat-next-kcal {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-4);
   }
@@ -1058,7 +1059,7 @@
   }
 
   .fat-stat-label {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-4);
     text-transform: uppercase;
@@ -1081,7 +1082,7 @@
 
   .chart-card {
     background: var(--surface-2);
-    border: 1px solid var(--border-subtle);
+    border: 0.5px solid var(--border-subtle);
     border-radius: 12px;
     padding: 16px 12px 12px;
   }
@@ -1107,13 +1108,13 @@
   }
 
   .chart-toggle-btn {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     letter-spacing: 1px;
     text-transform: uppercase;
     padding: 6px 12px;
     background: var(--surface-3);
-    border: 1px solid var(--border-subtle);
+    border: 0.5px solid var(--border-subtle);
     color: var(--text-4);
     cursor: pointer;
     transition: all 0.2s;
@@ -1149,7 +1150,7 @@
   }
 
   .chart-y-label {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-4);
     text-align: right;
@@ -1204,7 +1205,7 @@
     position: absolute;
     right: 0;
     top: -8px;
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--gold-dim);
     background: var(--surface-2);
@@ -1212,7 +1213,7 @@
   }
 
   .chart-day-label {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-4);
     margin-top: 4px;
@@ -1242,7 +1243,7 @@
   }
 
   .chart-legend-label {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-3);
     text-transform: uppercase;
@@ -1265,9 +1266,9 @@
 
   .modal {
     background: var(--surface-2);
-    border-top: 1px solid var(--border);
-    border-radius: 20px 20px 0 0;
-    padding: 24px 20px calc(20px + env(safe-area-inset-bottom, 0px));
+    border-top: 0.5px solid var(--border);
+    border-radius: 22px 22px 0 0;
+    padding: var(--space-24) 20px calc(20px + env(safe-area-inset-bottom, 0px));
     width: 100%;
     max-width: 500px;
     text-align: center;
@@ -1275,30 +1276,31 @@
 
   .modal-handle {
     width: 36px;
-    height: 4px;
-    background: var(--text-4);
-    border-radius: 2px;
-    margin: 0 auto 16px;
+    height: 5px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 2.5px;
+    margin: 0 auto var(--space-16);
   }
 
   .modal h3 {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: var(--fs-title-3);
+    font-size: var(--fs-title-2);
     letter-spacing: 3px;
     color: var(--gold);
-    margin-bottom: 16px;
+    margin-bottom: var(--space-24);
   }
 
   .modal-field {
-    margin-bottom: 12px;
+    margin-bottom: var(--space-16);
     text-align: left;
   }
 
   .modal-field label {
     display: block;
-    font-family: 'Space Mono', monospace;
-    font-size: var(--fs-caption);
-    letter-spacing: 2px;
+    font-family: 'Inter', sans-serif;
+    font-size: var(--fs-footnote);
+    font-weight: 500;
+    letter-spacing: 1px;
     color: var(--text-3);
     text-transform: uppercase;
     margin-bottom: 6px;
@@ -1307,9 +1309,10 @@
   .modal-field input {
     width: 100%;
     background: var(--surface-1);
-    border: 1px solid var(--border-subtle);
+    border: 0.5px solid var(--border-subtle);
     border-radius: 10px;
-    padding: 12px;
+    padding: var(--space-12);
+    min-height: var(--tap-min);
     font-family: 'Bebas Neue', sans-serif;
     font-size: var(--fs-title-2);
     letter-spacing: 3px;
@@ -1321,7 +1324,7 @@
   }
 
   .modal-field input[type="text"] {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-headline);
     letter-spacing: 0.5px;
   }
@@ -1332,7 +1335,7 @@
   }
 
   .modal-field .hint {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-4);
     margin-top: 4px;
@@ -1341,11 +1344,11 @@
 
   .modal-buttons {
     display: flex;
-    gap: 8px;
-    margin-top: 16px;
+    gap: var(--space-8);
+    margin-top: var(--space-24);
   }
 
-  .modal-buttons .btn { flex: 1; padding: 12px 16px; }
+  .modal-buttons .btn { flex: 1; padding: var(--space-12) var(--space-16); }
 
   .btn-ghost {
     background: var(--surface-3);
@@ -1412,7 +1415,7 @@
   .tdee-card {
     background: var(--surface-2);
     border: 1px solid rgba(46, 204, 113, 0.3);
-    border-radius: 14px;
+    border-radius: 12px;
     padding: 16px;
     box-shadow: 0 0 20px var(--green-soft);
   }
@@ -1432,7 +1435,7 @@
   }
 
   .tdee-hint {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-4);
   }
@@ -1453,13 +1456,13 @@
   }
 
   .tdee-unit {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-3);
   }
 
   .tdee-detail {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-4);
     line-height: 1.6;
@@ -1479,7 +1482,7 @@
 
   .evo-card {
     background: var(--surface-2);
-    border: 1px solid var(--border-subtle);
+    border: 0.5px solid var(--border-subtle);
     border-radius: 10px;
     padding: 12px;
     text-align: center;
@@ -1490,7 +1493,7 @@
   }
 
   .evo-label {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-4);
     text-transform: uppercase;
@@ -1507,7 +1510,7 @@
   }
 
   .evo-delta {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     margin-top: 4px;
     letter-spacing: 0.5px;
@@ -1539,7 +1542,7 @@
   }
 
   .weekly-note-text {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-headline);
     color: var(--text-2);
     line-height: 1.5;
@@ -1553,8 +1556,8 @@
   /* ─── COACH IA ─── */
   .coach-card {
     background: var(--surface-2);
-    border: 1px solid var(--border-subtle);
-    border-radius: 14px;
+    border: 0.5px solid var(--border-subtle);
+    border-radius: 12px;
     padding: 16px;
     position: relative;
     overflow: hidden;
@@ -1591,7 +1594,7 @@
   }
 
   .coach-score-label {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption-2);
     color: var(--text-4);
     text-transform: uppercase;
@@ -1625,7 +1628,7 @@
   }
 
   .coach-signal-label {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption-2);
     color: var(--text-4);
     text-transform: uppercase;
@@ -1634,13 +1637,13 @@
   }
 
   .coach-signal-value {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-footnote);
     font-weight: 600;
   }
 
   .coach-signal-trend {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption-2);
     margin-top: 2px;
   }
@@ -1687,7 +1690,7 @@
   }
 
   .coach-reco-tag {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption-2);
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -1700,7 +1703,7 @@
   .coach-reco.priority-positive .coach-reco-tag { color: var(--green); }
 
   .coach-reco-text {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-headline);
     color: var(--text-2);
     line-height: 1.4;
@@ -1711,7 +1714,7 @@
   }
 
   .coach-reco-detail {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption-2);
     color: var(--text-4);
     margin-top: 3px;
@@ -1724,7 +1727,7 @@
   }
 
   .coach-insufficient-text {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-4);
     line-height: 1.6;
@@ -1733,7 +1736,7 @@
   /* Body chart */
   .body-chart-card {
     background: var(--surface-2);
-    border: 1px solid var(--border-subtle);
+    border: 0.5px solid var(--border-subtle);
     border-radius: 12px;
     padding: 14px;
   }
@@ -1754,11 +1757,11 @@
   }
 
   .body-toggle {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     padding: 5px 10px;
     border-radius: 4px;
-    border: 1px solid var(--border-subtle);
+    border: 0.5px solid var(--border-subtle);
     background: transparent;
     color: var(--text-4);
     cursor: pointer;
@@ -1785,7 +1788,7 @@
   /* Measure form */
   .measure-form-card {
     background: var(--surface-2);
-    border: 1px solid var(--border-subtle);
+    border: 0.5px solid var(--border-subtle);
     border-radius: 12px;
     padding: 14px;
   }
@@ -1799,7 +1802,7 @@
   }
 
   .measure-form-hint {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--gold);
     margin-bottom: 10px;
@@ -1833,7 +1836,7 @@
   }
 
   .measure-history-count {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-4);
     letter-spacing: 0;
@@ -1841,7 +1844,7 @@
 
   .mh-card {
     background: var(--surface-2);
-    border: 1px solid var(--border-subtle);
+    border: 0.5px solid var(--border-subtle);
     border-radius: 12px;
     margin-bottom: 8px;
     overflow: hidden;
@@ -1868,7 +1871,7 @@
   }
 
   .mh-card-date .mh-relative {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption-2);
     color: var(--text-4);
     letter-spacing: 0;
@@ -1895,7 +1898,7 @@
   }
 
   .mh-cell-label {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption-2);
     color: var(--text-4);
     text-transform: uppercase;
@@ -1904,7 +1907,7 @@
   }
 
   .mh-cell-value {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-callout);
     font-weight: 600;
     color: var(--text);
@@ -1916,7 +1919,7 @@
   }
 
   .mh-cell-delta {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption-2);
     margin-top: 1px;
   }
@@ -1936,7 +1939,7 @@
     background: none;
     border: none;
     color: var(--text-4);
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption-2);
     cursor: pointer;
     padding: 4px 8px;
@@ -1958,7 +1961,7 @@
     border: 1px dashed var(--border-subtle);
     border-radius: 10px;
     color: var(--text-3);
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-body);
     cursor: pointer;
     transition: all 0.2s;
@@ -1974,7 +1977,7 @@
   .corps-empty-guide {
     background: var(--surface-2);
     border: 1px solid var(--gold-dim);
-    border-radius: 14px;
+    border-radius: 12px;
     padding: 20px 16px;
     text-align: center;
   }
@@ -1994,7 +1997,7 @@
   }
 
   .corps-empty-guide .guide-text {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-3);
     line-height: 1.8;
@@ -2029,7 +2032,7 @@
   }
 
   .corps-empty-guide .guide-step-text {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-body);
     color: var(--text-2);
     line-height: 1.4;
@@ -2048,7 +2051,7 @@
   }
 
   .corps-empty-guide .guide-unlock-title {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     letter-spacing: 2px;
     color: var(--text-4);
@@ -2057,7 +2060,7 @@
   }
 
   .corps-empty-guide .guide-unlock-item {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption-2);
     color: var(--text-3);
     line-height: 1.8;
@@ -2075,7 +2078,7 @@
 
   .week-budget-card {
     background: var(--surface-2);
-    border: 1px solid var(--border-subtle);
+    border: 0.5px solid var(--border-subtle);
     border-radius: 10px;
     padding: 10px 12px;
   }
@@ -2088,7 +2091,7 @@
   }
 
   .week-budget-label {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-3);
     text-transform: uppercase;
@@ -2096,7 +2099,7 @@
   }
 
   .week-budget-adapted {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     letter-spacing: 0.5px;
   }
@@ -2116,7 +2119,7 @@
   }
 
   .week-budget-detail {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-4);
     display: flex;
@@ -2130,7 +2133,7 @@
 
   .streak-card {
     background: var(--surface-2);
-    border: 1px solid var(--border-subtle);
+    border: 0.5px solid var(--border-subtle);
     border-radius: 10px;
     padding: 8px 12px;
     display: flex;
@@ -2156,7 +2159,7 @@
   }
 
   .streak-label {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-4);
     text-transform: uppercase;
@@ -2164,7 +2167,7 @@
   }
 
   .streak-best {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-4);
     text-align: right;
@@ -2190,10 +2193,10 @@
     color: var(--text-3);
     font-size: var(--fs-headline);
     cursor: pointer;
-    padding: 8px 12px;
+    padding: var(--space-8) var(--space-12);
     transition: color 0.2s;
-    min-width: 40px;
-    min-height: 40px;
+    min-width: var(--tap-min);
+    min-height: var(--tap-min);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2212,7 +2215,7 @@
   }
 
   .day-nav-today {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--gold);
     background: var(--gold-soft);
@@ -2248,7 +2251,7 @@
 
   .badge-item {
     background: var(--surface-2);
-    border: 1px solid var(--border-subtle);
+    border: 0.5px solid var(--border-subtle);
     border-radius: 8px;
     padding: 10px 6px;
     text-align: center;
@@ -2269,14 +2272,14 @@
   }
 
   .badge-name {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-2);
     font-weight: 600;
   }
 
   .badge-desc {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption-2);
     color: var(--text-4);
     margin-top: 2px;
@@ -2309,7 +2312,7 @@
   }
 
   .undo-toast-text {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-body);
     color: var(--text-2);
   }
@@ -2345,19 +2348,20 @@
     display: flex;
     justify-content: center;
     gap: 0;
-    padding: 0 var(--pad) 16px;
+    padding: 0 var(--pad) var(--space-24);
   }
 
   .mode-btn {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: var(--fs-headline);
+    font-size: var(--fs-subhead);
     letter-spacing: 3px;
-    padding: 10px 28px;
+    padding: var(--space-8) var(--space-32);
     background: var(--surface-2);
-    border: 1px solid var(--border-subtle);
+    border: 0.5px solid var(--border-subtle);
     color: var(--text-4);
     cursor: pointer;
     transition: all 0.2s;
+    min-height: 36px;
   }
 
   .mode-btn:first-child { border-radius: 8px 0 0 8px; }
@@ -2384,7 +2388,7 @@
     letter-spacing: 2px;
     padding: 8px 14px;
     background: var(--surface-2);
-    border: 1px solid var(--border-subtle);
+    border: 0.5px solid var(--border-subtle);
     border-radius: 8px;
     color: var(--text-4);
     cursor: pointer;
@@ -2401,7 +2405,7 @@
 
   .workout-exercise {
     background: var(--surface-2);
-    border: 1px solid var(--border-subtle);
+    border: 0.5px solid var(--border-subtle);
     border-radius: 12px;
     padding: 14px;
     margin: 0 var(--pad) 8px;
@@ -2451,7 +2455,7 @@
   .workout-set-row:last-of-type { border-bottom: none; }
 
   .workout-set-num {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-4);
     min-width: 20px;
@@ -2465,19 +2469,19 @@
   }
 
   .workout-set-unit {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-3);
   }
 
   .workout-set-x {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-footnote);
     color: var(--text-4);
   }
 
   .workout-set-prev {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption-2);
     color: var(--text-4);
     margin-left: auto;
@@ -2499,7 +2503,7 @@
 
   .workout-add-set-btn {
     width: 100%;
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-4);
     background: var(--surface-3);
@@ -2522,7 +2526,7 @@
 
   .workout-add-exercise-btn {
     width: 100%;
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-headline);
     color: var(--gold);
     background: var(--gold-soft);
@@ -2541,7 +2545,7 @@
     text-align: center;
     padding: 30px var(--pad);
     color: var(--text-4);
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-footnote);
   }
 
@@ -2549,7 +2553,7 @@
   .last-session-banner {
     margin: 0 var(--pad) 10px;
     background: var(--surface-2);
-    border: 1px solid var(--border-subtle);
+    border: 0.5px solid var(--border-subtle);
     border-radius: 12px;
     overflow: hidden;
     cursor: pointer;
@@ -2568,14 +2572,14 @@
   }
 
   .last-session-title {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-3);
     letter-spacing: 0.5px;
   }
 
   .last-session-date {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--gold);
     opacity: 0.8;
@@ -2594,7 +2598,7 @@
 
   .last-session-summary {
     padding: 0 14px 10px;
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-body);
     color: var(--text-3);
     line-height: 1.5;
@@ -2602,7 +2606,7 @@
 
   .last-session-summary-tag {
     display: inline-block;
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-3);
     background: var(--surface-3);
@@ -2641,7 +2645,7 @@
   }
 
   .last-session-set-tag {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-3);
     background: var(--surface-3);
@@ -2652,7 +2656,7 @@
   /* ─── MUSCU: EXERCISE LIB (used in modals) ─── */
   .exercise-lib-item {
     background: var(--surface-2);
-    border: 1px solid var(--border-subtle);
+    border: 0.5px solid var(--border-subtle);
     border-radius: 10px;
     padding: 12px 14px;
     margin-bottom: 6px;
@@ -2672,7 +2676,7 @@
   }
 
   .exercise-lib-name {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-callout);
     font-weight: 700;
     color: var(--text);
@@ -2685,7 +2689,7 @@
     margin: 0 var(--pad) 12px;
     background: var(--surface-2);
     border-radius: 10px;
-    border: 1px solid var(--border-subtle);
+    border: 0.5px solid var(--border-subtle);
     overflow: hidden;
   }
 
@@ -2721,7 +2725,7 @@
 
   .hist-card {
     background: var(--surface-2);
-    border: 1px solid var(--border-subtle);
+    border: 0.5px solid var(--border-subtle);
     border-radius: 12px;
     margin: 0 var(--pad) 8px;
     overflow: hidden;
@@ -2761,14 +2765,14 @@
   }
 
   .hist-date {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-headline);
     color: var(--text-2);
     font-weight: 600;
   }
 
   .hist-meta {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-4);
   }
@@ -2783,7 +2787,7 @@
 
   .hist-summary {
     padding: 6px 14px 10px;
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-body);
     color: var(--text-3);
     line-height: 1.3;
@@ -2817,7 +2821,7 @@
   }
 
   .hist-ex-notes {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-4);
     font-style: italic;
@@ -2832,7 +2836,7 @@
   }
 
   .hist-set-tag {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-3);
     background: var(--surface-3);
@@ -2847,7 +2851,7 @@
     margin: 0 var(--pad) 12px;
     background: var(--surface-2);
     border-radius: 10px;
-    border: 1px solid var(--border-subtle);
+    border: 0.5px solid var(--border-subtle);
     overflow: hidden;
   }
 
@@ -2890,7 +2894,7 @@
 
   .prog-summary-card {
     background: var(--surface-2);
-    border: 1px solid var(--border-subtle);
+    border: 0.5px solid var(--border-subtle);
     border-radius: 10px;
     padding: 10px 6px;
     text-align: center;
@@ -2905,7 +2909,7 @@
   }
 
   .prog-summary-label {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption-2);
     letter-spacing: 0.5px;
     color: var(--text-4);
@@ -2916,7 +2920,7 @@
   /* Exercise progression cards */
   .prog-exercise {
     background: var(--surface-2);
-    border: 1px solid var(--border-subtle);
+    border: 0.5px solid var(--border-subtle);
     border-radius: 12px;
     margin: 0 var(--pad) 8px;
     padding: 14px;
@@ -2937,7 +2941,7 @@
   }
 
   .prog-ex-trend {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     padding: 3px 8px;
     border-radius: 4px;
@@ -2994,7 +2998,7 @@
   }
 
   .prog-ex-stat {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--text-4);
   }
@@ -3005,7 +3009,7 @@
   }
 
   .prog-ex-pr {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
     color: var(--gold);
   }
@@ -3031,7 +3035,7 @@
   }
 
   .prog-coach-body {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-headline);
     color: var(--text-2);
     line-height: 1.5;
@@ -3063,7 +3067,7 @@
     text-align: center;
     padding: 40px var(--pad);
     color: var(--text-4);
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: var(--fs-footnote);
     line-height: 1.6;
   }
