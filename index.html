@@ -283,15 +283,15 @@
   .stats-row {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: var(--space-8);
+    gap: var(--space-12);
     padding: 0 var(--pad) var(--space-24);
   }
 
   .stat-card {
     background: var(--surface-2);
     border: 0.5px solid var(--border-subtle);
-    border-radius: 12px;
-    padding: var(--space-12) var(--space-8);
+    border-radius: 14px;
+    padding: var(--space-16) var(--space-12);
     text-align: center;
   }
 
@@ -317,9 +317,9 @@
   .input-group {
     background: var(--surface-2);
     border: 0.5px solid var(--border-subtle);
-    border-radius: 12px;
+    border-radius: 14px;
     padding: var(--space-16);
-    margin-bottom: var(--space-8);
+    margin-bottom: var(--space-12);
   }
 
   .input-group-title {
@@ -434,13 +434,13 @@
   .fav-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--space-8);
+    gap: var(--space-12);
   }
 
   .fav-item {
     background: var(--surface-2);
     border: 0.5px solid var(--border-subtle);
-    border-radius: 12px;
+    border-radius: 14px;
     padding: var(--space-12) var(--space-16);
     min-height: var(--tap-min);
     display: flex;
@@ -461,9 +461,9 @@
 
   .fav-name {
     font-family: 'Inter', sans-serif;
-    font-size: var(--fs-headline);
-    font-weight: 700;
-    color: var(--text);
+    font-size: var(--fs-subhead);
+    font-weight: 500;
+    color: var(--text-3);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -471,9 +471,10 @@
 
   .fav-detail {
     font-family: 'Inter', sans-serif;
-    font-size: var(--fs-footnote);
-    color: var(--text-3);
-    margin-top: var(--space-4);
+    font-size: var(--fs-subhead);
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: var(--space-4);
   }
 
   .fav-add {
@@ -496,14 +497,14 @@
   .meals-list {
     display: flex;
     flex-direction: column;
-    gap: var(--space-8);
+    gap: var(--space-12);
     padding: 0 var(--pad) var(--space-16);
   }
 
   .meal-item {
     background: var(--surface-2);
     border: 0.5px solid var(--border-subtle);
-    border-radius: 12px;
+    border-radius: 14px;
     padding: var(--space-12) var(--space-16);
     display: flex;
     align-items: center;
@@ -521,9 +522,9 @@
 
   .meal-name {
     font-family: 'Inter', sans-serif;
-    font-size: var(--fs-headline);
-    font-weight: 700;
-    color: var(--text);
+    font-size: var(--fs-subhead);
+    font-weight: 500;
+    color: var(--text-3);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -531,15 +532,16 @@
 
   .meal-macros {
     font-family: 'Inter', sans-serif;
-    font-size: var(--fs-footnote);
-    color: var(--text-3);
-    margin-top: var(--space-4);
+    font-size: var(--fs-headline);
+    color: var(--text);
+    margin-bottom: var(--space-4);
     display: flex;
     gap: var(--space-12);
+    font-weight: 600;
   }
 
-  .meal-macros .m-cal { color: var(--text-2); }
-  .meal-macros .m-prot { color: var(--gold-dim); }
+  .meal-macros .m-cal { color: var(--text); }
+  .meal-macros .m-prot { color: var(--gold); }
 
   .meal-actions {
     display: flex;
@@ -602,18 +604,17 @@
   .entry-list {
     display: flex;
     flex-direction: column;
-    gap: var(--space-8);
+    gap: var(--space-12);
   }
 
   .entry-item {
     background: var(--surface-2);
     border: 0.5px solid var(--border-subtle);
-    border-radius: 12px;
+    border-radius: 14px;
     padding: var(--space-12) var(--space-16);
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: var(--tap-min);
+    flex-direction: column;
+    gap: var(--space-4);
     animation: slideIn 0.3s ease-out;
     cursor: pointer;
     transition: background 0.15s;
@@ -626,61 +627,35 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  .entry-info { display: flex; align-items: baseline; gap: 8px; min-width: 0; flex: 1; }
-
-  .entry-name {
-    font-family: 'Inter', sans-serif;
-    font-size: var(--fs-headline);
-    font-weight: 700;
-    color: var(--text);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 180px;
-  }
-
-  .entry-cal {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: var(--fs-title-2);
-    letter-spacing: 1px;
-    flex-shrink: 0;
-  }
-
-  .entry-cal.food { color: var(--text-2); }
-  .entry-cal.sport { color: var(--red); }
-
-  .entry-prot {
-    font-family: 'Inter', sans-serif;
-    font-size: var(--fs-footnote);
-    color: var(--gold-dim);
-    flex-shrink: 0;
-  }
-
-  .entry-right {
+  .entry-header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 2px;
-    flex-shrink: 0;
   }
 
   .entry-time {
     font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
-    color: var(--text-4);
-    margin-right: var(--space-4);
+    color: var(--text-3);
+  }
+
+  .entry-actions {
+    display: flex;
+    align-items: center;
+    gap: 2px;
   }
 
   .entry-btn {
     background: none;
     border: none;
     color: var(--text-4);
-    font-size: var(--fs-body);
+    font-size: var(--fs-subhead);
     cursor: pointer;
-    padding: var(--space-8);
+    padding: 6px;
     border-radius: 8px;
     transition: color 0.2s, background 0.2s;
-    min-width: var(--tap-min);
-    min-height: var(--tap-min);
+    min-width: 36px;
+    min-height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -688,8 +663,37 @@
 
   .entry-btn:active { background: var(--surface-3); }
   .entry-btn.fav-active { color: var(--gold); }
-  .entry-btn.edit-btn:active { color: var(--gold); }
-  .entry-btn.del-btn:active { color: var(--red); }
+
+  .entry-macros {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-12);
+  }
+
+  .entry-cal {
+    font-family: 'Inter', sans-serif;
+    font-size: var(--fs-headline);
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .entry-cal.sport { color: var(--red); }
+
+  .entry-prot {
+    font-family: 'Inter', sans-serif;
+    font-size: var(--fs-subhead);
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .entry-name {
+    font-family: 'Inter', sans-serif;
+    font-size: var(--fs-subhead);
+    color: var(--text-3);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
   /* ─── HISTORY ─── */
   .history-section { padding: 0 var(--pad) var(--space-32); }
@@ -697,9 +701,9 @@
   .summary-card {
     background: var(--surface-2);
     border: 1px solid var(--gold-dim);
-    border-radius: 12px;
-    padding: 14px;
-    margin-bottom: 10px;
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 14px;
     box-shadow: 0 0 20px var(--gold-soft);
   }
 
@@ -750,9 +754,9 @@
   .history-day {
     background: var(--surface-2);
     border: 0.5px solid var(--border-subtle);
-    border-radius: 10px;
-    padding: 12px;
-    margin-bottom: 6px;
+    border-radius: 14px;
+    padding: 14px;
+    margin-bottom: 10px;
     transition: background 0.15s;
   }
 
@@ -883,8 +887,8 @@
   .fat-card {
     background: var(--surface-2);
     border: 1px solid rgba(48, 209, 88, 0.3);
-    border-radius: 12px;
-    padding: 18px;
+    border-radius: 14px;
+    padding: 20px;
     box-shadow: 0 0 24px var(--green-soft);
   }
 
@@ -1077,14 +1081,14 @@
 
   /* ─── CHART ─── */
   .chart-section {
-    padding: 0 var(--pad) 16px;
+    padding: 0 var(--pad) 20px;
   }
 
   .chart-card {
     background: var(--surface-2);
     border: 0.5px solid var(--border-subtle);
-    border-radius: 12px;
-    padding: 16px 12px 12px;
+    border-radius: 14px;
+    padding: 16px 14px 14px;
   }
 
   .chart-header {
@@ -1408,15 +1412,15 @@
 
   /* ─── STATS / CORPS TAB ─── */
   .stats-section {
-    padding: 0 var(--pad) 12px;
+    padding: 0 var(--pad) 16px;
   }
 
   /* TDEE Card */
   .tdee-card {
     background: var(--surface-2);
     border: 1px solid rgba(48, 209, 88, 0.3);
-    border-radius: 12px;
-    padding: 16px;
+    border-radius: 14px;
+    padding: 18px;
     box-shadow: 0 0 20px var(--green-soft);
   }
 
@@ -1477,14 +1481,14 @@
   .evo-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 8px;
+    gap: 12px;
   }
 
   .evo-card {
     background: var(--surface-2);
     border: 0.5px solid var(--border-subtle);
-    border-radius: 10px;
-    padding: 12px;
+    border-radius: 14px;
+    padding: 14px;
     text-align: center;
   }
 
@@ -1528,8 +1532,8 @@
   .weekly-note {
     background: var(--surface-2);
     border: 1px solid var(--gold-dim);
-    border-radius: 12px;
-    padding: 14px 16px;
+    border-radius: 14px;
+    padding: 16px 18px;
     box-shadow: 0 0 16px var(--gold-soft);
   }
 
@@ -1557,8 +1561,8 @@
   .coach-card {
     background: var(--surface-2);
     border: 0.5px solid var(--border-subtle);
-    border-radius: 12px;
-    padding: 16px;
+    border-radius: 14px;
+    padding: 18px;
     position: relative;
     overflow: hidden;
   }
@@ -1611,8 +1615,8 @@
   .coach-signals {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 6px;
-    margin-bottom: 14px;
+    gap: 10px;
+    margin-bottom: 16px;
   }
 
   .coach-signal {
@@ -1651,7 +1655,7 @@
   .coach-recos {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
   }
 
   .coach-reco {
@@ -1737,8 +1741,8 @@
   .body-chart-card {
     background: var(--surface-2);
     border: 0.5px solid var(--border-subtle);
-    border-radius: 12px;
-    padding: 14px;
+    border-radius: 14px;
+    padding: 16px;
   }
 
   .body-chart-header {
@@ -1789,8 +1793,8 @@
   .measure-form-card {
     background: var(--surface-2);
     border: 0.5px solid var(--border-subtle);
-    border-radius: 12px;
-    padding: 14px;
+    border-radius: 14px;
+    padding: 16px;
   }
 
   .measure-form-title {
@@ -1845,8 +1849,8 @@
   .mh-card {
     background: var(--surface-2);
     border: 0.5px solid var(--border-subtle);
-    border-radius: 12px;
-    margin-bottom: 8px;
+    border-radius: 14px;
+    margin-bottom: 12px;
     overflow: hidden;
     transition: border-color 0.2s;
   }
@@ -1977,8 +1981,8 @@
   .corps-empty-guide {
     background: var(--surface-2);
     border: 1px solid var(--gold-dim);
-    border-radius: 12px;
-    padding: 20px 16px;
+    border-radius: 14px;
+    padding: 24px 20px;
     text-align: center;
   }
 
@@ -2073,7 +2077,7 @@
 
   /* ─── WEEKLY BUDGET BAR ─── */
   .week-budget {
-    padding: 0 var(--pad) 10px;
+    padding: 0 var(--pad) 14px;
   }
 
   .week-budget-card {
@@ -2128,7 +2132,7 @@
 
   /* ─── STREAK ─── */
   .streak-bar {
-    padding: 0 var(--pad) 8px;
+    padding: 0 var(--pad) 14px;
   }
 
   .streak-card {
@@ -2232,7 +2236,7 @@
 
   /* ─── BADGES ─── */
   .badges-section {
-    padding: 0 var(--pad) 12px;
+    padding: 0 var(--pad) 16px;
   }
 
   .badges-title {
@@ -2246,7 +2250,7 @@
   .badges-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 6px;
+    gap: 10px;
   }
 
   .badge-item {
@@ -2406,9 +2410,9 @@
   .workout-exercise {
     background: var(--surface-2);
     border: 0.5px solid var(--border-subtle);
-    border-radius: 12px;
-    padding: 14px;
-    margin: 0 var(--pad) 8px;
+    border-radius: 14px;
+    padding: 16px;
+    margin: 0 var(--pad) 12px;
   }
 
   .workout-exercise-header {
@@ -2554,7 +2558,7 @@
     margin: 0 var(--pad) 10px;
     background: var(--surface-2);
     border: 0.5px solid var(--border-subtle);
-    border-radius: 12px;
+    border-radius: 14px;
     overflow: hidden;
     cursor: pointer;
     transition: border-color 0.2s;
@@ -2726,8 +2730,8 @@
   .hist-card {
     background: var(--surface-2);
     border: 0.5px solid var(--border-subtle);
-    border-radius: 12px;
-    margin: 0 var(--pad) 8px;
+    border-radius: 14px;
+    margin: 0 var(--pad) 12px;
     overflow: hidden;
     cursor: pointer;
     transition: border-color 0.2s;
@@ -2888,15 +2892,15 @@
   .prog-summary {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 6px;
-    padding: 0 var(--pad) 12px;
+    gap: 10px;
+    padding: 0 var(--pad) 14px;
   }
 
   .prog-summary-card {
     background: var(--surface-2);
     border: 0.5px solid var(--border-subtle);
-    border-radius: 10px;
-    padding: 10px 6px;
+    border-radius: 14px;
+    padding: 14px 10px;
     text-align: center;
   }
 
@@ -2921,9 +2925,9 @@
   .prog-exercise {
     background: var(--surface-2);
     border: 0.5px solid var(--border-subtle);
-    border-radius: 12px;
-    margin: 0 var(--pad) 8px;
-    padding: 14px;
+    border-radius: 14px;
+    margin: 0 var(--pad) 12px;
+    padding: 16px;
   }
 
   .prog-ex-header {
@@ -3019,7 +3023,7 @@
     margin: 8px var(--pad) 16px;
     background: linear-gradient(135deg, rgba(255, 214, 10, 0.08) 0%, rgba(255, 214, 10, 0.03) 100%);
     border: 1px solid var(--gold-dim);
-    border-radius: 12px;
+    border-radius: 14px;
     padding: 16px;
   }
 
@@ -3965,25 +3969,27 @@ function render() {
       const isSaved = e.type === 'food' && data.favorites.some(f => f.name === e.name && f.cal === e.cal && f.prot === e.prot);
       if (e.type === 'food') {
         return `<div class="entry-item" onclick="openEditModal(${i})">
-          <div class="entry-info">
-            <span class="entry-name">${esc(e.name) || '—'}</span>
-            <span class="entry-cal food">${e.cal} kcal</span>
-            <span class="entry-prot">${e.prot}g</span>
-          </div>
-          <div class="entry-right">
+          <div class="entry-header">
             <span class="entry-time">${time}</span>
-            <button class="entry-btn ${isSaved ? 'fav-active' : ''}" onclick="event.stopPropagation();toggleFav(${i})">★</button>
+            <div class="entry-actions">
+              <button class="entry-btn ${isSaved ? 'fav-active' : ''}" onclick="event.stopPropagation();toggleFav(${i})">★</button>
+            </div>
           </div>
+          <div class="entry-macros">
+            <span class="entry-cal">${e.cal} kcal</span>
+            <span class="entry-prot">${e.prot}g prot</span>
+          </div>
+          <div class="entry-name">${esc(e.name) || '—'}</div>
         </div>`;
       } else {
         return `<div class="entry-item" onclick="openEditModal(${i})">
-          <div class="entry-info">
-            <span class="entry-name">Sport</span>
-            <span class="entry-cal sport">-${e.cal} kcal</span>
-          </div>
-          <div class="entry-right">
+          <div class="entry-header">
             <span class="entry-time">${time}</span>
           </div>
+          <div class="entry-macros">
+            <span class="entry-cal sport">-${e.cal} kcal</span>
+          </div>
+          <div class="entry-name">Sport</div>
         </div>`;
       }
     }).reverse().join('');
@@ -4000,11 +4006,11 @@ function renderFavsFull() {
   list.innerHTML = data.favorites.map((f, i) => `
     <div class="meal-item">
       <div class="meal-info">
-        <div class="meal-name">${esc(f.name) || '—'}</div>
         <div class="meal-macros">
           <span class="m-cal">${f.cal} kcal</span>
           <span class="m-prot">${f.prot}g prot</span>
         </div>
+        <div class="meal-name">${esc(f.name) || '—'}</div>
       </div>
       <div class="meal-actions">
         <button class="meal-btn meal-btn-edit" onclick="openEditFavModal(${i})">✎</button>
@@ -5057,7 +5063,7 @@ function renderCompositionGoal() {
     missingMsg += '<br>Renseigne-les dans le formulaire "Nouvelle mesure" ci-dessous.';
 
     container.innerHTML = `
-      <div style="background:var(--surface-2);border-radius:12px;padding:14px;border:1px solid var(--surface-3)">
+      <div style="background:var(--surface-2);border-radius:14px;padding:16px;border:1px solid var(--surface-3)">
         <div style="font-family:'Inter',sans-serif;font-size:0.7rem;letter-spacing:1px;color:var(--gold);text-transform:uppercase;margin-bottom:8px">BODY FAT %</div>
         <div style="font-family:'Inter',sans-serif;font-size:0.8125rem;color:var(--text-3);line-height:1.6">${missingMsg}</div>
       </div>`;
@@ -5092,7 +5098,7 @@ function renderCompositionGoal() {
   const suggestedWaist = data.height ? Math.round(data.height * 0.45) : null;
 
   let scaleHtml = `
-    <div style="background:var(--surface-2);border-radius:12px;padding:14px;border:1px solid var(--surface-3)">
+    <div style="background:var(--surface-2);border-radius:14px;padding:16px;border:1px solid var(--surface-3)">
       <div style="font-family:'Inter',sans-serif;font-size:0.7rem;letter-spacing:1px;color:var(--gold);text-transform:uppercase;margin-bottom:10px">TON BODY FAT</div>
 
       <!-- Current BF big display -->
@@ -6025,7 +6031,7 @@ function renderStats() {
     insightCard.className = 'stats-section';
     insightCard.id = 'correlationInsight';
     insightCard.innerHTML = `
-      <div style="background:var(--surface-2);border-radius:12px;padding:14px;border:1px solid var(--surface-3)">
+      <div style="background:var(--surface-2);border-radius:14px;padding:16px;border:1px solid var(--surface-3)">
         <div style="font-family:'Inter',sans-serif;font-size:0.7rem;letter-spacing:1px;color:var(--text-3);text-transform:uppercase;margin-bottom:10px">CORRÉLATION DÉFICIT / POIDS</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
           <div style="text-align:center;background:var(--surface-3);border-radius:8px;padding:8px">
