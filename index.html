@@ -3623,6 +3623,9 @@
 
 <script>
 const STORAGE_KEY = 'ironfuel_data';
+const SUPABASE_URL = 'https://qgmrktvuskwdrruztmua.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFnbXJrdHZ1c2t3ZHJydXp0bXVhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMzMjIzNTcsImV4cCI6MjA4ODg5ODM1N30.cCAW7jCW834bnrDQ2AYNdqDjlUu004xGZirqk6Bnrvs';
+const SUPABASE_TABLE = SUPABASE_URL + '/rest/v1/ironfuel_data';
 
 const DEFAULTS = { maintenance: 1900, target: 1700, protTarget: 176, weight: 80, height: 183, days: {}, favorites: [], measurements: [] };
 
@@ -3631,16 +3634,68 @@ function loadData() {
     const d = JSON.parse(localStorage.getItem(STORAGE_KEY));
     if (!d) return { ...DEFAULTS };
     const merged = { ...DEFAULTS, ...d };
-    // Migration: if no maintenance field, old target becomes maintenance
     if (d && !d.maintenance && d.target) {
       merged.maintenance = d.target;
-      merged.target = Math.round(d.target * 0.9); // default 10% below maintenance
+      merged.target = Math.round(d.target * 0.9);
     }
     return merged;
   } catch { return { ...DEFAULTS }; }
 }
 
-function saveData(data) { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
+function saveData(data) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  syncToSupabase(data);
+}
+
+// ─── SUPABASE SYNC ───
+let _syncTimer = null;
+function syncToSupabase(data) {
+  clearTimeout(_syncTimer);
+  _syncTimer = setTimeout(() => {
+    const body = JSON.stringify({ id: 'default', data: data, updated_at: new Date().toISOString() });
+    fetch(SUPABASE_TABLE + '?id=eq.default', {
+      method: 'GET',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    })
+    .then(r => r.json())
+    .then(rows => {
+      const method = rows.length > 0 ? 'PATCH' : 'POST';
+      const url = rows.length > 0 ? SUPABASE_TABLE + '?id=eq.default' : SUPABASE_TABLE;
+      return fetch(url, {
+        method: method,
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Authorization': 'Bearer ' + SUPABASE_KEY,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
+        body: body
+      });
+    })
+    .catch(() => {}); // silent fail, localStorage is the fallback
+  }, 1000); // debounce 1s to avoid spamming
+}
+
+async function loadFromSupabase() {
+  try {
+    const res = await fetch(SUPABASE_TABLE + '?id=eq.default&select=data', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    });
+    const rows = await res.json();
+    if (rows.length > 0 && rows[0].data) {
+      const merged = { ...DEFAULTS, ...rows[0].data };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+      return true;
+    }
+  } catch {}
+  return false;
+}
+
+// On app start: load from Supabase if available, then render
+(async function initSupabase() {
+  const loaded = await loadFromSupabase();
+  if (loaded) render();
+})();
 
 function getDayKey(date) {
   const d = new Date(date);
