@@ -3648,32 +3648,26 @@ function saveData(data) {
 }
 
 // ─── SUPABASE SYNC ───
+let _supabaseReady = false;
+let _pendingSyncNutrition = null;
+let _pendingSyncMuscu = null;
+
 let _syncTimer = null;
 function syncToSupabase(data) {
+  if (!_supabaseReady) { _pendingSyncNutrition = data; return; }
   clearTimeout(_syncTimer);
   _syncTimer = setTimeout(() => {
-    const body = JSON.stringify({ id: 'default', data: data, updated_at: new Date().toISOString() });
-    fetch(SUPABASE_TABLE + '?id=eq.default', {
-      method: 'GET',
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
-    })
-    .then(r => r.json())
-    .then(rows => {
-      const method = rows.length > 0 ? 'PATCH' : 'POST';
-      const url = rows.length > 0 ? SUPABASE_TABLE + '?id=eq.default' : SUPABASE_TABLE;
-      return fetch(url, {
-        method: method,
-        headers: {
-          'apikey': SUPABASE_KEY,
-          'Authorization': 'Bearer ' + SUPABASE_KEY,
-          'Content-Type': 'application/json',
-          'Prefer': 'return=minimal'
-        },
-        body: body
-      });
-    })
-    .catch(() => {}); // silent fail, localStorage is the fallback
-  }, 1000); // debounce 1s to avoid spamming
+    fetch(SUPABASE_TABLE, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_KEY,
+        'Content-Type': 'application/json',
+        'Prefer': 'resolution=merge-duplicates,return=minimal'
+      },
+      body: JSON.stringify({ id: 'default', data: data, updated_at: new Date().toISOString() })
+    }).catch(() => {});
+  }, 1000);
 }
 
 async function loadFromSupabase() {
@@ -3683,8 +3677,13 @@ async function loadFromSupabase() {
     });
     const rows = await res.json();
     if (rows.length > 0 && rows[0].data) {
-      const merged = { ...DEFAULTS, ...rows[0].data };
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+      const local = loadData();
+      const remote = { ...DEFAULTS, ...rows[0].data };
+      // Merge days: remote wins on conflict, but keep local-only days
+      remote.days = { ...local.days, ...remote.days };
+      remote.favorites = remote.favorites.length > 0 ? remote.favorites : local.favorites;
+      remote.measurements = remote.measurements.length > 0 ? remote.measurements : local.measurements;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(remote));
       return true;
     }
   } catch {}
@@ -3698,17 +3697,25 @@ async function loadMuscuFromSupabase() {
     });
     const rows = await res.json();
     if (rows.length > 0 && rows[0].data) {
-      const merged = { ...{ exercises: [], workouts: {} }, ...rows[0].data };
-      localStorage.setItem('ironfuel_muscu', JSON.stringify(merged));
+      const localMuscu = (() => { try { return JSON.parse(localStorage.getItem('ironfuel_muscu')) || {}; } catch { return {}; } })();
+      const remote = { ...{ exercises: [], workouts: {} }, ...rows[0].data };
+      // Merge workouts: remote wins on conflict, keep local-only days
+      if (localMuscu.workouts) remote.workouts = { ...localMuscu.workouts, ...remote.workouts };
+      if (localMuscu.exercises && localMuscu.exercises.length > 0 && remote.exercises.length === 0) remote.exercises = localMuscu.exercises;
+      localStorage.setItem('ironfuel_muscu', JSON.stringify(remote));
       return true;
     }
   } catch {}
   return false;
 }
 
-// On app start: load from Supabase if available, then render
+// On app start: load from Supabase, then allow syncing
 (async function initSupabase() {
   const [loadedNutrition, loadedMuscu] = await Promise.all([loadFromSupabase(), loadMuscuFromSupabase()]);
+  _supabaseReady = true;
+  // Flush any saves that happened while loading
+  if (_pendingSyncNutrition) { syncToSupabase(_pendingSyncNutrition); _pendingSyncNutrition = null; }
+  if (_pendingSyncMuscu) { syncMuscuToSupabase(_pendingSyncMuscu); _pendingSyncMuscu = null; }
   if (loadedNutrition || loadedMuscu) render();
 })();
 
@@ -6425,29 +6432,19 @@ function saveMuscu(data) {
 
 let _syncMuscuTimer = null;
 function syncMuscuToSupabase(data) {
+  if (!_supabaseReady) { _pendingSyncMuscu = data; return; }
   clearTimeout(_syncMuscuTimer);
   _syncMuscuTimer = setTimeout(() => {
-    const body = JSON.stringify({ id: 'muscu', data: data, updated_at: new Date().toISOString() });
-    fetch(SUPABASE_TABLE + '?id=eq.muscu', {
-      method: 'GET',
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
-    })
-    .then(r => r.json())
-    .then(rows => {
-      const method = rows.length > 0 ? 'PATCH' : 'POST';
-      const url = rows.length > 0 ? SUPABASE_TABLE + '?id=eq.muscu' : SUPABASE_TABLE;
-      return fetch(url, {
-        method: method,
-        headers: {
-          'apikey': SUPABASE_KEY,
-          'Authorization': 'Bearer ' + SUPABASE_KEY,
-          'Content-Type': 'application/json',
-          'Prefer': 'return=minimal'
-        },
-        body: body
-      });
-    })
-    .catch(() => {});
+    fetch(SUPABASE_TABLE, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_KEY,
+        'Content-Type': 'application/json',
+        'Prefer': 'resolution=merge-duplicates,return=minimal'
+      },
+      body: JSON.stringify({ id: 'muscu', data: data, updated_at: new Date().toISOString() })
+    }).catch(() => {});
   }, 1000);
 }
 
