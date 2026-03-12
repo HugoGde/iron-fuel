@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="theme-color" content="#0c0c0f">
+<meta name="theme-color" content="#000000">
 <meta name="description" content="IRON FUEL — Track nutrition, body composition & workouts">
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -15,27 +15,27 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    /* Colors — brand */
-    --bg: #0c0c0f;
-    --surface-1: #16161a;
-    --surface-2: #1e1e24;
-    --surface-3: #26262e;
-    --border-subtle: #2e2e38;
-    --border: #3a3a48;
-    --gold: #e8b820;
-    --gold-dim: #a68518;
-    --gold-soft: rgba(232, 184, 32, 0.12);
-    --gold-glow: rgba(232, 184, 32, 0.2);
-    --red: #e04535;
-    --red-soft: rgba(224, 69, 53, 0.12);
-    --red-glow: rgba(224, 69, 53, 0.25);
-    --green: #2ecc71;
-    --green-soft: rgba(46, 204, 113, 0.12);
-    --green-glow: rgba(46, 204, 113, 0.25);
-    --text: #f0ebe0;
-    --text-2: #b8b0a0;
-    --text-3: #807868;
-    --text-4: #585048;
+    /* Colors — Apple HIG Dark Mode */
+    --bg: #000000;
+    --surface-1: #0A0A0C;
+    --surface-2: #1C1C1E;
+    --surface-3: #2C2C2E;
+    --border-subtle: rgba(84, 84, 88, 0.36);
+    --border: #48484A;
+    --gold: #FFD60A;
+    --gold-dim: #C7A800;
+    --gold-soft: rgba(255, 214, 10, 0.15);
+    --gold-glow: rgba(255, 214, 10, 0.25);
+    --red: #FF453A;
+    --red-soft: rgba(255, 69, 58, 0.15);
+    --red-glow: rgba(255, 69, 58, 0.25);
+    --green: #30D158;
+    --green-soft: rgba(48, 209, 88, 0.15);
+    --green-glow: rgba(48, 209, 88, 0.25);
+    --text: #FFFFFF;
+    --text-2: rgba(235, 235, 245, 0.6);
+    --text-3: rgba(235, 235, 245, 0.3);
+    --text-4: rgba(235, 235, 245, 0.18);
 
     /* Apple HIG Type Scale (adjusted for display/condensed fonts) */
     --fs-display: 48px;    /* Brand logo */
@@ -97,7 +97,7 @@
   .logo {
     font-family: 'Bebas Neue', sans-serif;
     font-size: var(--fs-display);
-    letter-spacing: 8px;
+    letter-spacing: 4px;
     color: var(--gold);
     text-shadow: 0 0 30px var(--gold-glow), 0 2px 0 rgba(0,0,0,0.4);
     line-height: 1;
@@ -106,7 +106,7 @@
   .logo-sub {
     font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
-    letter-spacing: 6px;
+    letter-spacing: 1px;
     color: var(--text-3);
     text-transform: uppercase;
     margin-top: var(--space-4);
@@ -128,7 +128,7 @@
     bottom: var(--space-12);
     left: var(--space-12);
     right: var(--space-12);
-    background: rgba(22, 22, 26, 0.85);
+    background: rgba(28, 28, 30, 0.85);
     backdrop-filter: blur(20px) saturate(1.4);
     -webkit-backdrop-filter: blur(20px) saturate(1.4);
     border: 0.5px solid var(--border-subtle);
@@ -247,13 +247,13 @@
     font-family: 'Bebas Neue', sans-serif;
     font-size: var(--fs-large-title);
     line-height: 1;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
   }
 
   .ring-label {
     font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
-    letter-spacing: 3px;
+    letter-spacing: 1.5px;
     color: var(--text-3);
     text-transform: uppercase;
     margin-top: var(--space-4);
@@ -325,7 +325,7 @@
   .input-group-title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: var(--fs-title-3);
-    letter-spacing: 3px;
+    letter-spacing: 1.5px;
     color: var(--text-2);
     margin-bottom: var(--space-12);
     display: flex;
@@ -353,7 +353,7 @@
     display: block;
     font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     color: var(--text-3);
     text-transform: uppercase;
     margin-bottom: var(--space-4);
@@ -367,7 +367,7 @@
     padding: var(--space-12);
     font-family: 'Bebas Neue', sans-serif;
     font-size: var(--fs-title-2);
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     color: var(--text);
     outline: none;
     transition: border-color 0.2s, box-shadow 0.2s;
@@ -391,7 +391,7 @@
   .btn {
     font-family: 'Bebas Neue', sans-serif;
     font-size: var(--fs-callout);
-    letter-spacing: 3px;
+    letter-spacing: 1.5px;
     border: none;
     border-radius: 10px;
     padding: var(--space-12) var(--space-16);
@@ -404,7 +404,7 @@
   .btn:active { transform: scale(0.96); }
 
   .btn-gold {
-    background: linear-gradient(135deg, var(--gold), #d4a017);
+    background: linear-gradient(135deg, var(--gold), var(--gold-dim));
     color: var(--bg);
     font-weight: 700;
     box-shadow: 0 2px 8px var(--gold-soft);
@@ -413,17 +413,17 @@
   .btn-gold:active { background: var(--gold-dim); }
 
   .btn-red {
-    background: linear-gradient(135deg, var(--red), #c0392b);
+    background: linear-gradient(135deg, var(--red), #D63830);
     color: var(--text);
     box-shadow: 0 2px 8px var(--red-soft);
   }
 
-  .btn-red:active { background: #a93226; }
+  .btn-red:active { background: #CC362D; }
 
   .section-title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: var(--fs-title-3);
-    letter-spacing: 3px;
+    letter-spacing: 1.5px;
     color: var(--text-2);
     margin-bottom: var(--space-12);
     display: flex;
@@ -489,7 +489,7 @@
     font-size: var(--fs-title-3);
     margin-left: 8px;
     flex-shrink: 0;
-    border: 1px solid rgba(232, 184, 32, 0.25);
+    border: 1px solid rgba(255, 214, 10, 0.25);
   }
 
   /* ─── MEALS LIST (full page) ─── */
@@ -566,7 +566,7 @@
   .meal-btn-add {
     background: var(--gold-soft);
     color: var(--gold);
-    border: 1px solid rgba(232, 184, 32, 0.2);
+    border: 1px solid rgba(255, 214, 10, 0.2);
     font-family: 'Bebas Neue', sans-serif;
     font-size: var(--fs-title-2);
   }
@@ -593,7 +593,7 @@
     color: var(--text-4);
     font-family: 'Inter', sans-serif;
     font-size: var(--fs-footnote);
-    letter-spacing: 2px;
+    letter-spacing: 1px;
   }
 
   /* ─── ENTRIES LIST ─── */
@@ -713,7 +713,7 @@
   .summary-title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: var(--fs-title-2);
-    letter-spacing: 3px;
+    letter-spacing: 1.5px;
     color: var(--gold);
   }
 
@@ -791,7 +791,7 @@
   }
 
   .history-entry-item + .history-entry-item {
-    border-top: 1px solid rgba(46, 46, 56, 0.5);
+    border-top: 1px solid rgba(84, 84, 88, 0.5);
   }
 
   .history-entry-name {
@@ -830,7 +830,7 @@
   .history-day-name {
     font-family: 'Bebas Neue', sans-serif;
     font-size: var(--fs-title-3);
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     color: var(--text);
   }
 
@@ -882,7 +882,7 @@
 
   .fat-card {
     background: var(--surface-2);
-    border: 1px solid rgba(46, 204, 113, 0.3);
+    border: 1px solid rgba(48, 209, 88, 0.3);
     border-radius: 12px;
     padding: 18px;
     box-shadow: 0 0 24px var(--green-soft);
@@ -898,7 +898,7 @@
   .fat-title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: var(--fs-callout);
-    letter-spacing: 3px;
+    letter-spacing: 1.5px;
     color: var(--green);
   }
 
@@ -920,7 +920,7 @@
     font-size: var(--fs-large-title);
     line-height: 1;
     color: var(--green);
-    letter-spacing: 2px;
+    letter-spacing: 1px;
   }
 
   .fat-kg-unit {
@@ -953,7 +953,7 @@
 
   .fat-gauge-fill {
     height: 100%;
-    background: linear-gradient(90deg, #1a7a42, var(--green), #5ddb9a);
+    background: linear-gradient(90deg, #1B9E4B, var(--green), #5AE87A);
     border-radius: 5px;
     transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 0 10px var(--green-glow);
@@ -1098,7 +1098,7 @@
   .chart-title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: var(--fs-callout);
-    letter-spacing: 3px;
+    letter-spacing: 1.5px;
     color: var(--text-2);
   }
 
@@ -1285,7 +1285,7 @@
   .modal h3 {
     font-family: 'Bebas Neue', sans-serif;
     font-size: var(--fs-title-2);
-    letter-spacing: 3px;
+    letter-spacing: 1.5px;
     color: var(--gold);
     margin-bottom: var(--space-24);
   }
@@ -1315,7 +1315,7 @@
     min-height: var(--tap-min);
     font-family: 'Bebas Neue', sans-serif;
     font-size: var(--fs-title-2);
-    letter-spacing: 3px;
+    letter-spacing: 1.5px;
     color: var(--text);
     text-align: center;
     outline: none;
@@ -1356,7 +1356,7 @@
     color: var(--text-2);
     font-family: 'Bebas Neue', sans-serif;
     font-size: var(--fs-callout);
-    letter-spacing: 3px;
+    letter-spacing: 1.5px;
     padding: 12px 16px;
     border-radius: 8px;
     cursor: pointer;
@@ -1367,11 +1367,11 @@
 
   .btn-danger {
     background: var(--red-soft);
-    border: 1px solid rgba(224, 69, 53, 0.3);
+    border: 1px solid rgba(255, 69, 58, 0.3);
     color: var(--red);
     font-family: 'Bebas Neue', sans-serif;
     font-size: var(--fs-callout);
-    letter-spacing: 3px;
+    letter-spacing: 1.5px;
     padding: 12px 16px;
     border-radius: 8px;
     cursor: pointer;
@@ -1387,7 +1387,7 @@
     color: var(--bg);
     font-family: 'Bebas Neue', sans-serif;
     font-size: var(--fs-headline);
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     padding: 8px 20px;
     border-radius: 8px;
     opacity: 0;
@@ -1414,7 +1414,7 @@
   /* TDEE Card */
   .tdee-card {
     background: var(--surface-2);
-    border: 1px solid rgba(46, 204, 113, 0.3);
+    border: 1px solid rgba(48, 209, 88, 0.3);
     border-radius: 12px;
     padding: 16px;
     box-shadow: 0 0 20px var(--green-soft);
@@ -1430,7 +1430,7 @@
   .tdee-title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: var(--fs-callout);
-    letter-spacing: 3px;
+    letter-spacing: 1.5px;
     color: var(--green);
   }
 
@@ -1452,7 +1452,7 @@
     font-size: var(--fs-large-title);
     line-height: 1;
     color: var(--green);
-    letter-spacing: 2px;
+    letter-spacing: 1px;
   }
 
   .tdee-unit {
@@ -1536,7 +1536,7 @@
   .weekly-note-header {
     font-family: 'Bebas Neue', sans-serif;
     font-size: var(--fs-headline);
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     color: var(--gold);
     margin-bottom: 8px;
   }
@@ -1583,7 +1583,7 @@
   .coach-title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: var(--fs-headline);
-    letter-spacing: 3px;
+    letter-spacing: 1.5px;
     color: var(--gold);
   }
 
@@ -1796,7 +1796,7 @@
   .measure-form-title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: var(--fs-headline);
-    letter-spacing: 3px;
+    letter-spacing: 1.5px;
     color: var(--text-3);
     margin-bottom: 4px;
   }
@@ -1827,7 +1827,7 @@
   .measure-history-title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: var(--fs-headline);
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     color: var(--text-3);
     margin-bottom: 8px;
     display: flex;
@@ -1866,7 +1866,7 @@
   .mh-card-date {
     font-family: 'Bebas Neue', sans-serif;
     font-size: var(--fs-headline);
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     color: var(--text-2);
   }
 
@@ -1991,7 +1991,7 @@
   .corps-empty-guide .guide-title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: var(--fs-title-3);
-    letter-spacing: 3px;
+    letter-spacing: 1.5px;
     color: var(--gold);
     margin-bottom: 8px;
   }
@@ -2053,7 +2053,7 @@
   .corps-empty-guide .guide-unlock-title {
     font-family: 'Inter', sans-serif;
     font-size: var(--fs-caption);
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     color: var(--text-4);
     text-transform: uppercase;
     margin-bottom: 6px;
@@ -2208,7 +2208,7 @@
   .day-nav-label {
     font-family: 'Bebas Neue', sans-serif;
     font-size: var(--fs-title-3);
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     color: var(--text-2);
     min-width: 120px;
     text-align: center;
@@ -2219,7 +2219,7 @@
     font-size: var(--fs-caption);
     color: var(--gold);
     background: var(--gold-soft);
-    border: 1px solid rgba(232, 184, 32, 0.2);
+    border: 1px solid rgba(255, 214, 10, 0.2);
     border-radius: 6px;
     padding: 4px 12px;
     cursor: pointer;
@@ -2227,7 +2227,7 @@
   }
 
   .day-nav-today:active {
-    background: rgba(232, 184, 32, 0.25);
+    background: rgba(255, 214, 10, 0.25);
   }
 
   /* ─── BADGES ─── */
@@ -2238,7 +2238,7 @@
   .badges-title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: var(--fs-headline);
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     color: var(--text-3);
     margin-bottom: 8px;
   }
@@ -2320,7 +2320,7 @@
   .undo-toast-btn {
     font-family: 'Bebas Neue', sans-serif;
     font-size: var(--fs-headline);
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     color: var(--gold);
     background: none;
     border: none;
@@ -2354,7 +2354,7 @@
   .mode-btn {
     font-family: 'Bebas Neue', sans-serif;
     font-size: var(--fs-subhead);
-    letter-spacing: 3px;
+    letter-spacing: 1.5px;
     padding: var(--space-8) var(--space-32);
     background: var(--surface-2);
     border: 0.5px solid var(--border-subtle);
@@ -2385,7 +2385,7 @@
   .workout-type-btn {
     font-family: 'Bebas Neue', sans-serif;
     font-size: var(--fs-body);
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     padding: 8px 14px;
     background: var(--surface-2);
     border: 0.5px solid var(--border-subtle);
@@ -2421,7 +2421,7 @@
   .workout-exercise-name {
     font-family: 'Bebas Neue', sans-serif;
     font-size: var(--fs-headline);
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     color: var(--text);
   }
 
@@ -2449,7 +2449,7 @@
     align-items: center;
     gap: 8px;
     padding: 6px 0;
-    border-bottom: 1px solid rgba(46, 46, 56, 0.4);
+    border-bottom: 1px solid rgba(84, 84, 88, 0.4);
   }
 
   .workout-set-row:last-of-type { border-bottom: none; }
@@ -2538,7 +2538,7 @@
   }
 
   .workout-add-exercise-btn:active {
-    background: rgba(232, 184, 32, 0.25);
+    background: rgba(255, 214, 10, 0.25);
   }
 
   .workout-empty {
@@ -2627,7 +2627,7 @@
 
   .last-session-exercise {
     padding: 8px 14px;
-    border-top: 1px solid rgba(46, 46, 56, 0.3);
+    border-top: 1px solid rgba(84, 84, 88, 0.3);
   }
 
   .last-session-ex-name {
@@ -2697,7 +2697,7 @@
     flex: 1;
     font-family: 'Bebas Neue', sans-serif;
     font-size: var(--fs-body);
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     padding: 10px 0;
     text-align: center;
     background: none;
@@ -2757,7 +2757,7 @@
   .hist-type-badge {
     font-family: 'Bebas Neue', sans-serif;
     font-size: var(--fs-footnote);
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     border: 1px solid;
     border-radius: 4px;
     padding: 2px 8px;
@@ -2809,7 +2809,7 @@
 
   .hist-exercise {
     padding: 8px 14px;
-    border-top: 1px solid rgba(46, 46, 56, 0.3);
+    border-top: 1px solid rgba(84, 84, 88, 0.3);
   }
 
   .hist-ex-name {
@@ -2859,7 +2859,7 @@
     flex: 1;
     font-family: 'Bebas Neue', sans-serif;
     font-size: var(--fs-body);
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     padding: 10px 0;
     text-align: center;
     background: none;
@@ -2950,17 +2950,17 @@
 
   .prog-ex-trend.up {
     color: var(--green);
-    background: rgba(76, 175, 80, 0.12);
+    background: rgba(48, 209, 88, 0.15);
   }
 
   .prog-ex-trend.stable {
-    color: #f5a623;
-    background: rgba(245, 166, 35, 0.12);
+    color: #FF9F0A;
+    background: rgba(255, 159, 10, 0.15);
   }
 
   .prog-ex-trend.down {
     color: var(--red);
-    background: rgba(239, 83, 80, 0.12);
+    background: rgba(255, 69, 58, 0.15);
   }
 
   .prog-ex-trend.new {
@@ -3017,7 +3017,7 @@
   /* Coach message */
   .prog-coach {
     margin: 8px var(--pad) 16px;
-    background: linear-gradient(135deg, rgba(232, 184, 32, 0.08) 0%, rgba(232, 184, 32, 0.03) 100%);
+    background: linear-gradient(135deg, rgba(255, 214, 10, 0.08) 0%, rgba(255, 214, 10, 0.03) 100%);
     border: 1px solid var(--gold-dim);
     border-radius: 12px;
     padding: 16px;
@@ -3026,7 +3026,7 @@
   .prog-coach-title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: var(--fs-headline);
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     color: var(--gold);
     margin-bottom: 8px;
     display: flex;
@@ -3331,7 +3331,7 @@
     <div class="measure-form-card">
       <div class="measure-form-title">NOUVELLE MESURE</div>
       <div class="measure-form-hint" id="measureHint"></div>
-      <div style="font-family:'Space Mono',monospace;font-size:0.45rem;color:var(--text-4);margin-bottom:8px;line-height:1.6;background:var(--surface-3);border-radius:6px;padding:8px">
+      <div style="font-family:'Inter',sans-serif;font-size:0.6875rem;color:var(--text-4);margin-bottom:8px;line-height:1.6;background:var(--surface-3);border-radius:6px;padding:8px">
         Mesure debout, détendu, après expiration. Le mètre doit être horizontal et ajusté sans serrer.
       </div>
       <div class="measure-form-grid">
@@ -3465,7 +3465,7 @@
       </div>
       <div class="modal-field" style="margin-bottom:8px">
         <label>Catégorie</label>
-        <select id="inlineNewExCategory" style="width:100%;background:var(--surface-1);border:1px solid var(--border-subtle);border-radius:8px;padding:10px;font-family:'Barlow Condensed',sans-serif;font-size:1rem;color:var(--text);outline:none;-webkit-appearance:none">
+        <select id="inlineNewExCategory" style="width:100%;background:var(--surface-1);border:1px solid var(--border-subtle);border-radius:8px;padding:10px;font-family:'Inter',sans-serif;font-size:1rem;color:var(--text);outline:none;-webkit-appearance:none">
           <option value="push">Push</option>
           <option value="pull">Pull</option>
           <option value="legs">Legs</option>
@@ -3474,7 +3474,7 @@
       </div>
       <div class="modal-field" style="margin-bottom:8px">
         <label>Notes <span style="color:var(--text-4);font-weight:400">(optionnel)</span></label>
-        <textarea id="inlineNewExNotes" rows="2" placeholder="Ex: Garder les coudes serrés, tempo 3-1-1..." style="width:100%;background:var(--surface-1);border:1px solid var(--border-subtle);border-radius:8px;padding:10px;font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;color:var(--text);outline:none;resize:vertical;-webkit-appearance:none"></textarea>
+        <textarea id="inlineNewExNotes" rows="2" placeholder="Ex: Garder les coudes serrés, tempo 3-1-1..." style="width:100%;background:var(--surface-1);border:1px solid var(--border-subtle);border-radius:8px;padding:10px;font-family:'Inter',sans-serif;font-size:0.9rem;color:var(--text);outline:none;resize:vertical;-webkit-appearance:none"></textarea>
       </div>
       <button class="btn btn-gold" style="width:100%" onclick="inlineCreateExercise()">Créer et ajouter</button>
     </div>
@@ -3496,7 +3496,7 @@
     </div>
     <div class="modal-field">
       <label>Catégorie</label>
-      <select id="editExCategory" style="width:100%;background:var(--surface-1);border:1px solid var(--border-subtle);border-radius:10px;padding:12px;font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;color:var(--text);outline:none;-webkit-appearance:none">
+      <select id="editExCategory" style="width:100%;background:var(--surface-1);border:1px solid var(--border-subtle);border-radius:10px;padding:12px;font-family:'Inter',sans-serif;font-size:1.1rem;color:var(--text);outline:none;-webkit-appearance:none">
         <option value="push">Push</option>
         <option value="pull">Pull</option>
         <option value="legs">Legs</option>
@@ -3505,7 +3505,7 @@
     </div>
     <div class="modal-field">
       <label>Notes d'exécution</label>
-      <textarea id="editExNotes" rows="4" placeholder="Ex: Garder les coudes à 45°, descendre jusqu'à la poitrine..." style="width:100%;background:var(--surface-1);border:1px solid var(--border-subtle);border-radius:10px;padding:12px;font-family:'Barlow Condensed',sans-serif;font-size:1rem;color:var(--text);outline:none;resize:vertical;-webkit-appearance:none;transition:border-color 0.2s,box-shadow 0.2s" onfocus="this.style.borderColor='var(--gold)';this.style.boxShadow='0 0 0 2px var(--gold-soft)'" onblur="this.style.borderColor='var(--border-subtle)';this.style.boxShadow='none'"></textarea>
+      <textarea id="editExNotes" rows="4" placeholder="Ex: Garder les coudes à 45°, descendre jusqu'à la poitrine..." style="width:100%;background:var(--surface-1);border:1px solid var(--border-subtle);border-radius:10px;padding:12px;font-family:'Inter',sans-serif;font-size:1rem;color:var(--text);outline:none;resize:vertical;-webkit-appearance:none;transition:border-color 0.2s,box-shadow 0.2s" onfocus="this.style.borderColor='var(--gold)';this.style.boxShadow='0 0 0 2px var(--gold-soft)'" onblur="this.style.borderColor='var(--border-subtle)';this.style.boxShadow='none'"></textarea>
     </div>
     <div class="modal-buttons">
       <button class="btn btn-danger" onclick="deleteExercise()">Suppr.</button>
@@ -3529,7 +3529,7 @@
         <input type="number" id="addSetWeight" placeholder="70" inputmode="decimal" step="0.5">
       </div>
     </div>
-    <div id="addSetPrevHint" style="font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--gold);opacity:0.7;text-align:center;margin-bottom:8px"></div>
+    <div id="addSetPrevHint" style="font-family:'Inter',sans-serif;font-size:0.65rem;color:var(--gold);opacity:0.7;text-align:center;margin-bottom:8px"></div>
     <div class="modal-buttons">
       <button class="btn btn-ghost" onclick="closeModal('addSetModal')">Annuler</button>
       <button class="btn btn-gold" onclick="confirmAddSet()">OK</button>
@@ -4158,7 +4158,7 @@ function renderStreak(data) {
   if (sortedDays.length === 0) { wrap.innerHTML = ''; return; }
 
   const emoji = streak >= 7 ? '🔥' : streak >= 3 ? '⚡' : '💪';
-  wrap.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;gap:8px;padding:10px var(--pad);font-family:'Barlow Condensed',sans-serif;font-size:0.8rem;color:var(--text-3);letter-spacing:0.5px">
+  wrap.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;gap:8px;padding:10px var(--pad);font-family:'Inter',sans-serif;font-size:0.8rem;color:var(--text-3);letter-spacing:0.5px">
     <span>${emoji} <strong style="color:var(--text-1)">${streak}</strong> jour${streak > 1 ? 's' : ''} sous objectif d'affilée</span>
     <span style="opacity:0.5">·</span>
     <span>Record : <strong style="color:var(--gold)">${best}</strong></span>
@@ -4794,8 +4794,8 @@ function renderHistory() {
       // Plateau: weight barely moved but significant deficit
       if (weightChange < 0.5 && expectedLoss > 0.5) {
         html += `<div style="background:var(--surface-2);border-radius:10px;padding:12px;margin:0 var(--pad) 10px;border:1px solid rgba(232,184,32,0.3)">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:6px">⚠ PLATEAU DÉTECTÉ</div>
-          <div style="font-family:'Space Mono',monospace;font-size:0.55rem;color:var(--text-3);line-height:1.6">
+          <div style="font-family:'Inter',sans-serif;font-size:0.7rem;letter-spacing:1px;color:var(--gold);text-transform:uppercase;margin-bottom:6px">⚠ PLATEAU DÉTECTÉ</div>
+          <div style="font-family:'Inter',sans-serif;font-size:0.8125rem;color:var(--text-3);line-height:1.6">
             Ton poids stagne (${weightChange.toFixed(1)} kg de variation) malgré un déficit de ${Math.round(periodDeficit)} kcal sur ${spanDays} jours.<br>
             ${wLast <= wFirst ? 'C\'est probablement de la <strong style="color:var(--green)">recomposition</strong> — tu perds du gras et prends du muscle. Vérifie ton tour de taille.' : 'Ton maintien a peut-être baissé (adaptation métabolique). Recalcule via le TDEE dans l\'onglet Corps.'}
           </div>
@@ -4818,17 +4818,17 @@ function renderHistory() {
       netColor = 'var(--green)';
       statusText = 'Sous objectif ✓';
       statusColor = 'var(--green)';
-      borderColor = 'rgba(46, 204, 113, 0.25)';
+      borderColor = 'rgba(48, 209, 88, 0.25)';
     } else if (net <= maint) {
       netColor = 'var(--gold)';
       statusText = 'Obj. dépassé';
       statusColor = 'var(--gold)';
-      borderColor = 'rgba(232, 184, 32, 0.2)';
+      borderColor = 'rgba(255, 214, 10, 0.2)';
     } else {
       netColor = 'var(--red)';
       statusText = 'Surplus';
       statusColor = 'var(--red)';
-      borderColor = 'rgba(224, 69, 53, 0.2)';
+      borderColor = 'rgba(255, 69, 58, 0.2)';
     }
 
     const dayData = data.days[key];
@@ -4909,10 +4909,10 @@ function renderHistory() {
       html += `<div class="history-month-group" style="margin:10px var(--pad)">
         <div style="background:var(--surface-2);border-radius:10px;padding:10px 12px;cursor:pointer;border:1px solid var(--surface-3)" onclick="const el=document.getElementById('month_${mk}');const btn=this.querySelector('.month-chevron');el.style.display=el.style.display==='none'?'':'none';btn.style.transform=el.style.display==='none'?'':'rotate(180deg)'">
           <div style="display:flex;align-items:center;justify-content:space-between">
-            <span style="font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;letter-spacing:2px;color:var(--text-2);text-transform:uppercase">${monthLabel}</span>
+            <span style="font-family:'Inter',sans-serif;font-size:0.75rem;letter-spacing:1px;color:var(--text-2);text-transform:uppercase">${monthLabel}</span>
             <span class="month-chevron" style="color:var(--text-4);font-size:0.7rem;transition:transform 0.2s">▾</span>
           </div>
-          <div style="display:flex;gap:12px;margin-top:6px;font-family:'Space Mono',monospace;font-size:0.5rem;color:var(--text-3)">
+          <div style="display:flex;gap:12px;margin-top:6px;font-family:'Inter',sans-serif;font-size:0.75rem;color:var(--text-3)">
             <span>${keys.length}j</span>
             <span style="color:var(--${mAvg >= 0 ? 'green' : 'red'})">déf. moy ${mAvg >= 0 ? '-' : '+'}${Math.abs(mAvg)}</span>
             <span style="color:var(--green)">-${Math.abs(mKg).toFixed(1)} kg gras</span>
@@ -5058,8 +5058,8 @@ function renderCompositionGoal() {
 
     container.innerHTML = `
       <div style="background:var(--surface-2);border-radius:12px;padding:14px;border:1px solid var(--surface-3)">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:8px">BODY FAT %</div>
-        <div style="font-family:'Space Mono',monospace;font-size:0.55rem;color:var(--text-3);line-height:1.6">${missingMsg}</div>
+        <div style="font-family:'Inter',sans-serif;font-size:0.7rem;letter-spacing:1px;color:var(--gold);text-transform:uppercase;margin-bottom:8px">BODY FAT %</div>
+        <div style="font-family:'Inter',sans-serif;font-size:0.8125rem;color:var(--text-3);line-height:1.6">${missingMsg}</div>
       </div>`;
     return;
   }
@@ -5093,14 +5093,14 @@ function renderCompositionGoal() {
 
   let scaleHtml = `
     <div style="background:var(--surface-2);border-radius:12px;padding:14px;border:1px solid var(--surface-3)">
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:10px">TON BODY FAT</div>
+      <div style="font-family:'Inter',sans-serif;font-size:0.7rem;letter-spacing:1px;color:var(--gold);text-transform:uppercase;margin-bottom:10px">TON BODY FAT</div>
 
       <!-- Current BF big display -->
       <div style="text-align:center;margin-bottom:12px">
-        <span style="font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:${currentZone.color};letter-spacing:2px">${currentBF.toFixed(1)}</span>
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:${currentZone.color};letter-spacing:1px">${currentBF.toFixed(1)}</span>
         <span style="font-family:'Bebas Neue',sans-serif;font-size:1rem;color:var(--text-3)">%</span>
-        <div style="font-family:'Space Mono',monospace;font-size:0.5rem;color:var(--text-3);margin-top:2px">${bfDescription}</div>
-        <div style="font-family:'Space Mono',monospace;font-size:0.45rem;color:var(--text-4);margin-top:2px">Formule Navy · ${last.neck || findLastNeck(data) ? 'taille + cou + taille' : 'taille + taille (ajoute ton tour de cou pour + de précision)'}</div>
+        <div style="font-family:'Inter',sans-serif;font-size:0.75rem;color:var(--text-3);margin-top:2px">${bfDescription}</div>
+        <div style="font-family:'Inter',sans-serif;font-size:0.6875rem;color:var(--text-4);margin-top:2px">Formule Navy · ${last.neck || findLastNeck(data) ? 'taille + cou + taille' : 'taille + taille (ajoute ton tour de cou pour + de précision)'}</div>
       </div>
 
       <!-- Visual scale -->
@@ -5115,11 +5115,11 @@ function renderCompositionGoal() {
           <div style="width:12px;height:12px;border-radius:50%;background:${currentZone.color};border:2px solid var(--bg)"></div>
         </div>
         <div style="display:flex;justify-content:space-between;margin-top:4px">
-          ${zones.map(z => `<span style="font-family:'Space Mono',monospace;font-size:0.35rem;color:var(--text-4);flex:1;text-align:center">${z.label}</span>`).join('')}
+          ${zones.map(z => `<span style="font-family:'Inter',sans-serif;font-size:0.625rem;color:var(--text-4);flex:1;text-align:center">${z.label}</span>`).join('')}
         </div>
         <div style="display:flex;justify-content:space-between;margin-top:1px">
-          <span style="font-family:'Space Mono',monospace;font-size:0.35rem;color:var(--text-4)">5%</span>
-          <span style="font-family:'Space Mono',monospace;font-size:0.35rem;color:var(--text-4)">35%</span>
+          <span style="font-family:'Inter',sans-serif;font-size:0.625rem;color:var(--text-4)">5%</span>
+          <span style="font-family:'Inter',sans-serif;font-size:0.625rem;color:var(--text-4)">35%</span>
         </div>
       </div>`;
 
@@ -5146,13 +5146,13 @@ function renderCompositionGoal() {
     scaleHtml += `
       <div style="border-top:1px solid var(--surface-3);padding-top:10px;margin-top:4px">
         <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px">
-          <span style="font-family:'Barlow Condensed',sans-serif;font-size:0.65rem;letter-spacing:1px;color:var(--text-3);text-transform:uppercase">Objectif BF%</span>
+          <span style="font-family:'Inter',sans-serif;font-size:0.65rem;letter-spacing:1px;color:var(--text-3);text-transform:uppercase">Objectif BF%</span>
           <span style="font-family:'Bebas Neue',sans-serif;font-size:1rem;color:${remaining <= 0 ? 'var(--green)' : 'var(--text-2)'}">${currentBF.toFixed(1)}% → ${data.goalBodyFat}%</span>
         </div>
         <div style="height:5px;background:var(--surface-3);border-radius:3px;overflow:hidden">
           <div style="height:100%;width:${pct}%;background:${barColor};border-radius:3px;transition:width 0.5s"></div>
         </div>
-        <div style="font-family:'Space Mono',monospace;font-size:0.45rem;color:var(--text-4);margin-top:4px">
+        <div style="font-family:'Inter',sans-serif;font-size:0.6875rem;color:var(--text-4);margin-top:4px">
           ${remaining <= 0 ? '✓ Objectif atteint !' : `Reste ${remaining.toFixed(1)}% · ~${kgFatToLose.toFixed(1)} kg de gras à perdre${weeksEstimate ? ` · ≈ ${weeksEstimate} sem. à ce rythme` : ''}`}
         </div>
       </div>`;
@@ -5160,7 +5160,7 @@ function renderCompositionGoal() {
     // Suggest setting a goal
     scaleHtml += `
       <div style="border-top:1px solid var(--surface-3);padding-top:10px;margin-top:4px">
-        <div style="font-family:'Space Mono',monospace;font-size:0.5rem;color:var(--text-3);line-height:1.6">
+        <div style="font-family:'Inter',sans-serif;font-size:0.75rem;color:var(--text-3);line-height:1.6">
           Fixe ton objectif ci-dessous. Pour des abdos visibles, vise <strong style="color:var(--green)">${suggestedBF}%</strong> de body fat.
         </div>
       </div>`;
@@ -5892,7 +5892,7 @@ function renderStats() {
       if (prev && prevVal && prevVal !== current) {
         const d2 = current - prevVal;
         const sign2 = d2 > 0 ? '+' : '';
-        html += `<span class="evo-delta neutral" style="display:block;font-size:0.45rem;margin-top:1px">${sign2}${d2.toFixed(1)} vs précédent</span>`;
+        html += `<span class="evo-delta neutral" style="display:block;font-size:0.6875rem;margin-top:1px">${sign2}${d2.toFixed(1)} vs précédent</span>`;
       }
       return html || '<span class="evo-delta neutral">—</span>';
     }
@@ -5904,7 +5904,7 @@ function renderStats() {
     if (fatDown && muscleUp) {
       recompHtml = `<div class="evo-card full-width" style="border:1px solid var(--green);background:rgba(46,204,113,0.05)">
         <div class="evo-label" style="color:var(--green)">RECOMP EN COURS</div>
-        <div style="font-family:'Space Mono',monospace;font-size:0.5rem;color:var(--text-3)">Tes zones gras baissent et tes zones muscle augmentent</div>
+        <div style="font-family:'Inter',sans-serif;font-size:0.75rem;color:var(--text-3)">Tes zones gras baissent et tes zones muscle augmentent</div>
       </div>`;
     }
 
@@ -5920,7 +5920,7 @@ function renderStats() {
         ${deltaHtml(last.neck, first.neck, prev?.neck, 'cm', false)}
       </div>
 
-      <div style="grid-column:1/-1;font-family:'Barlow Condensed',sans-serif;font-size:0.6rem;letter-spacing:2px;color:var(--red);text-transform:uppercase;margin:6px 0 2px;opacity:0.7">▼ ZONES GRAS — doivent baisser</div>
+      <div style="grid-column:1/-1;font-family:'Inter',sans-serif;font-size:0.6rem;letter-spacing:1px;color:var(--red);text-transform:uppercase;margin:6px 0 2px;opacity:0.7">▼ ZONES GRAS — doivent baisser</div>
 
       <div class="evo-card">
         <div class="evo-label">Taille</div>
@@ -5933,7 +5933,7 @@ function renderStats() {
         ${deltaHtml(last.hips, first.hips, prev?.hips, 'cm', false)}
       </div>
 
-      <div style="grid-column:1/-1;font-family:'Barlow Condensed',sans-serif;font-size:0.6rem;letter-spacing:2px;color:var(--green);text-transform:uppercase;margin:6px 0 2px;opacity:0.7">▲ ZONES MUSCLE — doivent monter</div>
+      <div style="grid-column:1/-1;font-family:'Inter',sans-serif;font-size:0.6rem;letter-spacing:1px;color:var(--green);text-transform:uppercase;margin:6px 0 2px;opacity:0.7">▲ ZONES MUSCLE — doivent monter</div>
 
       <div class="evo-card">
         <div class="evo-label">Poitrine</div>
@@ -6026,18 +6026,18 @@ function renderStats() {
     insightCard.id = 'correlationInsight';
     insightCard.innerHTML = `
       <div style="background:var(--surface-2);border-radius:12px;padding:14px;border:1px solid var(--surface-3)">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;letter-spacing:2px;color:var(--text-3);text-transform:uppercase;margin-bottom:10px">CORRÉLATION DÉFICIT / POIDS</div>
+        <div style="font-family:'Inter',sans-serif;font-size:0.7rem;letter-spacing:1px;color:var(--text-3);text-transform:uppercase;margin-bottom:10px">CORRÉLATION DÉFICIT / POIDS</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
           <div style="text-align:center;background:var(--surface-3);border-radius:8px;padding:8px">
             <div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--green);letter-spacing:1px">${weeklyReal >= 0 ? '-' : '+'}${Math.abs(weeklyReal).toFixed(2)} kg/sem</div>
-            <div style="font-family:'Space Mono',monospace;font-size:0.45rem;color:var(--text-4);text-transform:uppercase;letter-spacing:0.5px">Perte réelle</div>
+            <div style="font-family:'Inter',sans-serif;font-size:0.6875rem;color:var(--text-4);text-transform:uppercase;letter-spacing:0.5px">Perte réelle</div>
           </div>
           <div style="text-align:center;background:var(--surface-3);border-radius:8px;padding:8px">
             <div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--gold);letter-spacing:1px">-${Math.abs(weeklyTheoretical).toFixed(2)} kg/sem</div>
-            <div style="font-family:'Space Mono',monospace;font-size:0.45rem;color:var(--text-4);text-transform:uppercase;letter-spacing:0.5px">Théorique (déficit)</div>
+            <div style="font-family:'Inter',sans-serif;font-size:0.6875rem;color:var(--text-4);text-transform:uppercase;letter-spacing:0.5px">Théorique (déficit)</div>
           </div>
         </div>
-        <div style="font-family:'Space Mono',monospace;font-size:0.5rem;color:var(--text-4);margin-top:8px;text-align:center;line-height:1.5">
+        <div style="font-family:'Inter',sans-serif;font-size:0.75rem;color:var(--text-4);margin-top:8px;text-align:center;line-height:1.5">
           Sur ${periodDays} jours · ${Math.abs(realLoss).toFixed(1)} kg réels vs ${Math.abs(theoreticalLoss).toFixed(1)} kg théoriques
         </div>
       </div>
@@ -6116,12 +6116,12 @@ function renderBodyChart(measurements) {
   const togglesEl = document.getElementById('bodyChartToggles');
 
   const metrics = [
-    { key: 'weight', label: 'Poids', color: '#2ecc71', unit: 'kg' },
-    { key: 'waist', label: 'Taille', color: '#e04535', unit: 'cm' },
-    { key: 'chest', label: 'Poitrine', color: '#e8b820', unit: 'cm' },
-    { key: 'thigh', label: 'Cuisse', color: '#3498db', unit: 'cm' },
-    { key: 'bodyfat', label: 'BF%', color: '#e67e22', unit: '%' },
-    { key: 'calories', label: 'Calories', color: '#9b59b6', unit: 'kcal' },
+    { key: 'weight', label: 'Poids', color: '#30D158', unit: 'kg' },
+    { key: 'waist', label: 'Taille', color: '#FF453A', unit: 'cm' },
+    { key: 'chest', label: 'Poitrine', color: '#FFD60A', unit: 'cm' },
+    { key: 'thigh', label: 'Cuisse', color: '#0A84FF', unit: 'cm' },
+    { key: 'bodyfat', label: 'BF%', color: '#FF9F0A', unit: '%' },
+    { key: 'calories', label: 'Calories', color: '#BF5AF2', unit: 'kcal' },
   ];
 
   // Toggles
@@ -6216,7 +6216,7 @@ function renderBodyChart(measurements) {
     const pct = minPct + (maxPct - minPct) * (i / ySteps);
     const y = yPos(pct);
     svg += `<line x1="${padL}" y1="${y}" x2="${W - padR}" y2="${y}" stroke="var(--border-subtle)" stroke-width="0.5"/>`;
-    svg += `<text x="${padL - 4}" y="${y + 3}" fill="var(--text-4)" font-size="7" text-anchor="end" font-family="Space Mono, monospace">${pct.toFixed(1)}%</text>`;
+    svg += `<text x="${padL - 4}" y="${y + 3}" fill="var(--text-4)" font-size="7" text-anchor="end" font-family="Inter, sans-serif">${pct.toFixed(1)}%</text>`;
   }
 
   // Zero line
@@ -6231,7 +6231,7 @@ function renderBodyChart(measurements) {
   for (const d of labelDates) {
     const x = xPos(d);
     const label = d.split('-').slice(1).reverse().join('/');
-    svg += `<text x="${x}" y="${H - 4}" fill="var(--text-4)" font-size="7" text-anchor="middle" font-family="Space Mono, monospace">${label}</text>`;
+    svg += `<text x="${x}" y="${H - 4}" fill="var(--text-4)" font-size="7" text-anchor="middle" font-family="Inter, sans-serif">${label}</text>`;
   }
 
   // Lines + dots
@@ -6246,7 +6246,7 @@ function renderBodyChart(measurements) {
       svg += `<circle cx="${x}" cy="${y}" r="3" fill="${series.color}" opacity="0.9"/>`;
       // Value on last point
       if (p === series.points[series.points.length - 1]) {
-        svg += `<text x="${x}" y="${y - 7}" fill="${series.color}" font-size="7" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-weight="600">${p.value}${series.unit === 'kg' ? '' : ''}</text>`;
+        svg += `<text x="${x}" y="${y - 7}" fill="${series.color}" font-size="7" text-anchor="middle" font-family="Inter, sans-serif" font-weight="600">${p.value}${series.unit === 'kg' ? '' : ''}</text>`;
       }
     }
   }
@@ -6623,7 +6623,7 @@ function renderWorkout() {
       </div>`;
     }).join('');
 
-    const exNotes = exDef && exDef.notes ? `<div style="font-family:'Space Mono',monospace;font-size:0.5rem;color:var(--text-4);margin-bottom:8px;font-style:italic;line-height:1.4">${exDef.notes}</div>` : '';
+    const exNotes = exDef && exDef.notes ? `<div style="font-family:'Inter',sans-serif;font-size:0.75rem;color:var(--text-4);margin-bottom:8px;font-style:italic;line-height:1.4">${exDef.notes}</div>` : '';
 
     return `<div class="workout-exercise">
       <div class="workout-exercise-header">
@@ -6734,9 +6734,9 @@ function openAddExerciseToWorkout() {
   for (const cat of primaryCats) {
     const exs = muscu.exercises.filter(e => e.categories.includes(cat));
     if (exs.length === 0) continue;
-    html += `<div style="font-family:'Bebas Neue',sans-serif;font-size:0.9rem;letter-spacing:2px;color:var(--gold);margin:8px 0 6px">${catLabels[cat]}</div>`;
+    html += `<div style="font-family:'Bebas Neue',sans-serif;font-size:0.9rem;letter-spacing:1px;color:var(--gold);margin:8px 0 6px">${catLabels[cat]}</div>`;
     html += exs.map(ex => {
-      const notes = ex.notes ? `<div style="font-family:'Space Mono',monospace;font-size:0.5rem;color:var(--text-4);margin-top:2px">${ex.notes}</div>` : '';
+      const notes = ex.notes ? `<div style="font-family:'Inter',sans-serif;font-size:0.75rem;color:var(--text-4);margin-top:2px">${ex.notes}</div>` : '';
       return `<div class="exercise-lib-item" onclick="addExerciseToWorkout('${ex.id}');closeModal('addExToWorkoutModal')" style="margin-bottom:4px">
         <div class="exercise-lib-header"><span class="exercise-lib-name">${ex.name}</span></div>
         ${notes}
@@ -6750,7 +6750,7 @@ function openAddExerciseToWorkout() {
     for (const cat of secondaryCats) {
       const exs = muscu.exercises.filter(e => e.categories.includes(cat));
       if (exs.length === 0) continue;
-      secHtml += `<div style="font-family:'Bebas Neue',sans-serif;font-size:0.85rem;letter-spacing:2px;color:var(--text-4);margin:10px 0 4px">${catLabels[cat]}</div>`;
+      secHtml += `<div style="font-family:'Bebas Neue',sans-serif;font-size:0.85rem;letter-spacing:1px;color:var(--text-4);margin:10px 0 4px">${catLabels[cat]}</div>`;
       secHtml += exs.map(ex => `
         <div class="exercise-lib-item" onclick="addExerciseToWorkout('${ex.id}');closeModal('addExToWorkoutModal')" style="margin-bottom:4px;opacity:0.55">
           <div class="exercise-lib-header"><span class="exercise-lib-name">${ex.name}</span></div>
@@ -6758,7 +6758,7 @@ function openAddExerciseToWorkout() {
     }
     if (secHtml) {
       html += `<div style="margin-top:12px;border-top:1px solid var(--border-subtle);padding-top:4px">
-        <button onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'':'none';this.textContent=d.style.display==='none'?'Autres catégories ▼':'Masquer ▲'" style="font-family:'Space Mono',monospace;font-size:0.55rem;color:var(--text-4);background:none;border:none;cursor:pointer;padding:6px 0;width:100%;text-align:center">Autres catégories ▼</button>
+        <button onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'':'none';this.textContent=d.style.display==='none'?'Autres catégories ▼':'Masquer ▲'" style="font-family:'Inter',sans-serif;font-size:0.8125rem;color:var(--text-4);background:none;border:none;cursor:pointer;padding:6px 0;width:100%;text-align:center">Autres catégories ▼</button>
         <div style="display:none">${secHtml}</div>
       </div>`;
     }
@@ -6954,7 +6954,7 @@ function renderHistorique() {
 
   const dayNames = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
   const monthNames = ['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Août','Sep','Oct','Nov','Déc'];
-  const typeColors = { push: '#e8b820', pull: '#4fc3f7', legs: '#ef5350', custom: 'var(--text-3)' };
+  const typeColors = { push: '#FFD60A', pull: '#64D2FF', legs: '#FF453A', custom: 'var(--text-3)' };
   const typeLabels = { push: 'PUSH', pull: 'PULL', legs: 'LEGS', custom: 'CUSTOM' };
 
   container.innerHTML = entries.map(entry => {
@@ -7138,7 +7138,7 @@ function renderProgression() {
   }
 
   const trendLabels = { up: '↑ Progression', stable: '→ Stable', down: '↓ Régression', new: '● Nouveau' };
-  const typeColors = { push: '#e8b820', pull: '#4fc3f7', legs: '#ef5350' };
+  const typeColors = { push: '#FFD60A', pull: '#64D2FF', legs: '#FF453A' };
 
   exercisesEl.innerHTML = exerciseData.map(({ exDef, sessions, trend, trendValue, pr, totalProgress }) => {
     const displaySessions = sessions.slice(-10);
