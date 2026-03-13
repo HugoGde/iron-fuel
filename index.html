@@ -3363,41 +3363,41 @@
       <div class="measure-form-grid">
         <div class="modal-field">
           <label>Poids (kg)</label>
-          <input type="number" id="measureWeight" placeholder="80.0" inputmode="decimal" step="0.1">
+          <input type="text" id="measureWeight" placeholder="80,0" inputmode="decimal">
         </div>
         <div class="modal-field">
           <label>Taille (cm)</label>
-          <input type="number" id="inputHeight" placeholder="178" inputmode="numeric">
+          <input type="text" id="inputHeight" placeholder="178" inputmode="numeric">
           <div class="hint">Une seule fois suffit</div>
         </div>
         <div class="modal-field">
           <label>Tour de cou (cm)</label>
-          <input type="number" id="measureNeck" placeholder="38" inputmode="decimal" step="0.5">
+          <input type="text" id="measureNeck" placeholder="38" inputmode="decimal">
           <div class="hint">Sous la pomme d'Adam</div>
         </div>
         <div class="modal-field">
           <label>Tour de taille (cm)</label>
-          <input type="number" id="measureWaist" placeholder="85" inputmode="decimal" step="0.5">
+          <input type="text" id="measureWaist" placeholder="85" inputmode="decimal">
           <div class="hint">Au nombril, debout détendu</div>
         </div>
         <div class="modal-field">
           <label>Tour de hanches (cm)</label>
-          <input type="number" id="measureHips" placeholder="95" inputmode="decimal" step="0.5">
+          <input type="text" id="measureHips" placeholder="95" inputmode="decimal">
           <div class="hint">Au plus large des fesses</div>
         </div>
         <div class="modal-field">
           <label>Tour de poitrine (cm)</label>
-          <input type="number" id="measureChest" placeholder="100" inputmode="decimal" step="0.5">
+          <input type="text" id="measureChest" placeholder="100" inputmode="decimal">
           <div class="hint">Au niveau des mamelons</div>
         </div>
         <div class="modal-field">
           <label>Tour de bras (cm)</label>
-          <input type="number" id="measureArm" placeholder="35" inputmode="decimal" step="0.5">
+          <input type="text" id="measureArm" placeholder="35" inputmode="decimal">
           <div class="hint">Bras tendu, au plus large</div>
         </div>
         <div class="modal-field">
           <label>Tour de cuisse (cm)</label>
-          <input type="number" id="measureThigh" placeholder="55" inputmode="decimal" step="0.5">
+          <input type="text" id="measureThigh" placeholder="55" inputmode="decimal">
           <div class="hint">Au milieu de la cuisse</div>
         </div>
       </div>
@@ -5090,16 +5090,21 @@ document.getElementById('favInputProt').addEventListener('keydown', (e) => {
 });
 
 // ─── STATS / CORPS ───
+function parseDecimal(id) {
+  const raw = document.getElementById(id).value.replace(',', '.');
+  return parseFloat(raw);
+}
+
 function saveMeasurement() {
   const data = loadData();
-  const weight = parseFloat(document.getElementById('measureWeight').value);
-  const neck = parseFloat(document.getElementById('measureNeck').value);
-  const waist = parseFloat(document.getElementById('measureWaist').value);
-  const hips = parseFloat(document.getElementById('measureHips').value);
-  const chest = parseFloat(document.getElementById('measureChest').value);
-  const arm = parseFloat(document.getElementById('measureArm').value);
-  const thigh = parseFloat(document.getElementById('measureThigh').value);
-  const height = parseInt(document.getElementById('inputHeight').value);
+  const weight = parseDecimal('measureWeight');
+  const neck = parseDecimal('measureNeck');
+  const waist = parseDecimal('measureWaist');
+  const hips = parseDecimal('measureHips');
+  const chest = parseDecimal('measureChest');
+  const arm = parseDecimal('measureArm');
+  const thigh = parseDecimal('measureThigh');
+  const height = parseInt(document.getElementById('inputHeight').value.replace(',', '.'));
 
   // Save height to data if provided
   if (height > 0) {
