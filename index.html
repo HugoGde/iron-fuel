@@ -3357,7 +3357,7 @@
     <div class="measure-form-card">
       <div class="measure-form-title">NOUVELLE MESURE</div>
       <div class="measure-form-hint" id="measureHint"></div>
-      <div style="font-family:'Inter',sans-serif;font-size:0.6875rem;color:var(--text-4);margin-bottom:8px;line-height:1.6;background:var(--surface-3);border-radius:6px;padding:8px">
+      <div style="font-family:'Inter',sans-serif;font-size:var(--fs-caption);color:var(--text-4);margin-bottom:var(--space-8);line-height:1.6;background:var(--surface-3);border-radius:8px;padding:var(--space-8)">
         Mesure debout, détendu, après expiration. Le mètre doit être horizontal et ajusté sans serrer.
       </div>
       <div class="measure-form-grid">
@@ -3500,7 +3500,7 @@
       </div>
       <div class="modal-field" style="margin-bottom:8px">
         <label>Notes <span style="color:var(--text-4);font-weight:400">(optionnel)</span></label>
-        <textarea id="inlineNewExNotes" rows="2" placeholder="Ex: Garder les coudes serrés, tempo 3-1-1..." style="width:100%;background:var(--surface-1);border:1px solid var(--border-subtle);border-radius:8px;padding:10px;font-family:'Inter',sans-serif;font-size:0.9rem;color:var(--text);outline:none;resize:vertical;-webkit-appearance:none"></textarea>
+        <textarea id="inlineNewExNotes" rows="2" placeholder="Ex: Garder les coudes serrés, tempo 3-1-1..." style="width:100%;background:var(--surface-1);border:1px solid var(--border-subtle);border-radius:8px;padding:10px;font-family:'Inter',sans-serif;font-size:var(--fs-subhead);color:var(--text);outline:none;resize:vertical;-webkit-appearance:none"></textarea>
       </div>
       <button class="btn btn-gold" style="width:100%" onclick="inlineCreateExercise()">Créer et ajouter</button>
     </div>
@@ -3522,7 +3522,7 @@
     </div>
     <div class="modal-field">
       <label>Catégorie</label>
-      <select id="editExCategory" style="width:100%;background:var(--surface-1);border:1px solid var(--border-subtle);border-radius:14px;padding:12px;font-family:'Inter',sans-serif;font-size:1.1rem;color:var(--text);outline:none;-webkit-appearance:none">
+      <select id="editExCategory" style="width:100%;background:var(--surface-1);border:1px solid var(--border-subtle);border-radius:14px;padding:12px;font-family:'Inter',sans-serif;font-size:var(--fs-headline);color:var(--text);outline:none;-webkit-appearance:none">
         <option value="push">Push</option>
         <option value="pull">Pull</option>
         <option value="legs">Legs</option>
@@ -3555,7 +3555,7 @@
         <input type="number" id="addSetWeight" placeholder="70" inputmode="decimal" step="0.5">
       </div>
     </div>
-    <div id="addSetPrevHint" style="font-family:'Inter',sans-serif;font-size:0.65rem;color:var(--gold);opacity:0.7;text-align:center;margin-bottom:8px"></div>
+    <div id="addSetPrevHint" style="font-family:'Inter',sans-serif;font-size:var(--fs-caption);color:var(--gold);opacity:0.7;text-align:center;margin-bottom:var(--space-8)"></div>
     <div class="modal-buttons">
       <button class="btn btn-ghost" onclick="closeModal('addSetModal')">Annuler</button>
       <button class="btn btn-gold" onclick="confirmAddSet()">OK</button>
@@ -4256,7 +4256,7 @@ function renderStreak(data) {
   if (sortedDays.length === 0) { wrap.innerHTML = ''; return; }
 
   const emoji = streak >= 7 ? '🔥' : streak >= 3 ? '⚡' : '💪';
-  wrap.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;gap:8px;padding:10px var(--pad);font-family:'Inter',sans-serif;font-size:0.8rem;color:var(--text-3);letter-spacing:0.5px">
+  wrap.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;gap:var(--space-8);padding:var(--space-12) var(--pad);font-family:'Inter',sans-serif;font-size:var(--fs-subhead);color:var(--text-3);letter-spacing:0.5px">
     <span>${emoji} <strong style="color:var(--text)">${streak}</strong> jour${streak > 1 ? 's' : ''} sous objectif d'affilée</span>
     <span style="opacity:0.5">·</span>
     <span>Record : <strong style="color:var(--gold)">${best}</strong></span>
@@ -4620,18 +4620,40 @@ function renderFatTracker() {
     markersHtml += `<div class="fat-gauge-marker ${kgLost >= i ? 'reached' : ''}" style="left:${pct}%"></div>`;
   }
 
+  // Progress toward current kg
+  const kcalIntoCurrentKg = Math.round(Math.max(totalDeficit, 0) - (kgFull * CAL_PER_KG));
+  const currentKgPct = Math.min((kcalIntoCurrentKg / CAL_PER_KG) * 100, 100);
+
   container.innerHTML = `
     <div class="fat-card">
       <div class="fat-header">
         <span class="fat-title">GRAS BRÛLÉ</span>
         <span class="fat-since">depuis le ${firstDate}</span>
       </div>
-      <div class="fat-main">
-        <span class="fat-kg">${kgLost.toFixed(2)}</span>
-        <span class="fat-kg-unit">kg de gras</span>
-        <span class="fat-kcal-total">${Math.round(Math.max(totalDeficit, 0)).toLocaleString('fr-FR')} kcal</span>
+
+      <!-- Total kg lost -->
+      <div style="text-align:center;margin-bottom:var(--space-16)">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:var(--fs-large-title);color:var(--green);letter-spacing:1px;line-height:1">${kgLost.toFixed(2)}</div>
+        <div style="font-family:'Inter',sans-serif;font-size:var(--fs-caption);color:var(--text-3);text-transform:uppercase;letter-spacing:1px;margin-top:var(--space-4)">kg de gras brûlés</div>
       </div>
-      <div class="fat-gauge">
+
+      <!-- Progress bar toward next kg: X kcal / 7 700 kcal -->
+      <div style="margin-bottom:var(--space-16)">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:var(--space-4)">
+          <span style="font-family:'Inter',sans-serif;font-size:var(--fs-footnote);color:var(--text-2);font-weight:600">${kcalIntoCurrentKg.toLocaleString('fr-FR')} <span style="color:var(--text-4);font-weight:400">/ 7 700 kcal</span></span>
+          <span style="font-family:'Inter',sans-serif;font-size:var(--fs-caption);color:var(--text-3)">${kgFull} → ${nextKg} kg</span>
+        </div>
+        <div class="fat-gauge-track">
+          <div class="fat-gauge-fill" style="width:${currentKgPct}%"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:var(--space-4)">
+          <span style="font-family:'Inter',sans-serif;font-size:var(--fs-caption);color:var(--text-4)">Encore ${Math.max(kcalToNext, 0).toLocaleString('fr-FR')} kcal</span>
+          ${daysToNext !== null && daysToNext > 0 ? `<span style="font-family:'Inter',sans-serif;font-size:var(--fs-caption);color:var(--text-4)">≈ ${daysToNext}j</span>` : ''}
+        </div>
+      </div>
+
+      <!-- Full gauge (all kgs) -->
+      <div class="fat-gauge" style="margin-bottom:var(--space-12)">
         <div class="fat-gauge-track">
           <div class="fat-gauge-fill" style="width:${gaugePct}%"></div>
           <div class="fat-gauge-markers">${markersHtml}</div>
@@ -4640,18 +4662,16 @@ function renderFatTracker() {
           ${labelsHtml}
         </div>
       </div>
-      <div class="fat-next">
-        <span class="fat-next-label">Encore <strong>${Math.max(kcalToNext, 0).toLocaleString('fr-FR')} kcal</strong> → ${nextKg} kg</span>
-        ${daysToNext !== null && daysToNext > 0 ? `<span class="fat-next-kcal">≈ ${daysToNext}j à ce rythme</span>` : ''}
-      </div>
+
+      <!-- Stats row -->
       <div class="fat-stats">
         <div class="fat-stat">
           <div class="fat-stat-value">${avgDeficit > 0 ? '-' : '+'}${Math.abs(avgDeficit)}</div>
-          <div class="fat-stat-label">Déficit moy / jour</div>
+          <div class="fat-stat-label">Déf. moy/jour</div>
         </div>
         <div class="fat-stat">
-          <div class="fat-stat-value">-${weeklyRate.toFixed(2)} kg/sem</div>
-          <div class="fat-stat-label">Rythme estimé</div>
+          <div class="fat-stat-value">-${weeklyRate.toFixed(2)}</div>
+          <div class="fat-stat-label">kg/sem estimé</div>
         </div>
       </div>
       ${realWeightHtml}
@@ -4908,8 +4928,8 @@ function renderHistory() {
       const expectedLoss = periodDeficit / CAL_PER_KG;
       // Plateau: weight barely moved but significant deficit
       if (weightChange < 0.5 && expectedLoss > 0.5) {
-        html += `<div style="background:var(--surface-2);border-radius:14px;padding:16px;margin:0 var(--pad) 14px;border:1px solid rgba(255,214,10,0.3)">
-          <div style="font-family:'Inter',sans-serif;font-size:var(--fs-caption);letter-spacing:0.5px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;font-weight:600">⚠ PLATEAU DÉTECTÉ</div>
+        html += `<div style="background:var(--surface-2);border-radius:14px;padding:var(--space-16);margin:0 var(--pad) var(--space-12);border:1px solid rgba(255,214,10,0.3)">
+          <div style="font-family:'Inter',sans-serif;font-size:var(--fs-caption);letter-spacing:0.5px;color:var(--gold);text-transform:uppercase;margin-bottom:var(--space-8);font-weight:600">PLATEAU DETECTE</div>
           <div style="font-family:'Inter',sans-serif;font-size:var(--fs-subhead);color:var(--text-3);line-height:1.6">
             Ton poids stagne (${weightChange.toFixed(1)} kg de variation) malgré un déficit de ${Math.round(periodDeficit)} kcal sur ${spanDays} jours.<br>
             ${wLast <= wFirst ? 'C\'est probablement de la <strong style="color:var(--green)">recomposition</strong> — tu perds du gras et prends du muscle. Vérifie ton tour de taille.' : 'Ton maintien a peut-être baissé (adaptation métabolique). Recalcule via le TDEE dans l\'onglet Corps.'}
@@ -5009,7 +5029,7 @@ function renderHistory() {
 
       if (hiddenKeys.length > 0) {
         html += `<div id="historyHidden_${mk}" style="display:none">${hiddenKeys.map(buildDayHtml).join('')}</div>`;
-        html += `<button class="btn btn-ghost" style="width:100%;margin:8px 0;font-size:0.65rem;padding:6px" onclick="document.getElementById('historyHidden_${mk}').style.display='';this.style.display='none'">Voir plus ce mois (${hiddenKeys.length} jours)</button>`;
+        html += `<button class="btn btn-ghost" style="width:100%;margin:var(--space-8) 0;font-size:var(--fs-caption);padding:var(--space-8)" onclick="document.getElementById('historyHidden_${mk}').style.display='';this.style.display='none'">Voir plus ce mois (${hiddenKeys.length} jours)</button>`;
       }
     } else {
       // Past months: collapsed with summary, expandable
@@ -5021,20 +5041,20 @@ function renderHistory() {
       const mAvg = Math.round(mDef / keys.length);
       const mKg = mDef / CAL_PER_KG;
 
-      html += `<div class="history-month-group" style="margin:14px var(--pad)">
-        <div style="background:var(--surface-2);border-radius:14px;padding:14px 16px;cursor:pointer;border:1px solid var(--surface-3)" onclick="const el=document.getElementById('month_${mk}');const btn=this.querySelector('.month-chevron');el.style.display=el.style.display==='none'?'':'none';btn.style.transform=el.style.display==='none'?'':'rotate(180deg)'">
+      html += `<div class="history-month-group" style="margin:var(--space-12) var(--pad)">
+        <div style="background:var(--surface-2);border-radius:14px;padding:var(--space-12) var(--space-16);cursor:pointer;border:1px solid var(--surface-3)" onclick="const el=document.getElementById('month_${mk}');const btn=this.querySelector('.month-chevron');el.style.display=el.style.display==='none'?'':'none';btn.style.transform=el.style.display==='none'?'':'rotate(180deg)'">
           <div style="display:flex;align-items:center;justify-content:space-between">
             <span style="font-family:'Inter',sans-serif;font-size:var(--fs-subhead);font-weight:600;color:var(--text);text-transform:uppercase">${monthLabel}</span>
             <span class="month-chevron" style="color:var(--text-4);font-size:var(--fs-footnote);transition:transform 0.2s">▾</span>
           </div>
-          <div style="display:flex;gap:14px;margin-top:8px;font-family:'Inter',sans-serif;font-size:var(--fs-footnote);color:var(--text-3)">
+          <div style="display:flex;gap:var(--space-12);margin-top:var(--space-8);font-family:'Inter',sans-serif;font-size:var(--fs-footnote);color:var(--text-3)">
             <span>${keys.length}j</span>
             <span style="color:var(--${mAvg >= 0 ? 'green' : 'red'})">déf. moy ${mAvg >= 0 ? '-' : '+'}${Math.abs(mAvg)}</span>
             <span style="color:var(--green)">-${Math.abs(mKg).toFixed(1)} kg gras</span>
             <span style="color:var(--gold)">${Math.round(mProt / keys.length)}g prot/j</span>
           </div>
         </div>
-        <div id="month_${mk}" style="display:none;margin-top:10px">
+        <div id="month_${mk}" style="display:none;margin-top:var(--space-12)">
           ${keys.map(buildDayHtml).join('')}
         </div>
       </div>`;
@@ -5177,9 +5197,9 @@ function renderCompositionGoal() {
     missingMsg += '<br>Renseigne-les dans le formulaire "Nouvelle mesure" ci-dessous.';
 
     container.innerHTML = `
-      <div style="background:var(--surface-2);border-radius:14px;padding:16px;border:1px solid var(--surface-3)">
-        <div style="font-family:'Inter',sans-serif;font-size:0.7rem;letter-spacing:1px;color:var(--gold);text-transform:uppercase;margin-bottom:8px">BODY FAT %</div>
-        <div style="font-family:'Inter',sans-serif;font-size:0.8125rem;color:var(--text-3);line-height:1.6">${missingMsg}</div>
+      <div style="background:var(--surface-2);border-radius:14px;padding:var(--space-16);border:1px solid var(--surface-3)">
+        <div style="font-family:'Inter',sans-serif;font-size:var(--fs-caption);letter-spacing:1px;color:var(--gold);text-transform:uppercase;margin-bottom:var(--space-8)">BODY FAT %</div>
+        <div style="font-family:'Inter',sans-serif;font-size:var(--fs-subhead);color:var(--text-3);line-height:1.6">${missingMsg}</div>
       </div>`;
     return;
   }
@@ -5212,19 +5232,19 @@ function renderCompositionGoal() {
   const suggestedWaist = data.height ? Math.round(data.height * 0.45) : null;
 
   let scaleHtml = `
-    <div style="background:var(--surface-2);border-radius:14px;padding:16px;border:1px solid var(--surface-3)">
-      <div style="font-family:'Inter',sans-serif;font-size:0.7rem;letter-spacing:1px;color:var(--gold);text-transform:uppercase;margin-bottom:10px">TON BODY FAT</div>
+    <div style="background:var(--surface-2);border-radius:14px;padding:var(--space-16);border:1px solid var(--surface-3)">
+      <div style="font-family:'Inter',sans-serif;font-size:var(--fs-caption);letter-spacing:1px;color:var(--gold);text-transform:uppercase;margin-bottom:var(--space-12)">TON BODY FAT</div>
 
       <!-- Current BF big display -->
-      <div style="text-align:center;margin-bottom:12px">
-        <span style="font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:${currentZone.color};letter-spacing:1px">${currentBF.toFixed(1)}</span>
-        <span style="font-family:'Bebas Neue',sans-serif;font-size:1rem;color:var(--text-3)">%</span>
-        <div style="font-family:'Inter',sans-serif;font-size:0.75rem;color:var(--text-3);margin-top:2px">${bfDescription}</div>
-        <div style="font-family:'Inter',sans-serif;font-size:0.6875rem;color:var(--text-4);margin-top:2px">Formule Navy · ${last.neck || findLastNeck(data) ? 'taille + cou + taille' : 'taille + taille (ajoute ton tour de cou pour + de précision)'}</div>
+      <div style="text-align:center;margin-bottom:var(--space-12)">
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:var(--fs-large-title);color:${currentZone.color};letter-spacing:1px">${currentBF.toFixed(1)}</span>
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:var(--fs-headline);color:var(--text-3)">%</span>
+        <div style="font-family:'Inter',sans-serif;font-size:var(--fs-footnote);color:var(--text-3);margin-top:var(--space-4)">${bfDescription}</div>
+        <div style="font-family:'Inter',sans-serif;font-size:var(--fs-caption);color:var(--text-4);margin-top:var(--space-4)">Formule Navy · ${last.neck || findLastNeck(data) ? 'taille + cou + taille' : 'taille + taille (ajoute ton tour de cou pour + de precision)'}</div>
       </div>
 
       <!-- Visual scale -->
-      <div style="position:relative;margin:0 0 20px">
+      <div style="position:relative;margin:0 0 var(--space-24)">
         <div style="display:flex;height:8px;border-radius:4px;overflow:hidden">
           ${zones.map(z => {
             const w = ((z.max - z.min) / (scaleMax - scaleMin)) * 100;
@@ -5234,12 +5254,12 @@ function renderCompositionGoal() {
         <div style="position:absolute;top:-2px;left:${bfPct}%;transform:translateX(-50%)">
           <div style="width:12px;height:12px;border-radius:50%;background:${currentZone.color};border:2px solid var(--bg)"></div>
         </div>
-        <div style="display:flex;justify-content:space-between;margin-top:4px">
-          ${zones.map(z => `<span style="font-family:'Inter',sans-serif;font-size:0.625rem;color:var(--text-4);flex:1;text-align:center">${z.label}</span>`).join('')}
+        <div style="display:flex;justify-content:space-between;margin-top:var(--space-4)">
+          ${zones.map(z => `<span style="font-family:'Inter',sans-serif;font-size:var(--fs-caption-2);color:var(--text-4);flex:1;text-align:center">${z.label}</span>`).join('')}
         </div>
-        <div style="display:flex;justify-content:space-between;margin-top:1px">
-          <span style="font-family:'Inter',sans-serif;font-size:0.625rem;color:var(--text-4)">5%</span>
-          <span style="font-family:'Inter',sans-serif;font-size:0.625rem;color:var(--text-4)">35%</span>
+        <div style="display:flex;justify-content:space-between;margin-top:var(--space-4)">
+          <span style="font-family:'Inter',sans-serif;font-size:var(--fs-caption-2);color:var(--text-4)">5%</span>
+          <span style="font-family:'Inter',sans-serif;font-size:var(--fs-caption-2);color:var(--text-4)">35%</span>
         </div>
       </div>`;
 
@@ -5264,23 +5284,23 @@ function renderCompositionGoal() {
     const weeksEstimate = daysEstimate ? Math.ceil(daysEstimate / 7) : null;
 
     scaleHtml += `
-      <div style="border-top:1px solid var(--surface-3);padding-top:10px;margin-top:4px">
-        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px">
-          <span style="font-family:'Inter',sans-serif;font-size:0.65rem;letter-spacing:1px;color:var(--text-3);text-transform:uppercase">Objectif BF%</span>
-          <span style="font-family:'Bebas Neue',sans-serif;font-size:1rem;color:${remaining <= 0 ? 'var(--green)' : 'var(--text-2)'}">${currentBF.toFixed(1)}% → ${data.goalBodyFat}%</span>
+      <div style="border-top:1px solid var(--surface-3);padding-top:var(--space-12);margin-top:var(--space-4)">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:var(--space-8)">
+          <span style="font-family:'Inter',sans-serif;font-size:var(--fs-caption);letter-spacing:1px;color:var(--text-3);text-transform:uppercase">Objectif BF%</span>
+          <span style="font-family:'Bebas Neue',sans-serif;font-size:var(--fs-headline);color:${remaining <= 0 ? 'var(--green)' : 'var(--text-2)'}">${currentBF.toFixed(1)}% → ${data.goalBodyFat}%</span>
         </div>
         <div style="height:5px;background:var(--surface-3);border-radius:3px;overflow:hidden">
           <div style="height:100%;width:${pct}%;background:${barColor};border-radius:3px;transition:width 0.5s"></div>
         </div>
-        <div style="font-family:'Inter',sans-serif;font-size:0.6875rem;color:var(--text-4);margin-top:4px">
-          ${remaining <= 0 ? '✓ Objectif atteint !' : `Reste ${remaining.toFixed(1)}% · ~${kgFatToLose.toFixed(1)} kg de gras à perdre${weeksEstimate ? ` · ≈ ${weeksEstimate} sem. à ce rythme` : ''}`}
+        <div style="font-family:'Inter',sans-serif;font-size:var(--fs-caption);color:var(--text-4);margin-top:var(--space-4)">
+          ${remaining <= 0 ? 'Objectif atteint !' : `Reste ${remaining.toFixed(1)}% · ~${kgFatToLose.toFixed(1)} kg de gras a perdre${weeksEstimate ? ` · ${weeksEstimate} sem. a ce rythme` : ''}`}
         </div>
       </div>`;
   } else {
     // Suggest setting a goal
     scaleHtml += `
-      <div style="border-top:1px solid var(--surface-3);padding-top:10px;margin-top:4px">
-        <div style="font-family:'Inter',sans-serif;font-size:0.75rem;color:var(--text-3);line-height:1.6">
+      <div style="border-top:1px solid var(--surface-3);padding-top:var(--space-12);margin-top:var(--space-4)">
+        <div style="font-family:'Inter',sans-serif;font-size:var(--fs-footnote);color:var(--text-3);line-height:1.6">
           Fixe ton objectif ci-dessous. Pour des abdos visibles, vise <strong style="color:var(--green)">${suggestedBF}%</strong> de body fat.
         </div>
       </div>`;
@@ -6012,7 +6032,7 @@ function renderStats() {
       if (prev && prevVal && prevVal !== current) {
         const d2 = current - prevVal;
         const sign2 = d2 > 0 ? '+' : '';
-        html += `<span class="evo-delta neutral" style="display:block;font-size:0.6875rem;margin-top:1px">${sign2}${d2.toFixed(1)} vs précédent</span>`;
+        html += `<span class="evo-delta neutral" style="display:block;font-size:var(--fs-caption);margin-top:var(--space-4)">${sign2}${d2.toFixed(1)} vs precedent</span>`;
       }
       return html || '<span class="evo-delta neutral">—</span>';
     }
@@ -6040,7 +6060,7 @@ function renderStats() {
         ${deltaHtml(last.neck, first.neck, prev?.neck, 'cm', false)}
       </div>
 
-      <div style="grid-column:1/-1;font-family:'Inter',sans-serif;font-size:var(--fs-caption);letter-spacing:0.5px;color:var(--red);text-transform:uppercase;margin:10px 0 4px;opacity:0.8;font-weight:500">▼ ZONES GRAS — doivent baisser</div>
+      <div style="grid-column:1/-1;font-family:'Inter',sans-serif;font-size:var(--fs-caption);letter-spacing:0.5px;color:var(--red);text-transform:uppercase;margin:var(--space-12) 0 var(--space-4);opacity:0.8;font-weight:500">ZONES GRAS — doivent baisser</div>
 
       <div class="evo-card">
         <div class="evo-label">Taille</div>
@@ -6053,7 +6073,7 @@ function renderStats() {
         ${deltaHtml(last.hips, first.hips, prev?.hips, 'cm', false)}
       </div>
 
-      <div style="grid-column:1/-1;font-family:'Inter',sans-serif;font-size:var(--fs-caption);letter-spacing:0.5px;color:var(--green);text-transform:uppercase;margin:10px 0 4px;opacity:0.8;font-weight:500">▲ ZONES MUSCLE — doivent monter</div>
+      <div style="grid-column:1/-1;font-family:'Inter',sans-serif;font-size:var(--fs-caption);letter-spacing:0.5px;color:var(--green);text-transform:uppercase;margin:var(--space-12) 0 var(--space-4);opacity:0.8;font-weight:500">ZONES MUSCLE — doivent monter</div>
 
       <div class="evo-card">
         <div class="evo-label">Poitrine</div>
@@ -6104,7 +6124,7 @@ function renderStats() {
       Calculé sur ${tdeeResult.daysBetween} jours (${tdeeResult.daysTracked} trackés)<br>
       Moyenne nette : ${tdeeResult.avgNet} kcal/j · Poids : ${tdeeResult.weightDelta > 0 ? '-' : '+'}${Math.abs(tdeeResult.weightDelta).toFixed(1)} kg<br>
       <span class="tdee-compare" style="color:${Math.abs(diff) >= 100 ? 'var(--gold)' : 'var(--text-3)'}">vs ton maintien configuré (${data.maintenance}) : ${diffSign}${diff} kcal</span>
-      ${shouldUpdate ? `<br><button class="btn btn-ghost" style="margin-top:8px;font-size:0.65rem;padding:4px 12px" onclick="updateMaintenanceFromTDEE(${tdeeResult.tdee})">Mettre à jour le maintien → ${tdeeResult.tdee} kcal</button>` : ''}
+      ${shouldUpdate ? `<br><button class="btn btn-ghost" style="margin-top:var(--space-8);font-size:var(--fs-caption);padding:var(--space-4) var(--space-12)" onclick="updateMaintenanceFromTDEE(${tdeeResult.tdee})">Mettre a jour le maintien → ${tdeeResult.tdee} kcal</button>` : ''}
       ${tdeeResult.confidence === 'low' ? '<br>⚠ Peu de données — le calcul sera plus précis avec plus de jours trackés' : ''}
     `;
   } else {
@@ -6145,20 +6165,20 @@ function renderStats() {
     insightCard.className = 'stats-section';
     insightCard.id = 'correlationInsight';
     insightCard.innerHTML = `
-      <div style="background:var(--surface-2);border-radius:14px;padding:16px;border:1px solid var(--surface-3)">
-        <div style="font-family:'Inter',sans-serif;font-size:0.7rem;letter-spacing:1px;color:var(--text-3);text-transform:uppercase;margin-bottom:10px">CORRÉLATION DÉFICIT / POIDS</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-          <div style="text-align:center;background:var(--surface-3);border-radius:8px;padding:8px">
-            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--green);letter-spacing:1px">${weeklyReal >= 0 ? '-' : '+'}${Math.abs(weeklyReal).toFixed(2)} kg/sem</div>
-            <div style="font-family:'Inter',sans-serif;font-size:0.6875rem;color:var(--text-4);text-transform:uppercase;letter-spacing:0.5px">Perte réelle</div>
+      <div style="background:var(--surface-2);border-radius:14px;padding:var(--space-16);border:1px solid var(--surface-3)">
+        <div style="font-family:'Inter',sans-serif;font-size:var(--fs-caption);letter-spacing:1px;color:var(--text-3);text-transform:uppercase;margin-bottom:var(--space-12)">CORRELATION DEFICIT / POIDS</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-8)">
+          <div style="text-align:center;background:var(--surface-3);border-radius:14px;padding:var(--space-8)">
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:var(--fs-headline);color:var(--green);letter-spacing:1px">${weeklyReal >= 0 ? '-' : '+'}${Math.abs(weeklyReal).toFixed(2)} kg/sem</div>
+            <div style="font-family:'Inter',sans-serif;font-size:var(--fs-caption);color:var(--text-4);text-transform:uppercase;letter-spacing:0.5px">Perte reelle</div>
           </div>
-          <div style="text-align:center;background:var(--surface-3);border-radius:8px;padding:8px">
-            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--gold);letter-spacing:1px">-${Math.abs(weeklyTheoretical).toFixed(2)} kg/sem</div>
-            <div style="font-family:'Inter',sans-serif;font-size:0.6875rem;color:var(--text-4);text-transform:uppercase;letter-spacing:0.5px">Théorique (déficit)</div>
+          <div style="text-align:center;background:var(--surface-3);border-radius:14px;padding:var(--space-8)">
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:var(--fs-headline);color:var(--gold);letter-spacing:1px">-${Math.abs(weeklyTheoretical).toFixed(2)} kg/sem</div>
+            <div style="font-family:'Inter',sans-serif;font-size:var(--fs-caption);color:var(--text-4);text-transform:uppercase;letter-spacing:0.5px">Theorique (deficit)</div>
           </div>
         </div>
-        <div style="font-family:'Inter',sans-serif;font-size:0.75rem;color:var(--text-4);margin-top:8px;text-align:center;line-height:1.5">
-          Sur ${periodDays} jours · ${Math.abs(realLoss).toFixed(1)} kg réels vs ${Math.abs(theoreticalLoss).toFixed(1)} kg théoriques
+        <div style="font-family:'Inter',sans-serif;font-size:var(--fs-footnote);color:var(--text-4);margin-top:var(--space-8);text-align:center;line-height:1.5">
+          Sur ${periodDays} jours · ${Math.abs(realLoss).toFixed(1)} kg reels vs ${Math.abs(theoreticalLoss).toFixed(1)} kg theoriques
         </div>
       </div>
     `;
@@ -6455,7 +6475,7 @@ function renderMeasureHistory(measurements) {
       const val = m[f.key];
       html += `<div class="mh-cell">
         <div class="mh-cell-label">${f.label}</div>
-        <div class="mh-cell-value${val ? '' : ' empty'}">${val ? val.toFixed(1) : '—'}<span style="font-size:0.6rem;color:var(--text-4);margin-left:1px">${val ? f.unit : ''}</span></div>
+        <div class="mh-cell-value${val ? '' : ' empty'}">${val ? val.toFixed(1) : '—'}<span style="font-size:var(--fs-caption-2);color:var(--text-4);margin-left:1px">${val ? f.unit : ''}</span></div>
         ${cellDelta(m, prevM, f.key, f.invertGood)}
       </div>`;
     }
@@ -6743,7 +6763,7 @@ function renderWorkout() {
       </div>`;
     }).join('');
 
-    const exNotes = exDef && exDef.notes ? `<div style="font-family:'Inter',sans-serif;font-size:0.75rem;color:var(--text-4);margin-bottom:8px;font-style:italic;line-height:1.4">${exDef.notes}</div>` : '';
+    const exNotes = exDef && exDef.notes ? `<div style="font-family:'Inter',sans-serif;font-size:var(--fs-footnote);color:var(--text-4);margin-bottom:var(--space-8);font-style:italic;line-height:1.4">${exDef.notes}</div>` : '';
 
     return `<div class="workout-exercise">
       <div class="workout-exercise-header">
@@ -6854,9 +6874,9 @@ function openAddExerciseToWorkout() {
   for (const cat of primaryCats) {
     const exs = muscu.exercises.filter(e => e.categories.includes(cat));
     if (exs.length === 0) continue;
-    html += `<div style="font-family:'Bebas Neue',sans-serif;font-size:0.9rem;letter-spacing:1px;color:var(--gold);margin:8px 0 6px">${catLabels[cat]}</div>`;
+    html += `<div style="font-family:'Bebas Neue',sans-serif;font-size:var(--fs-subhead);letter-spacing:1px;color:var(--gold);margin:var(--space-8) 0 var(--space-8)">${catLabels[cat]}</div>`;
     html += exs.map(ex => {
-      const notes = ex.notes ? `<div style="font-family:'Inter',sans-serif;font-size:0.75rem;color:var(--text-4);margin-top:2px">${ex.notes}</div>` : '';
+      const notes = ex.notes ? `<div style="font-family:'Inter',sans-serif;font-size:var(--fs-footnote);color:var(--text-4);margin-top:var(--space-4)">${ex.notes}</div>` : '';
       return `<div class="exercise-lib-item" onclick="addExerciseToWorkout('${ex.id}');closeModal('addExToWorkoutModal')" style="margin-bottom:4px">
         <div class="exercise-lib-header"><span class="exercise-lib-name">${ex.name}</span></div>
         ${notes}
@@ -6870,7 +6890,7 @@ function openAddExerciseToWorkout() {
     for (const cat of secondaryCats) {
       const exs = muscu.exercises.filter(e => e.categories.includes(cat));
       if (exs.length === 0) continue;
-      secHtml += `<div style="font-family:'Bebas Neue',sans-serif;font-size:0.85rem;letter-spacing:1px;color:var(--text-4);margin:10px 0 4px">${catLabels[cat]}</div>`;
+      secHtml += `<div style="font-family:'Bebas Neue',sans-serif;font-size:var(--fs-subhead);letter-spacing:1px;color:var(--text-4);margin:var(--space-12) 0 var(--space-4)">${catLabels[cat]}</div>`;
       secHtml += exs.map(ex => `
         <div class="exercise-lib-item" onclick="addExerciseToWorkout('${ex.id}');closeModal('addExToWorkoutModal')" style="margin-bottom:4px;opacity:0.55">
           <div class="exercise-lib-header"><span class="exercise-lib-name">${ex.name}</span></div>
@@ -6878,7 +6898,7 @@ function openAddExerciseToWorkout() {
     }
     if (secHtml) {
       html += `<div style="margin-top:12px;border-top:1px solid var(--border-subtle);padding-top:4px">
-        <button onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'':'none';this.textContent=d.style.display==='none'?'Autres catégories ▼':'Masquer ▲'" style="font-family:'Inter',sans-serif;font-size:0.8125rem;color:var(--text-4);background:none;border:none;cursor:pointer;padding:6px 0;width:100%;text-align:center">Autres catégories ▼</button>
+        <button onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'':'none';this.textContent=d.style.display==='none'?'Autres categories':'Masquer'" style="font-family:'Inter',sans-serif;font-size:var(--fs-subhead);color:var(--text-4);background:none;border:none;cursor:pointer;padding:var(--space-8) 0;width:100%;text-align:center">Autres categories</button>
         <div style="display:none">${secHtml}</div>
       </div>`;
     }
@@ -7199,7 +7219,7 @@ function renderProgression() {
       <div class="prog-summary-label">Cette semaine</div>
     </div>
     <div class="prog-summary-card">
-      <div class="prog-summary-value" style="color:${trendColor};font-size:1.1rem">${trendSign}${volumeTrend}%</div>
+      <div class="prog-summary-value" style="color:${trendColor};font-size:var(--fs-headline)">${trendSign}${volumeTrend}%</div>
       <div class="prog-summary-label">Volume vs sem. préc.</div>
     </div>
   `;
